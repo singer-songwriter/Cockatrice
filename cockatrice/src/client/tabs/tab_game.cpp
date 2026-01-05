@@ -12,6 +12,8 @@
 #include "../../game/player/player.h"
 #include "../../game/player/player_list_widget.h"
 #include "../../game/zones/card_zone.h"
+#include "../../game/triggers/trigger_manager.h"
+#include "../../client/ui/widgets/game/trigger_reminder_dock_widget.h"
 #include "../../main.h"
 #include "../../server/message_log_widget.h"
 #include "../../server/pending_command.h"
@@ -140,12 +142,14 @@ TabGame::TabGame(TabSupervisor *_tabSupervisor,
     createCardInfoDock();
     createPlayerListDock();
     createMessageDock();
+    createTriggerReminderDock();
     createPlayAreaWidget();
     createDeckViewContainerWidget();
 
     addDockWidget(Qt::RightDockWidgetArea, cardInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, playerListDock);
     addDockWidget(Qt::RightDockWidgetArea, messageLayoutDock);
+    addDockWidget(Qt::RightDockWidgetArea, triggerReminderDock);
 
     mainWidget = new QStackedWidget(this);
     mainWidget->addWidget(deckViewContainerWidget);
@@ -211,6 +215,8 @@ void TabGame::retranslateUi()
     updatePlayerListDockTitle();
     cardInfoDock->setWindowTitle(tr("Card Info") + (cardInfoDock->isWindow() ? tabText : QString()));
     messageLayoutDock->setWindowTitle(tr("Messages") + (messageLayoutDock->isWindow() ? tabText : QString()));
+    if (triggerReminderDock)
+        triggerReminderDock->retranslateUi();
     if (replayDock)
         replayDock->setWindowTitle(tr("Replay Timeline") + (replayDock->isWindow() ? tabText : QString()));
 
@@ -634,6 +640,11 @@ Player *TabGame::addPlayer(int playerId, const ServerInfo_User &info)
     if (local && !spectator) {
         if (clients.size() == 1)
             newPlayer->setShortcutsActive();
+
+        // Connect trigger manager to local player
+        if (triggerManager) {
+            triggerManager->setLocalPlayer(newPlayer);
+        }
 
         auto *deckView = new DeckViewContainer(playerId, this);
         connect(deckView, SIGNAL(newCardAdded(AbstractCardItem *)), this, SLOT(newCardAdded(AbstractCardItem *)));
@@ -1749,6 +1760,20 @@ void TabGame::createMessageDock(bool bReplay)
 
     messageLayoutDock->installEventFilter(this);
     connect(messageLayoutDock, SIGNAL(topLevelChanged(bool)), this, SLOT(dockTopLevelChanged(bool)));
+}
+
+void TabGame::createTriggerReminderDock()
+{
+    // Initialize trigger manager
+    triggerManager = new TriggerManager(this);
+
+    // Create the trigger reminder dock widget
+    triggerReminderDock = new TriggerReminderDockWidget(triggerManager, this);
+    triggerReminderDock->setObjectName("triggerReminderDock");
+    triggerReminderDock->setFloating(false);
+
+    triggerReminderDock->installEventFilter(this);
+    connect(triggerReminderDock, SIGNAL(topLevelChanged(bool)), this, SLOT(dockTopLevelChanged(bool)));
 }
 
 void TabGame::hideEvent(QHideEvent *event)

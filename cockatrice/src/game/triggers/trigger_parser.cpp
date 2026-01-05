@@ -138,16 +138,16 @@ QList<TriggerInfoPtr> TriggerParser::parseCardTriggers(CardItem *card, bool isSi
         return {};
     }
 
-    // Safely get card info - getCardInfo() returns a reference to empty CardInfo if null
-    const CardInfo &info = card->getCardInfo();
+    // Safely get card info - getInfo() returns a shared pointer (CardInfoPtr)
+    CardInfoPtr info = card->getInfo();
 
-    // Early exit if card name is empty (invalid/unloaded card)
+    // Early exit if card info is null or card name is empty
     QString cardName = card->getName();
-    if (cardName.isEmpty()) {
+    if (!info || cardName.isEmpty()) {
         return {};
     }
 
-    QString oracleText = info.getText();
+    QString oracleText = info->getText();
     int cardId = card->getId();
 
     return parseCardTriggers(cardName, oracleText, cardId, isSideboardZone);

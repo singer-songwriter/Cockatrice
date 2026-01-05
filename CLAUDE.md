@@ -108,6 +108,36 @@ When modifying the Servatrice database schema (`servatrice/servatrice.sql`):
 3. Create migration file in `servatrice/migrations/`
 4. Run `servatrice/check_schema_version.sh` to verify
 
+## Active Features in Development
+
+### Trigger Reminder Panel (Branch: trigger-reminder-stable)
+
+**Purpose**: Displays game phase triggers from cards on battlefield and eminence abilities from sideboard.
+
+**Architecture**:
+- `TriggerParser` - Parses card oracle text using regex patterns to identify triggers
+- `TriggerManager` - Scans player zones, caches triggers, emits `triggersChanged()` signal
+- `TriggerReminderWidget` - Displays triggers organized by phase (Upkeep, Draw, Combat, etc.)
+- `TriggerReminderDockWidget` - QDockWidget wrapper for integration into TabGame
+
+**Key Files**:
+- `cockatrice/src/game/triggers/` - Core trigger system
+- `cockatrice/src/client/ui/widgets/game/trigger_reminder_*.{h,cpp}` - UI widgets
+- `cockatrice/src/client/tabs/tab_game.cpp` - Integration point (see createTriggerReminderDock)
+
+**Important API Differences (2.10.2 vs master)**:
+- ✓ Use `card->getInfo()` (returns `CardInfoPtr`) NOT `card->getCardInfo()`
+- ✓ Use `player->getZones().value("table")` NOT `player->getTable()`
+- ✓ Use `player->getZones().value("sb")` NOT `player->getSideboard()`
+- Zone names: "table" (battlefield), "sb" (sideboard), "hand", "deck", "grave", "rfg", "stack"
+
+**Signal Flow**:
+1. CardZone emits `cardAdded(CardItem*)` / `cardRemoved(CardItem*)`
+2. TriggerManager slots update cache and emit `triggersChanged()`
+3. TriggerReminderWidget refreshes display from `triggerManager->getTriggersByPhase()`
+
+**Known Issues**: See TRIGGER_REMINDER_TODO.md for current debugging status
+
 ## Translations
 
 Translatable strings use Qt's `tr()` function. Translation files are managed via Transifex and updated automatically by CI. Don't manually update .ts files.

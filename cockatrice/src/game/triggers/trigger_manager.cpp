@@ -37,13 +37,13 @@ void TriggerManager::refreshTriggers()
     }
 
     // Scan battlefield (table zone)
-    TableZone *tableZone = localPlayer->getTable();
+    TableZone *tableZone = qobject_cast<TableZone *>(localPlayer->getZones().value("table"));
     if (tableZone) {
         scanZone(tableZone, false);
     }
 
     // Scan sideboard for eminence triggers
-    PileZone *sideboardZone = localPlayer->getSideboard();
+    PileZone *sideboardZone = qobject_cast<PileZone *>(localPlayer->getZones().value("sb"));
     if (sideboardZone) {
         scanZone(sideboardZone, true);
     }
