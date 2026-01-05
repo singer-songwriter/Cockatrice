@@ -284,6 +284,10 @@ void TabGame::retranslateUi()
     aPlayerListDockVisible->setText(tr("Visible"));
     aPlayerListDockFloating->setText(tr("Floating"));
 
+    triggerDockMenu->setTitle(tr("Trigger Reminder"));
+    aTriggerDockVisible->setText(tr("Visible"));
+    aTriggerDockFloating->setText(tr("Floating"));
+
     if (replayDock) {
         replayDockMenu->setTitle(tr("Replay Timeline"));
         aReplayDockVisible->setText(tr("Visible"));
@@ -1405,6 +1409,15 @@ void TabGame::createViewMenuItems()
     aPlayerListDockFloating->setCheckable(true);
     connect(aPlayerListDockFloating, SIGNAL(triggered()), this, SLOT(dockFloatingTriggered()));
 
+    triggerDockMenu = viewMenu->addMenu(QString());
+
+    aTriggerDockVisible = triggerDockMenu->addAction(QString());
+    aTriggerDockVisible->setCheckable(true);
+    connect(aTriggerDockVisible, SIGNAL(triggered()), this, SLOT(dockVisibleTriggered()));
+    aTriggerDockFloating = triggerDockMenu->addAction(QString());
+    aTriggerDockFloating->setCheckable(true);
+    connect(aTriggerDockFloating, SIGNAL(triggered()), this, SLOT(dockFloatingTriggered()));
+
     if (replayDock) {
         replayDockMenu = viewMenu->addMenu(QString());
 
@@ -1455,14 +1468,17 @@ void TabGame::loadLayout()
     aCardInfoDockVisible->setChecked(cardInfoDock->isVisible());
     aMessageLayoutDockVisible->setChecked(messageLayoutDock->isVisible());
     aPlayerListDockVisible->setChecked(playerListDock->isVisible());
+    aTriggerDockVisible->setChecked(triggerReminderDock->isVisible());
 
     aCardInfoDockFloating->setEnabled(aCardInfoDockVisible->isChecked());
     aMessageLayoutDockFloating->setEnabled(aMessageLayoutDockVisible->isChecked());
     aPlayerListDockFloating->setEnabled(aPlayerListDockVisible->isChecked());
+    aTriggerDockFloating->setEnabled(aTriggerDockVisible->isChecked());
 
     aCardInfoDockFloating->setChecked(cardInfoDock->isFloating());
     aMessageLayoutDockFloating->setChecked(messageLayoutDock->isFloating());
     aPlayerListDockFloating->setChecked(playerListDock->isFloating());
+    aTriggerDockFloating->setChecked(triggerReminderDock->isFloating());
 
     if (replayDock) {
         aReplayDockVisible->setChecked(replayDock->isVisible());
@@ -1495,18 +1511,22 @@ void TabGame::actResetLayout()
     cardInfoDock->setVisible(true);
     playerListDock->setVisible(true);
     messageLayoutDock->setVisible(true);
+    triggerReminderDock->setVisible(true);
 
     cardInfoDock->setFloating(false);
     playerListDock->setFloating(false);
     messageLayoutDock->setFloating(false);
+    triggerReminderDock->setFloating(false);
 
     aCardInfoDockVisible->setChecked(true);
     aPlayerListDockVisible->setChecked(true);
     aMessageLayoutDockVisible->setChecked(true);
+    aTriggerDockVisible->setChecked(true);
 
     aCardInfoDockFloating->setChecked(false);
     aPlayerListDockFloating->setChecked(false);
     aMessageLayoutDockFloating->setChecked(false);
+    aTriggerDockFloating->setChecked(false);
 
     addDockWidget(Qt::RightDockWidgetArea, cardInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, playerListDock);
@@ -1771,6 +1791,7 @@ void TabGame::createTriggerReminderDock()
     triggerReminderDock = new TriggerReminderDockWidget(triggerManager, this);
     triggerReminderDock->setObjectName("triggerReminderDock");
     triggerReminderDock->setFloating(false);
+    triggerReminderDock->setVisible(true);
 
     triggerReminderDock->installEventFilter(this);
     connect(triggerReminderDock, SIGNAL(topLevelChanged(bool)), this, SLOT(dockTopLevelChanged(bool)));
@@ -1810,6 +1831,9 @@ bool TabGame::eventFilter(QObject *o, QEvent *e)
         } else if (o == playerListDock) {
             aPlayerListDockVisible->setChecked(false);
             aPlayerListDockFloating->setEnabled(false);
+        } else if (o == triggerReminderDock) {
+            aTriggerDockVisible->setChecked(false);
+            aTriggerDockFloating->setEnabled(false);
         } else if (o == replayDock) {
             aReplayDockVisible->setChecked(false);
             aReplayDockFloating->setEnabled(false);
@@ -1840,6 +1864,12 @@ void TabGame::dockVisibleTriggered()
         return;
     }
 
+    if (o == aTriggerDockVisible) {
+        triggerReminderDock->setVisible(aTriggerDockVisible->isChecked());
+        aTriggerDockFloating->setEnabled(aTriggerDockVisible->isChecked());
+        return;
+    }
+
     if (o == aReplayDockVisible) {
         replayDock->setVisible(aReplayDockVisible->isChecked());
         aReplayDockFloating->setEnabled(aReplayDockVisible->isChecked());
@@ -1862,6 +1892,11 @@ void TabGame::dockFloatingTriggered()
 
     if (o == aPlayerListDockFloating) {
         playerListDock->setFloating(aPlayerListDockFloating->isChecked());
+        return;
+    }
+
+    if (o == aTriggerDockFloating) {
+        triggerReminderDock->setFloating(aTriggerDockFloating->isChecked());
         return;
     }
 
