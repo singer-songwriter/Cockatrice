@@ -104,11 +104,36 @@ void TriggerReminderWidget::populateTriggers()
 
     QMap<TriggerPhase, QList<TriggerInfoPtr>> triggersByPhase = triggerManager->getTriggersByPhase();
 
-    // Define the order of phases to display
-    QList<TriggerPhase> phaseOrder = {TriggerPhase::Untap,     TriggerPhase::Upkeep,    TriggerPhase::Draw,
-                                      TriggerPhase::Main1,     TriggerPhase::CombatStart, TriggerPhase::Attackers,
-                                      TriggerPhase::Blockers,  TriggerPhase::Damage,    TriggerPhase::CombatEnd,
-                                      TriggerPhase::Main2,     TriggerPhase::EndStep,   TriggerPhase::Other};
+    // Define the order of phases to display (phase-based first, then event-based)
+    QList<TriggerPhase> phaseOrder = {// Phase-based triggers
+                                      TriggerPhase::Untap,
+                                      TriggerPhase::Upkeep,
+                                      TriggerPhase::Draw,
+                                      TriggerPhase::Main1,
+                                      TriggerPhase::CombatStart,
+                                      TriggerPhase::Attackers,
+                                      TriggerPhase::Blockers,
+                                      TriggerPhase::Damage,
+                                      TriggerPhase::CombatEnd,
+                                      TriggerPhase::Main2,
+                                      TriggerPhase::EndStep,
+                                      // Event-based triggers
+                                      TriggerPhase::EntersBattlefield,
+                                      TriggerPhase::LeavesBattlefield,
+                                      TriggerPhase::Dies,
+                                      TriggerPhase::SpellCast,
+                                      TriggerPhase::DrawCard,
+                                      TriggerPhase::Discard,
+                                      TriggerPhase::GainLife,
+                                      TriggerPhase::LoseLife,
+                                      TriggerPhase::Sacrifice,
+                                      TriggerPhase::TapUntap,
+                                      TriggerPhase::Landfall,
+                                      TriggerPhase::TargetedBy,
+                                      TriggerPhase::CounterPlaced,
+                                      TriggerPhase::TokenCreated,
+                                      TriggerPhase::Mana,
+                                      TriggerPhase::Other};
 
     for (TriggerPhase phase : phaseOrder) {
         if (!triggersByPhase.contains(phase) || triggersByPhase.value(phase).isEmpty()) {
@@ -128,6 +153,12 @@ void TriggerReminderWidget::populateTriggers()
             QString displayText = trigger->cardName;
             if (trigger->isEminence) {
                 displayText += " [Eminence]";
+            }
+            if (trigger->isEachPlayer) {
+                displayText += " [All Players]";
+                // Use a subtle background color to highlight "each player" triggers
+                triggerItem->setBackground(0, QColor(220, 235, 245)); // Soft blue-gray
+                triggerItem->setForeground(0, QColor(0, 0, 0));       // Black text for contrast
             }
             triggerItem->setText(0, displayText);
             triggerItem->setToolTip(0, trigger->triggerText);
