@@ -18,6 +18,24 @@ TriggerManager::TriggerManager(QObject *parent) : QObject(parent), localPlayer(n
 void TriggerManager::setLocalPlayer(Player *player)
 {
     localPlayer = player;
+
+    // Connect zone signals to trigger manager slots
+    if (localPlayer) {
+        // Connect battlefield (table) zone
+        CardZone *tableZone = localPlayer->getZones().value("table");
+        if (tableZone) {
+            connect(tableZone, &CardZone::cardAdded, this, &TriggerManager::onCardAdded);
+            connect(tableZone, &CardZone::cardRemoved, this, &TriggerManager::onCardRemoved);
+        }
+
+        // Connect sideboard zone (for eminence triggers)
+        CardZone *sideboardZone = localPlayer->getZones().value("sb");
+        if (sideboardZone) {
+            connect(sideboardZone, &CardZone::cardAdded, this, &TriggerManager::onCardAdded);
+            connect(sideboardZone, &CardZone::cardRemoved, this, &TriggerManager::onCardRemoved);
+        }
+    }
+
     refreshTriggers();
 }
 

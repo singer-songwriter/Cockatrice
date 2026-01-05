@@ -9,6 +9,7 @@
 #include <QString>
 
 enum class TriggerPhase {
+    // Phase-based triggers (0-10)
     Untap = 0,
     Upkeep = 1,
     Draw = 2,
@@ -21,8 +22,23 @@ enum class TriggerPhase {
     Main2 = 9,
     EndStep = 10,
 
-    // Non-phase triggers (for future expansion)
-    Other = 100,
+    // Event-based triggers (100+)
+    EntersBattlefield = 100,
+    LeavesBattlefield = 101,
+    Dies = 102,
+    SpellCast = 103,
+    DrawCard = 104,      // Whenever a player draws (Smothering Tithe, Nekusar)
+    Discard = 105,       // Whenever a player discards (Waste Not, Megrim)
+    GainLife = 106,      // Whenever you/a player gains life (Soul Warden triggers)
+    LoseLife = 107,      // Whenever damage dealt / life lost
+    Sacrifice = 108,     // Whenever a permanent is sacrificed (Mayhem Devil)
+    TapUntap = 109,      // Whenever becomes tapped/untapped
+    Landfall = 110,      // Whenever a land enters (Lotus Cobra)
+    TargetedBy = 111,    // Whenever becomes the target of (Heroic)
+    CounterPlaced = 112, // Whenever a counter is placed/removed
+    TokenCreated = 113,  // Whenever you create a token
+    Mana = 114,          // Whenever you tap for mana
+    Other = 199,
     Unknown = -1
 };
 
@@ -75,6 +91,36 @@ inline QString getDisplayName(TriggerPhase phase)
             return QStringLiteral("Second Main");
         case TriggerPhase::EndStep:
             return QStringLiteral("End Step");
+        case TriggerPhase::EntersBattlefield:
+            return QStringLiteral("Enters Battlefield");
+        case TriggerPhase::LeavesBattlefield:
+            return QStringLiteral("Leaves Battlefield");
+        case TriggerPhase::Dies:
+            return QStringLiteral("Dies");
+        case TriggerPhase::SpellCast:
+            return QStringLiteral("Spell Cast");
+        case TriggerPhase::DrawCard:
+            return QStringLiteral("Card Drawn");
+        case TriggerPhase::Discard:
+            return QStringLiteral("Discard");
+        case TriggerPhase::GainLife:
+            return QStringLiteral("Life Gained");
+        case TriggerPhase::LoseLife:
+            return QStringLiteral("Life Lost / Damage");
+        case TriggerPhase::Sacrifice:
+            return QStringLiteral("Sacrifice");
+        case TriggerPhase::TapUntap:
+            return QStringLiteral("Tap/Untap");
+        case TriggerPhase::Landfall:
+            return QStringLiteral("Landfall");
+        case TriggerPhase::TargetedBy:
+            return QStringLiteral("Targeted");
+        case TriggerPhase::CounterPlaced:
+            return QStringLiteral("Counters");
+        case TriggerPhase::TokenCreated:
+            return QStringLiteral("Token Created");
+        case TriggerPhase::Mana:
+            return QStringLiteral("Mana");
         case TriggerPhase::Other:
             return QStringLiteral("Other");
         default:

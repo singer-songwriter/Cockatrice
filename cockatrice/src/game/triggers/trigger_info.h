@@ -19,9 +19,10 @@ struct TriggerInfo
     QString triggerText;
     TriggerPhase triggerPhase;
     bool isEminence;
+    bool isEachPlayer;  // Trigger affects each player, not just you
     int cardId;
 
-    TriggerInfo() : triggerPhase(TriggerPhase::Unknown), isEminence(false), cardId(-1)
+    TriggerInfo() : triggerPhase(TriggerPhase::Unknown), isEminence(false), isEachPlayer(false), cardId(-1)
     {
     }
 
@@ -29,8 +30,10 @@ struct TriggerInfo
                 const QString &_triggerText,
                 TriggerPhase _phase,
                 bool _isEminence = false,
+                bool _isEachPlayer = false,
                 int _cardId = -1)
-        : cardName(_cardName), triggerText(_triggerText), triggerPhase(_phase), isEminence(_isEminence), cardId(_cardId)
+        : cardName(_cardName), triggerText(_triggerText), triggerPhase(_phase), isEminence(_isEminence),
+          isEachPlayer(_isEachPlayer), cardId(_cardId)
     {
     }
 };
