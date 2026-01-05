@@ -153,6 +153,7 @@ void CardZone::addCard(CardItem *card, const bool reorganize, const int x, const
     if (reorganize)
         reorganizeCards();
 
+    emit cardAdded(card);
     emit cardCountChanged();
 }
 
@@ -211,6 +212,7 @@ void CardZone::removeCard(CardItem *card)
 
     cards.removeOne(card);
     reorganizeCards();
+    emit cardRemoved(card);
     emit cardCountChanged();
     player->deleteCard(card);
 }

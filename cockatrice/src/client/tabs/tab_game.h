@@ -63,6 +63,8 @@ class PendingCommand;
 class LineEditCompleter;
 class QDockWidget;
 class QStackedWidget;
+class TriggerManager;
+class TriggerReminderDockWidget;
 
 class TabGame : public Tab
 {
@@ -116,13 +118,17 @@ private:
     QWidget *cardBoxLayoutWidget, *messageLogLayoutWidget, *gamePlayAreaWidget, *deckViewContainerWidget,
         *replayControlWidget;
     QDockWidget *cardInfoDock, *messageLayoutDock, *playerListDock, *replayDock;
+    TriggerManager *triggerManager;
+    TriggerReminderDockWidget *triggerReminderDock;
     QAction *playersSeparator;
-    QMenu *gameMenu, *viewMenu, *cardInfoDockMenu, *messageLayoutDockMenu, *playerListDockMenu, *replayDockMenu;
+    QMenu *gameMenu, *viewMenu, *cardInfoDockMenu, *messageLayoutDockMenu, *playerListDockMenu, *replayDockMenu,
+        *triggerDockMenu;
     TearOffMenu *phasesMenu;
     QAction *aGameInfo, *aConcede, *aLeaveGame, *aCloseReplay, *aNextPhase, *aNextPhaseAction, *aNextTurn,
         *aReverseTurn, *aRemoveLocalArrows, *aRotateViewCW, *aRotateViewCCW, *aResetLayout, *aResetReplayLayout;
     QAction *aCardInfoDockVisible, *aCardInfoDockFloating, *aMessageLayoutDockVisible, *aMessageLayoutDockFloating,
-        *aPlayerListDockVisible, *aPlayerListDockFloating, *aReplayDockVisible, *aReplayDockFloating;
+        *aPlayerListDockVisible, *aPlayerListDockFloating, *aReplayDockVisible, *aReplayDockFloating,
+        *aTriggerDockVisible, *aTriggerDockFloating;
     QAction *aFocusChat;
     QList<QAction *> phaseActions;
 
@@ -163,6 +169,7 @@ private:
     void createPlayAreaWidget(bool bReplay = false);
     void createDeckViewContainerWidget(bool bReplay = false);
     void createReplayDock();
+    void createTriggerReminderDock();
     QString getLeaveReason(Event_Leave::LeaveReason reason);
 signals:
     void gameClosing(TabGame *tab);

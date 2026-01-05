@@ -42,6 +42,8 @@ protected:
     virtual void addCardImpl(CardItem *card, int x, int y) = 0;
 signals:
     void cardCountChanged();
+    void cardAdded(CardItem *addedCard);
+    void cardRemoved(CardItem *removedCard);
 public slots:
     void moveAllToZone();
     bool showContextMenu(const QPoint &screenPos);
