@@ -141,3 +141,49 @@ When modifying the Servatrice database schema (`servatrice/servatrice.sql`):
 ## Translations
 
 Translatable strings use Qt's `tr()` function. Translation files are managed via Transifex and updated automatically by CI. Don't manually update .ts files.
+
+## Troubleshooting Tips
+
+### Pattern Matching / Regex-Based Features
+
+When developing features that rely on pattern matching (regex, string parsing, text classification):
+
+**Common failure modes:**
+1. **Incomplete coverage** - Patterns written from memory miss real-world variations. Example: assuming "spell cast" covers all opponent triggers, missing "draws a card" triggers.
+2. **Overly greedy patterns** - Broad patterns match unintended cases. Example: `Whenever [^,.]+ enters` matching both creature ETB and landfall text.
+3. **Semantic edge cases** - Subtle language differences missed. Example: "a player" (any player) vs "each player" vs "an opponent" all have different semantics.
+4. **Syntax assumptions** - Assuming all relevant cases use expected keywords. Example: replacement effects ("If X would... instead") vs triggers ("Whenever X...").
+
+**Prevention strategies:**
+1. **Gather real examples first** - Before writing patterns, collect 10+ real examples of the text you're trying to match. For MTG, use actual oracle text from cards.
+2. **Test-driven pattern development** - Write test cases with real data before implementing patterns. Verify each pattern against known matches AND known non-matches.
+3. **Add debug/trace logging** - During development, log what patterns match and what they capture. Remove or gate behind debug flag before committing.
+4. **Consider exclusions upfront** - When writing a broad pattern, ask "what might this accidentally match?" and add negative lookahead/exclusions.
+5. **Create structured test data** - Build a test dataset covering each category (e.g., a deck with one card per trigger type).
+6. **Review domain-specific templating** - Many domains have standardized text templates (MTG oracle text, legal documents, API responses). Study the template rules.
+
+**Debugging approach:**
+1. Find a specific failing case (e.g., "Smothering Tithe not detected")
+2. Get the exact input text being parsed
+3. Test each pattern against that text in isolation
+4. Identify whether it's a missing pattern, wrong pattern, or pattern conflict
+5. Fix and add the case to your test suite to prevent regression
+
+### Signal-Slot / Event-Driven Debugging (Qt)
+
+When signals aren't triggering expected behavior:
+
+1. **Verify connection exists** - Use `QObject::connect()` return value or add debug output in slots
+2. **Check connection timing** - Ensure objects exist when `connect()` is called
+3. **Verify signal emission** - Add debug output at emit site to confirm signal fires
+4. **Check thread context** - Use `Qt::QueuedConnection` for cross-thread signals
+5. **Trace the chain** - Map out: Source → Signal → Slot → Action, verify each link
+
+### API Version Compatibility
+
+When code works on one branch but not another:
+
+1. **Document API differences** - Keep notes on method name changes between versions
+2. **Search both codebases** - Use `git show branch:file` to compare implementations
+3. **Check return types** - Same method name may return different types (raw pointer vs smart pointer)
+4. **Verify zone/collection names** - String-based lookups may use different keys
