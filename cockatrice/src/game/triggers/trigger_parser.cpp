@@ -338,20 +338,32 @@ bool TriggerParser::isEminenceAbility(const QString &text) const
 
 bool TriggerParser::isEachPlayerTrigger(const QString &text) const
 {
-    // Patterns that indicate trigger affects ALL players (including you)
+    // Only check the trigger CONDITION (before the first comma), not the effect
+    // This prevents "deals damage to each player" from being flagged as "each player trigger"
+    // We want to detect "Whenever a player draws" not "Whenever you draw, each player loses 1 life"
+    int commaPos = text.indexOf(',');
+    QString triggerCondition = (commaPos > 0) ? text.left(commaPos) : text;
+
+    // Patterns that indicate trigger is caused by ANY player's action
     // "a player" means ANY player, "each player" means everyone
     static QRegularExpression eachPlayerPattern(R"((?:each|a) player|other player)",
                                                 QRegularExpression::CaseInsensitiveOption);
-    return eachPlayerPattern.match(text).hasMatch();
+    return eachPlayerPattern.match(triggerCondition).hasMatch();
 }
 
 bool TriggerParser::isOpponentOnlyTrigger(const QString &text) const
 {
-    // Patterns that indicate trigger affects only opponents (not you)
+    // Only check the trigger CONDITION (before the first comma), not the effect
+    // This prevents "deals damage to each opponent" from being flagged as "opponent trigger"
+    // We want to detect "Whenever an opponent casts a spell" not "deals 1 damage to each opponent"
+    int commaPos = text.indexOf(',');
+    QString triggerCondition = (commaPos > 0) ? text.left(commaPos) : text;
+
+    // Patterns that indicate trigger is caused by an OPPONENT's action
     // "an opponent", "each opponent", "opponents"
     static QRegularExpression opponentPattern(R"((?:a|an|each) opponent|opponents)",
                                               QRegularExpression::CaseInsensitiveOption);
-    return opponentPattern.match(text).hasMatch();
+    return opponentPattern.match(triggerCondition).hasMatch();
 }
 
 QString TriggerParser::extractTriggerSentence(const QString &fullText, int matchStart) const

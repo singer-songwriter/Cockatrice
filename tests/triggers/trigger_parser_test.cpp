@@ -618,6 +618,63 @@ TEST_F(TriggerParserTest, DetectsCopySpellTriggers)
     EXPECT_TRUE(hasTriggerPhase(triggers, TriggerPhase::CopySpell));
 }
 
+// =============================================================================
+// Player Scope Detection Tests (Trigger Condition vs Effect)
+// =============================================================================
+
+TEST_F(TriggerParserTest, DoesNotFlagEffectTargetingOpponentsAsOpponentTrigger)
+{
+    // Impact Tremors - triggers on YOUR creatures, deals damage TO opponents
+    // Should NOT have isOpponentOnly flag
+    auto triggers = parser.parseCardTriggers(
+        "Impact Tremors",
+        "Whenever a creature enters the battlefield under your control, Impact Tremors deals 1 damage to each "
+        "opponent.",
+        1);
+    ASSERT_GE(triggers.size(), 1);
+    EXPECT_FALSE(triggers[0]->isOpponentOnly); // Effect targets opponents, but trigger is from YOUR creatures
+}
+
+TEST_F(TriggerParserTest, DoesNotFlagGuttersnipeAsOpponentTrigger)
+{
+    // Guttersnipe - triggers on YOUR spells, deals damage TO opponents
+    auto triggers = parser.parseCardTriggers(
+        "Guttersnipe", "Whenever you cast an instant or sorcery spell, Guttersnipe deals 2 damage to each opponent.",
+        1);
+    ASSERT_GE(triggers.size(), 1);
+    EXPECT_FALSE(triggers[0]->isOpponentOnly); // YOU cast the spell, not opponent
+}
+
+TEST_F(TriggerParserTest, CorrectlyFlagsOpponentTriggerCondition)
+{
+    // Rhystic Study - triggers when OPPONENT casts
+    auto triggers = parser.parseCardTriggers(
+        "Rhystic Study", "Whenever an opponent casts a spell, you may draw a card unless that player pays {1}.", 1);
+    ASSERT_GE(triggers.size(), 1);
+    EXPECT_TRUE(triggers[0]->isOpponentOnly); // Trigger condition involves opponent action
+}
+
+TEST_F(TriggerParserTest, DoesNotFlagEffectTargetingPlayersAsEachPlayerTrigger)
+{
+    // Purphoros - triggers on YOUR creatures, deals damage to EACH opponent
+    auto triggers = parser.parseCardTriggers(
+        "Purphoros, God of the Forge",
+        "Whenever another creature enters the battlefield under your control, Purphoros deals 2 damage to each "
+        "opponent.",
+        1);
+    ASSERT_GE(triggers.size(), 1);
+    EXPECT_FALSE(triggers[0]->isEachPlayer); // YOUR creatures trigger it, not "each player"
+}
+
+TEST_F(TriggerParserTest, CorrectlyFlagsEachPlayerTriggerCondition)
+{
+    // Howling Mine - triggers for EACH PLAYER's draw step
+    auto triggers = parser.parseCardTriggers(
+        "Howling Mine", "At the beginning of each player's draw step, that player draws an additional card.", 1);
+    ASSERT_GE(triggers.size(), 1);
+    EXPECT_TRUE(triggers[0]->isEachPlayer); // Trigger condition is "each player's draw step"
+}
+
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
