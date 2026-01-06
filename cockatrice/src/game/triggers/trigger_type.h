@@ -38,6 +38,15 @@ enum class TriggerPhase {
     CounterPlaced = 112, // Whenever a counter is placed/removed
     TokenCreated = 113,  // Whenever you create a token
     Mana = 114,          // Whenever you tap for mana
+
+    // New trigger categories
+    Exile = 115,         // Whenever a card is exiled
+    SearchLibrary = 116, // Whenever you/a player searches a library
+    Magecraft = 117,     // Whenever you cast or copy an instant/sorcery spell
+    Constellation = 118, // Whenever an enchantment enters
+    Mill = 119,          // Whenever cards are put into graveyard from library
+    CopySpell = 120,     // Whenever you copy a spell
+
     Other = 199,
     Unknown = -1
 };
@@ -121,6 +130,18 @@ inline QString getDisplayName(TriggerPhase phase)
             return QStringLiteral("Token Created");
         case TriggerPhase::Mana:
             return QStringLiteral("Mana");
+        case TriggerPhase::Exile:
+            return QStringLiteral("Exile");
+        case TriggerPhase::SearchLibrary:
+            return QStringLiteral("Search Library");
+        case TriggerPhase::Magecraft:
+            return QStringLiteral("Magecraft");
+        case TriggerPhase::Constellation:
+            return QStringLiteral("Constellation");
+        case TriggerPhase::Mill:
+            return QStringLiteral("Mill");
+        case TriggerPhase::CopySpell:
+            return QStringLiteral("Copy Spell");
         case TriggerPhase::Other:
             return QStringLiteral("Other");
         default:

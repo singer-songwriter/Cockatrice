@@ -47,11 +47,12 @@ void TriggerParser::initializePatterns()
                             TriggerPhase::CombatStart});
 
     // Attack triggers (declare attackers step)
+    // Using .+? (non-greedy) instead of [^,.]+ to handle card names with commas
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ attacks)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? attacks)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Attackers});
 
-    triggerPatterns.append({QRegularExpression(R"(When [^,.]+ attacks)", QRegularExpression::CaseInsensitiveOption),
+    triggerPatterns.append({QRegularExpression(R"(When .+? attacks)", QRegularExpression::CaseInsensitiveOption),
                             TriggerPhase::Attackers});
 
     triggerPatterns.append({QRegularExpression(R"(Whenever you attack with)", QRegularExpression::CaseInsensitiveOption),
@@ -59,20 +60,20 @@ void TriggerParser::initializePatterns()
 
     // Block triggers (declare blockers step)
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ blocks)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? blocks)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Blockers});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ becomes blocked)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? becomes blocked)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Blockers});
 
     // Combat damage triggers
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ deals combat damage)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? deals combat damage)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Damage});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ deals damage to a player)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? deals damage to a player)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Damage});
 
     // End of combat triggers
@@ -97,40 +98,42 @@ void TriggerParser::initializePatterns()
          TriggerPhase::EndStep});
 
     // ETB triggers (enters the battlefield) - exclude lands to avoid overlap with Landfall
+    // Using .+? (non-greedy) to handle card names with commas (e.g., "Aurelia, the Warleader")
     triggerPatterns.append(
-        {QRegularExpression(R"(When(?:ever)? (?!a land)[^,.]+ enters(?: the battlefield)?)",
+        {QRegularExpression(R"(When(?:ever)? (?!a land).+? enters(?: the battlefield)?)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::EntersBattlefield});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever (?:a|an|another) (?!land)[^,.]+ enters the battlefield)",
+        {QRegularExpression(R"(Whenever (?:a|an|another) (?!land).+? enters the battlefield)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::EntersBattlefield});
 
     // LTB triggers (leaves the battlefield)
     triggerPatterns.append(
-        {QRegularExpression(R"(When(?:ever)? [^,.]+ leaves the battlefield)",
+        {QRegularExpression(R"(When(?:ever)? .+? leaves the battlefield)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::LeavesBattlefield});
 
     // Death triggers
     triggerPatterns.append(
-        {QRegularExpression(R"(When(?:ever)? [^,.]+ dies)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(When(?:ever)? .+? dies)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Dies});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever (?:a|an|another) [^,.]+ (?:dies|is put into a graveyard))",
+        {QRegularExpression(R"(Whenever (?:a|an|another) .+? (?:dies|is put into a graveyard))",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Dies});
 
-    // Spell cast triggers (e.g., Rhystic Study)
+    // Spell cast triggers (e.g., Rhystic Study, Edgar Markov eminence)
     triggerPatterns.append(
         {QRegularExpression(R"(Whenever (?:a player|an opponent|you) casts? a spell)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::SpellCast});
 
+    // Note: "another" for self-excluding triggers like Edgar Markov's "cast another Vampire spell"
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever (?:a player|an opponent|you) casts? (?:a|an) [^,.]+ spell)",
+        {QRegularExpression(R"(Whenever (?:a player|an opponent|you) casts? (?:a|an|another) .+? spell)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::SpellCast});
 
@@ -146,8 +149,9 @@ void TriggerParser::initializePatterns()
          TriggerPhase::DrawCard});
 
     // Discard triggers (e.g., Waste Not, Megrim, Liliana's Caress)
+    // Note: Handles "discards a creature card", "discards a noncreature, nonland card", etc.
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever (?:a player|an opponent|you) discards? a card)",
+        {QRegularExpression(R"(Whenever (?:a player|an opponent|you) discards? a .+? card)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Discard});
 
@@ -173,7 +177,7 @@ void TriggerParser::initializePatterns()
          TriggerPhase::LoseLife});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ deals (?:damage|noncombat damage))",
+        {QRegularExpression(R"(Whenever .+? deals (?:damage|noncombat damage))",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::LoseLife});
 
@@ -188,16 +192,16 @@ void TriggerParser::initializePatterns()
          TriggerPhase::Sacrifice});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ is sacrificed)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? is sacrificed)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Sacrifice});
 
     // Tap/Untap triggers (e.g., Opposition Agent for opponents, Cryptolith Rite creatures)
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ becomes tapped)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? becomes tapped)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::TapUntap});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ becomes untapped)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? becomes untapped)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::TapUntap});
 
     triggerPatterns.append(
@@ -215,7 +219,7 @@ void TriggerParser::initializePatterns()
 
     // Targeted triggers (e.g., Heroic, Feather targets)
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever [^,.]+ becomes the target of)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever .+? becomes the target of)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::TargetedBy});
 
     triggerPatterns.append(
@@ -224,24 +228,24 @@ void TriggerParser::initializePatterns()
 
     // Counter triggers (e.g., Hardened Scales, Winding Constrictor, proliferate tracking)
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever (?:a|one or more) [^,.]* counters? (?:is|are) (?:placed|put) on)",
+        {QRegularExpression(R"(Whenever (?:a|one or more) .*? counters? (?:is|are) (?:placed|put) on)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::CounterPlaced});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever you put (?:a|one or more) [^,.]* counters?)",
+        {QRegularExpression(R"(Whenever you put (?:a|one or more) .*? counters?)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::CounterPlaced});
 
     // Replacement effects for counters (e.g., Hardened Scales, Doubling Season, Winding Constrictor)
     // These use "If ... would be put ... instead" rather than "Whenever"
     triggerPatterns.append(
-        {QRegularExpression(R"(If (?:a|one or more) [^,.]* counters? would be (?:placed|put) on)",
+        {QRegularExpression(R"(If (?:a|one or more) .*? counters? would be (?:placed|put) on)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::CounterPlaced});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(counters? (?:are|is) (?:placed|put) on [^,.]+ instead)",
+        {QRegularExpression(R"(counters? (?:are|is) (?:placed|put) on .+? instead)",
                             QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::CounterPlaced});
 
@@ -263,8 +267,67 @@ void TriggerParser::initializePatterns()
          TriggerPhase::Mana});
 
     triggerPatterns.append(
-        {QRegularExpression(R"(Whenever you tap a [^,.]+ for mana)", QRegularExpression::CaseInsensitiveOption),
+        {QRegularExpression(R"(Whenever you tap a .+? for mana)", QRegularExpression::CaseInsensitiveOption),
          TriggerPhase::Mana});
+
+    // Exile triggers (e.g., Rest in Peace, Leyline of the Void)
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever .+? (?:is|are) exiled)", QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::Exile});
+
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever you exile)", QRegularExpression::CaseInsensitiveOption), TriggerPhase::Exile});
+
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever (?:a|one or more) cards? (?:is|are) exiled)",
+                            QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::Exile});
+
+    // Search library triggers (e.g., Opposition Agent, Ob Nixilis)
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever (?:a player|an opponent|you) searches? (?:a|their|his or her) library)",
+                            QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::SearchLibrary});
+
+    // Magecraft triggers (instant/sorcery cast or copy)
+    // Keyword version: "Magecraft —"
+    triggerPatterns.append(
+        {QRegularExpression(R"(Magecraft\s*[—–-])", QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::Magecraft});
+
+    // Pattern version: "Whenever you cast or copy an instant or sorcery spell"
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever you cast or copy an instant or sorcery spell)",
+                            QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::Magecraft});
+
+    // Constellation triggers (enchantment ETB)
+    // Keyword version: "Constellation —"
+    triggerPatterns.append(
+        {QRegularExpression(R"(Constellation\s*[—–-])", QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::Constellation});
+
+    // Pattern version: "Whenever an enchantment enters"
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever an enchantment (?:you control )?enters)",
+                            QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::Constellation});
+
+    // Mill triggers (cards put into graveyard from library)
+    triggerPatterns.append(
+        {QRegularExpression(
+             R"(Whenever (?:a|one or more) cards? (?:is|are) put into (?:your|a|an opponent's) graveyard from .+? library)",
+             QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::Mill});
+
+    // Copy spell triggers
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever you copy a spell)", QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::CopySpell});
+
+    triggerPatterns.append(
+        {QRegularExpression(R"(Whenever a player copies a spell)", QRegularExpression::CaseInsensitiveOption),
+         TriggerPhase::CopySpell});
 }
 
 bool TriggerParser::isEminenceAbility(const QString &text) const
