@@ -25,9 +25,17 @@ public:
     explicit TriggerReminderWidget(TriggerManager *manager, QWidget *parent = nullptr);
     void retranslateUi();
 
+signals:
+    void cardHovered(const QString &cardName);
+    void cardClicked(const QString &cardName);
+
 public slots:
     void refreshDisplay();
     void setCurrentPhase(int phaseIndex);
+
+private slots:
+    void onItemEntered(QTreeWidgetItem *item, int column);
+    void onItemClicked(QTreeWidgetItem *item, int column);
 
 private:
     TriggerManager *triggerManager;
@@ -40,11 +48,14 @@ private:
 
     QMap<TriggerPhase, QTreeWidgetItem *> categoryItems;
 
+    static const int CardNameRole = Qt::UserRole + 1;
+
     void setupUi();
     void populateTriggers();
     void updatePhaseHighlighting();
     QTreeWidgetItem *getOrCreateCategoryItem(TriggerPhase phase);
     void clearCategoryItems();
+    QString getCardNameFromItem(QTreeWidgetItem *item) const;
 };
 
 #endif // TRIGGER_REMINDER_WIDGET_H

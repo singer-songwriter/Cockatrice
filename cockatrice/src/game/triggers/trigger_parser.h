@@ -39,6 +39,7 @@ private:
     void initializePatterns();
     bool isEminenceAbility(const QString &text) const;
     bool isEachPlayerTrigger(const QString &text) const;
+    bool isOpponentOnlyTrigger(const QString &text) const;
     QString extractTriggerSentence(const QString &fullText, int matchStart) const;
 };
 

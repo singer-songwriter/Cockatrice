@@ -12,6 +12,7 @@
 #include <QList>
 #include <QMap>
 #include <QObject>
+#include <QTimer>
 
 class Player;
 class CardItem;
@@ -42,9 +43,16 @@ public slots:
     void onCardRemoved(CardItem *card);
     void refreshTriggers();
 
+private slots:
+    void emitTriggersChanged();
+
 private:
     TriggerParser parser;
     Player *localPlayer;
+
+    // Debounce timer for batching rapid card changes
+    QTimer *refreshTimer;
+    bool pendingRefresh;
 
     // Cache: cardId -> list of triggers
     QMap<int, QList<TriggerInfoPtr>> cardTriggerCache;
@@ -55,6 +63,7 @@ private:
     void scanZone(CardZone *zone, bool isSideboard = false);
     void rebuildTriggerGroups();
     void clearCache();
+    void scheduleRefresh();
 };
 
 #endif // TRIGGER_MANAGER_H

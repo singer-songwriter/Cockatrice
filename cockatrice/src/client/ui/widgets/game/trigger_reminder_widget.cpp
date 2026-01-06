@@ -40,7 +40,12 @@ void TriggerReminderWidget::setupUi()
     triggerTree->setIndentation(12);
     triggerTree->setAnimated(true);
     triggerTree->setWordWrap(true);
+    triggerTree->setMouseTracking(true);
     mainLayout->addWidget(triggerTree);
+
+    // Connect hover and click signals for card info display
+    connect(triggerTree, &QTreeWidget::itemEntered, this, &TriggerReminderWidget::onItemEntered);
+    connect(triggerTree, &QTreeWidget::itemClicked, this, &TriggerReminderWidget::onItemClicked);
 
     setLayout(mainLayout);
 }
@@ -156,15 +161,21 @@ void TriggerReminderWidget::populateTriggers()
             }
             if (trigger->isEachPlayer) {
                 displayText += " [All Players]";
-                // Use a subtle background color to highlight "each player" triggers
+                // Use a subtle blue-gray background for "each player" triggers
                 triggerItem->setBackground(0, QColor(220, 235, 245)); // Soft blue-gray
+                triggerItem->setForeground(0, QColor(0, 0, 0));       // Black text for contrast
+            } else if (trigger->isOpponentOnly) {
+                displayText += " [Opponents]";
+                // Use a subtle orange/peach background for opponent-only triggers
+                triggerItem->setBackground(0, QColor(255, 235, 220)); // Soft peach
                 triggerItem->setForeground(0, QColor(0, 0, 0));       // Black text for contrast
             }
             triggerItem->setText(0, displayText);
             triggerItem->setToolTip(0, trigger->triggerText);
 
-            // Store card ID for potential future use
+            // Store card ID and card name for card info display
             triggerItem->setData(0, Qt::UserRole, trigger->cardId);
+            triggerItem->setData(0, CardNameRole, trigger->cardName);
         }
 
         // Expand categories with triggers
@@ -193,13 +204,41 @@ void TriggerReminderWidget::updatePhaseHighlighting()
             // Highlight current phase
             font.setBold(true);
             item->setFont(0, font);
-            item->setBackground(0, QColor(255, 255, 200)); // Light yellow highlight
+            item->setBackground(0, QColor(255, 200, 200)); // Light red highlight
+            item->setForeground(0, QColor(0, 0, 0));       // Black text for contrast
             item->setExpanded(true);
         } else {
             // Normal styling
             font.setBold(false);
             item->setFont(0, font);
-            item->setBackground(0, QBrush()); // Clear background
+            item->setBackground(0, QBrush());   // Clear background
+            item->setForeground(0, QBrush());   // Reset to default text color
         }
+    }
+}
+
+QString TriggerReminderWidget::getCardNameFromItem(QTreeWidgetItem *item) const
+{
+    if (!item) {
+        return QString();
+    }
+    return item->data(0, CardNameRole).toString();
+}
+
+void TriggerReminderWidget::onItemEntered(QTreeWidgetItem *item, int column)
+{
+    Q_UNUSED(column);
+    QString cardName = getCardNameFromItem(item);
+    if (!cardName.isEmpty()) {
+        emit cardHovered(cardName);
+    }
+}
+
+void TriggerReminderWidget::onItemClicked(QTreeWidgetItem *item, int column)
+{
+    Q_UNUSED(column);
+    QString cardName = getCardNameFromItem(item);
+    if (!cardName.isEmpty()) {
+        emit cardClicked(cardName);
     }
 }

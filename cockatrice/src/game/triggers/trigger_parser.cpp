@@ -275,12 +275,20 @@ bool TriggerParser::isEminenceAbility(const QString &text) const
 
 bool TriggerParser::isEachPlayerTrigger(const QString &text) const
 {
-    // Patterns that indicate trigger affects each player or opponents
-    // "a player" means ANY player (including opponents) so it's an all-players trigger
-    static QRegularExpression eachPlayerPattern(
-        R"(each (?:player|opponent)|a player|(?:a|an) opponent|other player)",
-        QRegularExpression::CaseInsensitiveOption);
+    // Patterns that indicate trigger affects ALL players (including you)
+    // "a player" means ANY player, "each player" means everyone
+    static QRegularExpression eachPlayerPattern(R"((?:each|a) player|other player)",
+                                                QRegularExpression::CaseInsensitiveOption);
     return eachPlayerPattern.match(text).hasMatch();
+}
+
+bool TriggerParser::isOpponentOnlyTrigger(const QString &text) const
+{
+    // Patterns that indicate trigger affects only opponents (not you)
+    // "an opponent", "each opponent", "opponents"
+    static QRegularExpression opponentPattern(R"((?:a|an|each) opponent|opponents)",
+                                              QRegularExpression::CaseInsensitiveOption);
+    return opponentPattern.match(text).hasMatch();
 }
 
 QString TriggerParser::extractTriggerSentence(const QString &fullText, int matchStart) const
@@ -361,6 +369,7 @@ QList<TriggerInfoPtr> TriggerParser::parseCardTriggers(const QString &cardName,
     for (const QString &ability : abilities) {
         bool hasEminence = isEminenceAbility(ability);
         bool eachPlayer = isEachPlayerTrigger(ability);
+        bool opponentOnly = isOpponentOnlyTrigger(ability);
 
         // If this is a sideboard card, only process eminence abilities
         if (isSideboardZone && !hasEminence) {
@@ -377,6 +386,7 @@ QList<TriggerInfoPtr> TriggerParser::parseCardTriggers(const QString &cardName,
                 triggerInfo->triggerPhase = pattern.phase;
                 triggerInfo->isEminence = hasEminence;
                 triggerInfo->isEachPlayer = eachPlayer;
+                triggerInfo->isOpponentOnly = opponentOnly;
                 triggerInfo->cardId = cardId;
 
                 // Avoid duplicates for the same phase on the same ability line

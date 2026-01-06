@@ -24,6 +24,10 @@ public:
         return triggerWidget;
     }
 
+signals:
+    void cardHovered(const QString &cardName);
+    void cardClicked(const QString &cardName);
+
 private:
     TriggerReminderWidget *triggerWidget;
 };

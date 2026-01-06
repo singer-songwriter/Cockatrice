@@ -14,6 +14,7 @@
 #include "../../game/zones/card_zone.h"
 #include "../../game/triggers/trigger_manager.h"
 #include "../../client/ui/widgets/game/trigger_reminder_dock_widget.h"
+#include "../../client/ui/widgets/game/trigger_reminder_widget.h"
 #include "../../main.h"
 #include "../../server/message_log_widget.h"
 #include "../../server/pending_command.h"
@@ -1197,6 +1198,11 @@ void TabGame::setActivePhase(int phase)
     if (currentPhase != phase) {
         currentPhase = phase;
         phasesToolbar->setActivePhase(phase);
+
+        // Update trigger reminder highlighting for current phase
+        if (triggerReminderDock) {
+            triggerReminderDock->getTriggerWidget()->setCurrentPhase(phase);
+        }
     }
 }
 
@@ -1795,6 +1801,12 @@ void TabGame::createTriggerReminderDock()
 
     triggerReminderDock->installEventFilter(this);
     connect(triggerReminderDock, SIGNAL(topLevelChanged(bool)), this, SLOT(dockTopLevelChanged(bool)));
+
+    // Connect hover/click on trigger card names to show card in info panel
+    connect(triggerReminderDock, &TriggerReminderDockWidget::cardHovered, cardInfoFrameWidget,
+            QOverload<const QString &>::of(&CardInfoFrameWidget::setCard));
+    connect(triggerReminderDock, &TriggerReminderDockWidget::cardClicked, cardInfoFrameWidget,
+            QOverload<const QString &>::of(&CardInfoFrameWidget::setCard));
 }
 
 void TabGame::hideEvent(QHideEvent *event)

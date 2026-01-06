@@ -11,8 +11,13 @@
 #include "../zones/pile_zone.h"
 #include "../zones/table_zone.h"
 
-TriggerManager::TriggerManager(QObject *parent) : QObject(parent), localPlayer(nullptr)
+TriggerManager::TriggerManager(QObject *parent) : QObject(parent), localPlayer(nullptr), pendingRefresh(false)
 {
+    // Setup debounce timer - 50ms delay to batch rapid card changes
+    refreshTimer = new QTimer(this);
+    refreshTimer->setSingleShot(true);
+    refreshTimer->setInterval(50);
+    connect(refreshTimer, &QTimer::timeout, this, &TriggerManager::emitTriggersChanged);
 }
 
 void TriggerManager::setLocalPlayer(Player *player)
@@ -115,8 +120,7 @@ void TriggerManager::onCardAdded(CardItem *card)
     QList<TriggerInfoPtr> triggers = parser.parseCardTriggers(card, isSideboard);
     if (!triggers.isEmpty()) {
         cardTriggerCache.insert(card->getId(), triggers);
-        rebuildTriggerGroups();
-        emit triggersChanged();
+        scheduleRefresh();
     }
 }
 
@@ -129,6 +133,23 @@ void TriggerManager::onCardRemoved(CardItem *card)
     int cardId = card->getId();
     if (cardTriggerCache.contains(cardId)) {
         cardTriggerCache.remove(cardId);
+        scheduleRefresh();
+    }
+}
+
+void TriggerManager::scheduleRefresh()
+{
+    pendingRefresh = true;
+    // Start or restart the debounce timer
+    if (!refreshTimer->isActive()) {
+        refreshTimer->start();
+    }
+}
+
+void TriggerManager::emitTriggersChanged()
+{
+    if (pendingRefresh) {
+        pendingRefresh = false;
         rebuildTriggerGroups();
         emit triggersChanged();
     }

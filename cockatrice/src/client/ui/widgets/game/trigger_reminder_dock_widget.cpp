@@ -19,6 +19,10 @@ TriggerReminderDockWidget::TriggerReminderDockWidget(TriggerManager *manager, QW
 
     setMinimumSize(200, 150);
     setMaximumSize(300, 400);
+
+    // Forward card hover/click signals for card info display integration
+    connect(triggerWidget, &TriggerReminderWidget::cardHovered, this, &TriggerReminderDockWidget::cardHovered);
+    connect(triggerWidget, &TriggerReminderWidget::cardClicked, this, &TriggerReminderDockWidget::cardClicked);
 }
 
 void TriggerReminderDockWidget::retranslateUi()
