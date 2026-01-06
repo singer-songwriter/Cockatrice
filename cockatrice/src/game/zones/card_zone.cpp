@@ -199,6 +199,7 @@ CardItem *CardZone::takeCard(int position, int cardId, bool toNewZone)
     c->setId(cardId);
 
     reorganizeCards();
+    emit cardRemoved(c);
     emit cardCountChanged();
     return c;
 }
