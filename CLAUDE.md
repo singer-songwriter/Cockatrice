@@ -132,11 +132,16 @@ When modifying the Servatrice database schema (`servatrice/servatrice.sql`):
 - Zone names: "table" (battlefield), "sb" (sideboard), "hand", "deck", "grave", "rfg", "stack"
 
 **Signal Flow**:
-1. CardZone emits `cardAdded(CardItem*)` / `cardRemoved(CardItem*)`
+1. CardZone emits `cardAdded(CardItem*)` / `cardRemoved(CardItem*)` when cards enter/leave
 2. TriggerManager slots update cache and emit `triggersChanged()`
 3. TriggerReminderWidget refreshes display from `triggerManager->getTriggersByPhase()`
 
-**Known Issues**: See TRIGGER_REMINDER_TODO.md for current debugging status
+**CardZone API** (important for zone change handling):
+- `addCard()` - Adds card to zone, emits `cardAdded`
+- `takeCard()` - Removes card for transfer to another zone, emits `cardRemoved`, returns the card
+- `removeCard()` - Removes and deletes card permanently, emits `cardRemoved`
+
+Both `takeCard()` and `removeCard()` emit `cardRemoved` so listeners are notified regardless of whether the card is being moved or deleted.
 
 ## Translations
 
