@@ -1474,17 +1474,23 @@ void TabGame::loadLayout()
     aCardInfoDockVisible->setChecked(cardInfoDock->isVisible());
     aMessageLayoutDockVisible->setChecked(messageLayoutDock->isVisible());
     aPlayerListDockVisible->setChecked(playerListDock->isVisible());
-    aTriggerDockVisible->setChecked(triggerReminderDock->isVisible());
+    if (triggerReminderDock) {
+        aTriggerDockVisible->setChecked(triggerReminderDock->isVisible());
+    }
 
     aCardInfoDockFloating->setEnabled(aCardInfoDockVisible->isChecked());
     aMessageLayoutDockFloating->setEnabled(aMessageLayoutDockVisible->isChecked());
     aPlayerListDockFloating->setEnabled(aPlayerListDockVisible->isChecked());
-    aTriggerDockFloating->setEnabled(aTriggerDockVisible->isChecked());
+    if (triggerReminderDock) {
+        aTriggerDockFloating->setEnabled(aTriggerDockVisible->isChecked());
+    }
 
     aCardInfoDockFloating->setChecked(cardInfoDock->isFloating());
     aMessageLayoutDockFloating->setChecked(messageLayoutDock->isFloating());
     aPlayerListDockFloating->setChecked(playerListDock->isFloating());
-    aTriggerDockFloating->setChecked(triggerReminderDock->isFloating());
+    if (triggerReminderDock) {
+        aTriggerDockFloating->setChecked(triggerReminderDock->isFloating());
+    }
 
     if (replayDock) {
         aReplayDockVisible->setChecked(replayDock->isVisible());
@@ -1517,22 +1523,30 @@ void TabGame::actResetLayout()
     cardInfoDock->setVisible(true);
     playerListDock->setVisible(true);
     messageLayoutDock->setVisible(true);
-    triggerReminderDock->setVisible(true);
+    if (triggerReminderDock) {
+        triggerReminderDock->setVisible(true);
+    }
 
     cardInfoDock->setFloating(false);
     playerListDock->setFloating(false);
     messageLayoutDock->setFloating(false);
-    triggerReminderDock->setFloating(false);
+    if (triggerReminderDock) {
+        triggerReminderDock->setFloating(false);
+    }
 
     aCardInfoDockVisible->setChecked(true);
     aPlayerListDockVisible->setChecked(true);
     aMessageLayoutDockVisible->setChecked(true);
-    aTriggerDockVisible->setChecked(true);
+    if (triggerReminderDock) {
+        aTriggerDockVisible->setChecked(true);
+    }
 
     aCardInfoDockFloating->setChecked(false);
     aPlayerListDockFloating->setChecked(false);
     aMessageLayoutDockFloating->setChecked(false);
-    aTriggerDockFloating->setChecked(false);
+    if (triggerReminderDock) {
+        aTriggerDockFloating->setChecked(false);
+    }
 
     addDockWidget(Qt::RightDockWidgetArea, cardInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, playerListDock);
@@ -1877,8 +1891,10 @@ void TabGame::dockVisibleTriggered()
     }
 
     if (o == aTriggerDockVisible) {
-        triggerReminderDock->setVisible(aTriggerDockVisible->isChecked());
-        aTriggerDockFloating->setEnabled(aTriggerDockVisible->isChecked());
+        if (triggerReminderDock) {
+            triggerReminderDock->setVisible(aTriggerDockVisible->isChecked());
+            aTriggerDockFloating->setEnabled(aTriggerDockVisible->isChecked());
+        }
         return;
     }
 
@@ -1908,7 +1924,9 @@ void TabGame::dockFloatingTriggered()
     }
 
     if (o == aTriggerDockFloating) {
-        triggerReminderDock->setFloating(aTriggerDockFloating->isChecked());
+        if (triggerReminderDock) {
+            triggerReminderDock->setFloating(aTriggerDockFloating->isChecked());
+        }
         return;
     }
 
