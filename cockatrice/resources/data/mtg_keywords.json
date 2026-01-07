@@ -2,883 +2,1287 @@
   "keywords": {
     "deathtouch": {
       "name": "Deathtouch",
-      "description": "Any amount of damage this deals to a creature is enough to destroy it."
+      "description": "Any amount of damage this deals to a creature is enough to destroy it.",
+      "example": "Your 1/1 with deathtouch blocks their 10/10. Your creature deals 1 damage, but that's enough - their 10/10 dies.",
+      "tip": "Combine with trample: you only need to assign 1 damage to each blocker, the rest tramples through."
     },
     "defender": {
       "name": "Defender",
-      "description": "This creature cannot attack."
+      "description": "This creature cannot attack.",
+      "example": "Your 0/5 Wall with defender can block any attacker, but you can't declare it as an attacker.",
+      "tip": "Defenders often have high toughness for their mana cost, making them efficient blockers."
     },
     "double strike": {
       "name": "Double Strike",
-      "description": "This creature deals both first-strike and regular combat damage."
+      "description": "This creature deals both first-strike and regular combat damage.",
+      "example": "Your 3/3 with double strike attacks unblocked. It deals 3 first-strike damage, then 3 regular damage - 6 total.",
+      "tip": "Power boosts are twice as effective. A +2/+0 buff gives +4 total damage."
     },
     "enchant": {
       "name": "Enchant",
-      "description": "This Aura can only be attached to the specified type of permanent or player."
+      "description": "This Aura can only be attached to the specified type of permanent or player.",
+      "example": "'Enchant creature' means you choose a creature when casting - the Aura attaches to that creature.",
+      "tip": "If the enchanted permanent leaves the battlefield, the Aura goes to the graveyard."
     },
     "equip": {
       "name": "Equip",
-      "description": "Pay the equip cost to attach this Equipment to a creature you control. Equip only as a sorcery."
+      "description": "Pay the equip cost to attach this Equipment to a creature you control. Equip only as a sorcery.",
+      "example": "You have a Sword with 'Equip 2'. Pay 2 mana during your main phase to attach it to your creature.",
+      "tip": "Unlike Auras, Equipment stays on the battlefield when the equipped creature dies."
     },
     "first strike": {
       "name": "First Strike",
-      "description": "This creature deals combat damage before creatures without first strike."
+      "description": "This creature deals combat damage before creatures without first strike.",
+      "example": "Your 2/2 first striker blocks their 3/2. Your creature deals 2 damage first, killing theirs before it can hit back.",
+      "tip": "First strike lets smaller creatures win fights they'd normally trade in or lose."
     },
     "flash": {
       "name": "Flash",
-      "description": "You may cast this spell any time you could cast an instant."
+      "description": "You may cast this spell any time you could cast an instant.",
+      "example": "Your opponent attacks with a 3/3. You cast a 2/4 creature with flash and block their attacker.",
+      "tip": "Flash lets you keep mana open for instants, then play a creature if you don't need to respond."
     },
     "flying": {
       "name": "Flying",
-      "description": "This creature can only be blocked by creatures with flying or reach."
+      "description": "This creature can only be blocked by creatures with flying or reach.",
+      "example": "Your 2/2 flier attacks. Your opponent has only ground creatures, so they can't block.",
+      "tip": "Flying is one of the most reliable forms of evasion for getting damage through."
     },
     "haste": {
       "name": "Haste",
-      "description": "This creature can attack and use tap abilities the turn it comes under your control."
+      "description": "This creature can attack and use tap abilities the turn it comes under your control.",
+      "example": "You cast a 4/4 with haste. Normally you'd wait a turn, but haste lets you attack immediately.",
+      "tip": "Haste creatures are great for surprise damage when opponents think they're safe."
     },
     "hexproof": {
       "name": "Hexproof",
-      "description": "This permanent cannot be the target of spells or abilities your opponents control."
+      "description": "This permanent cannot be the target of spells or abilities your opponents control.",
+      "example": "Your opponent tries to cast 'Destroy target creature' on your hexproof creature - it's not a legal target.",
+      "tip": "Hexproof protects from targeted removal, but not effects that say 'all creatures' or 'each creature'."
     },
     "indestructible": {
       "name": "Indestructible",
-      "description": "Damage and effects that say 'destroy' do not destroy this permanent."
+      "description": "Damage and effects that say 'destroy' do not destroy this permanent.",
+      "example": "Your indestructible creature blocks a 10/10. It takes 10 damage but doesn't die.",
+      "tip": "Indestructible doesn't protect against sacrifice, exile, or effects that reduce toughness to 0 or less."
     },
     "intimidate": {
       "name": "Intimidate",
-      "description": "This creature can only be blocked by artifact creatures and creatures that share a color with it."
+      "description": "This creature can only be blocked by artifact creatures and creatures that share a color with it.",
+      "example": "Your red creature with intimidate attacks. Only red creatures or artifact creatures can block it.",
+      "tip": "Intimidate is less effective in multicolor formats where opponents often share your colors."
     },
     "landwalk": {
       "name": "Landwalk",
-      "description": "This creature is unblockable as long as the defending player controls a land of the specified type."
+      "description": "This creature is unblockable as long as the defending player controls a land of the specified type.",
+      "example": "Your creature has Islandwalk. If your opponent controls an Island, they can't block this creature.",
+      "tip": "Landwalk is matchup-dependent but provides guaranteed evasion when it applies."
     },
     "lifelink": {
       "name": "Lifelink",
-      "description": "Damage dealt by this creature also causes you to gain that much life."
+      "description": "Damage dealt by this creature also causes you to gain that much life.",
+      "example": "Your 3/3 with lifelink attacks and deals 3 damage. You also gain 3 life.",
+      "tip": "Lifelink works on ALL damage this creature deals, including when blocking or from fight effects."
     },
     "menace": {
       "name": "Menace",
-      "description": "This creature cannot be blocked except by two or more creatures."
+      "description": "This creature cannot be blocked except by two or more creatures.",
+      "example": "Your menace creature attacks. Your opponent must block with 2+ creatures or not at all.",
+      "tip": "Menace is great when opponents have few creatures, forcing unfavorable multi-blocks."
     },
     "protection": {
       "name": "Protection",
-      "description": "This permanent cannot be damaged, enchanted, equipped, blocked, or targeted by sources of the specified quality."
+      "description": "This permanent cannot be damaged, enchanted, equipped, blocked, or targeted by sources of the specified quality.",
+      "example": "'Protection from red' means red creatures can't block it, red spells can't target it, and red sources deal no damage to it.",
+      "tip": "Remember DEBT: can't be Damaged, Enchanted/Equipped, Blocked, or Targeted by the specified quality."
     },
     "reach": {
       "name": "Reach",
-      "description": "This creature can block creatures with flying."
+      "description": "This creature can block creatures with flying.",
+      "example": "Your opponent attacks with a 2/2 flier. Your 1/4 with reach can block it even though it doesn't fly.",
+      "tip": "Reach provides defense against fliers without giving your creature flying's evasion."
     },
     "shroud": {
       "name": "Shroud",
-      "description": "This permanent cannot be the target of spells or abilities."
+      "description": "This permanent cannot be the target of spells or abilities.",
+      "example": "You want to pump your shroud creature with Giant Growth, but you can't - shroud prevents all targeting, even yours.",
+      "tip": "Shroud is symmetrical - protected from opponents but you can't enhance it with Auras or targeted buffs."
     },
     "trample": {
       "name": "Trample",
-      "description": "This creature can deal excess combat damage to the defending player or planeswalker."
+      "description": "This creature can deal excess combat damage to the defending player or planeswalker.",
+      "example": "Your 7/7 trampler is blocked by a 2/2. Assign 2 damage to kill the blocker; 5 tramples through to the player.",
+      "tip": "Trample plus deathtouch is devastating - assign only 1 damage per blocker, the rest tramples through."
     },
     "vigilance": {
       "name": "Vigilance",
-      "description": "Attacking does not cause this creature to tap."
+      "description": "Attacking does not cause this creature to tap.",
+      "example": "Your 4/4 with vigilance attacks. It stays untapped, so it can also block on your opponent's turn.",
+      "tip": "Vigilance excels on large creatures that can pressure opponents while still defending."
     },
     "ward": {
       "name": "Ward",
-      "description": "Whenever this permanent becomes the target of a spell or ability an opponent controls, counter it unless that player pays the ward cost."
+      "description": "Whenever this permanent becomes the target of a spell or ability an opponent controls, counter it unless that player pays the ward cost.",
+      "example": "Your creature has 'Ward 2'. If your opponent tries to target it, they must pay 2 extra mana or the spell is countered.",
+      "tip": "Ward doesn't prevent targeting - it taxes it. Opponents with excess mana can still pay the cost."
     },
     "banding": {
       "name": "Banding",
-      "description": "Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage among any of the creatures it's being blocked by or is blocking."
+      "description": "Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage among any of the creatures it's being blocked by or is blocking.",
+      "example": "Your three creatures with banding attack as a band. If blocked, YOU decide how the blocker's damage is distributed.",
+      "tip": "Banding's main benefit: you control damage assignment when your banding creatures are in combat."
     },
     "rampage": {
       "name": "Rampage",
-      "description": "Whenever this creature becomes blocked, it gets +N/+N until end of turn for each creature blocking it beyond the first."
+      "description": "Whenever this creature becomes blocked, it gets +N/+N until end of turn for each creature blocking it beyond the first.",
+      "example": "Your Rampage 2 creature is blocked by three creatures. It gets +4/+4 (2 creatures beyond the first, times 2).",
+      "tip": "Rampage discourages gang-blocking, making your creature harder to kill in combat."
     },
     "cumulative upkeep": {
       "name": "Cumulative Upkeep",
-      "description": "At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it."
+      "description": "At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.",
+      "example": "Your permanent has 'Cumulative upkeep 1'. Turn 2: pay 1. Turn 3: pay 2. Turn 4: pay 3. It escalates.",
+      "tip": "Plan when to sacrifice - the escalating cost eventually becomes unsustainable."
     },
     "flanking": {
       "name": "Flanking",
-      "description": "Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn."
+      "description": "Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.",
+      "example": "Your flanking creature is blocked by a 2/2 without flanking. The blocker becomes 1/1 before damage.",
+      "tip": "Multiple instances of flanking stack, giving -1/-1 for each."
     },
     "phasing": {
       "name": "Phasing",
-      "description": "This permanent phases in and out at the beginning of your untap step. While phased out, it is treated as if it does not exist."
+      "description": "This permanent phases in and out at the beginning of your untap step. While phased out, it is treated as if it does not exist.",
+      "example": "Your phasing creature phases out. Next turn it phases back in, untapped and ready to act.",
+      "tip": "Phasing doesn't trigger enter/leave effects - the permanent is just temporarily 'gone'."
     },
     "buyback": {
       "name": "Buyback",
-      "description": "You may pay the buyback cost in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves."
+      "description": "You may pay the buyback cost in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.",
+      "example": "Cast a spell with 'Buyback 3'. Pay 3 extra mana and it returns to your hand instead of going to the graveyard.",
+      "tip": "Buyback provides repeatable effects at the cost of mana efficiency."
     },
     "shadow": {
       "name": "Shadow",
-      "description": "This creature can only block or be blocked by creatures with shadow."
+      "description": "This creature can only block or be blocked by creatures with shadow.",
+      "example": "Your shadow creature attacks. Unless your opponent has shadow creatures, they can't block it.",
+      "tip": "Shadow creatures are nearly unblockable but also can't block normal attackers - plan defense accordingly."
     },
     "cycling": {
       "name": "Cycling",
-      "description": "Pay the cycling cost and discard this card to draw a card."
+      "description": "Pay the cycling cost and discard this card to draw a card.",
+      "example": "You have a situational card you don't need. Pay its cycling cost, discard it, draw a new card.",
+      "tip": "Cycling adds flexibility - the card is never dead since you can trade it for something else."
     },
     "echo": {
       "name": "Echo",
-      "description": "At the beginning of your upkeep, if this permanent came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost."
+      "description": "At the beginning of your upkeep, if this permanent came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.",
+      "example": "You cast an echo creature. Next upkeep, pay its echo cost again or sacrifice it.",
+      "tip": "Echo creatures offer powerful effects but require double investment over two turns."
     },
     "horsemanship": {
       "name": "Horsemanship",
-      "description": "This creature can only be blocked by creatures with horsemanship."
+      "description": "This creature can only be blocked by creatures with horsemanship.",
+      "example": "Your horsemanship creature attacks. Only other creatures with horsemanship can block it.",
+      "tip": "Horsemanship is like flying but rarer - few creatures have it, making it excellent evasion."
     },
     "fading": {
       "name": "Fading",
-      "description": "This permanent enters with fade counters on it. At the beginning of your upkeep, remove a fade counter. If you cannot, sacrifice this permanent."
+      "description": "This permanent enters with fade counters on it. At the beginning of your upkeep, remove a fade counter. If you cannot, sacrifice this permanent.",
+      "example": "Your creature enters with 'Fading 3' (3 fade counters). It lasts 3 upkeeps before being sacrificed.",
+      "tip": "Fading permanents are often undercosted for their power level due to their limited lifespan."
     },
     "kicker": {
       "name": "Kicker",
-      "description": "You may pay an additional kicker cost as you cast this spell for an enhanced effect."
+      "description": "You may pay an additional kicker cost as you cast this spell for an enhanced effect.",
+      "example": "A spell costs 2 with 'Kicker 3'. Pay just 2 for the base effect, or 5 total for an enhanced version.",
+      "tip": "Kicker cards scale well - useful early game at base cost, powerful late game when kicked."
     },
     "flashback": {
       "name": "Flashback",
-      "description": "You may cast this card from your graveyard for its flashback cost. Then exile it."
+      "description": "You may cast this card from your graveyard for its flashback cost. Then exile it.",
+      "example": "Your instant is in the graveyard. Pay its flashback cost to cast it again, then it exiles.",
+      "tip": "Flashback effectively gives you two spells in one card - excellent value in longer games."
     },
     "madness": {
       "name": "Madness",
-      "description": "If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard."
+      "description": "If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.",
+      "example": "You discard a madness card to another effect. Instead of it going to the graveyard, cast it for its madness cost.",
+      "tip": "Pair with discard outlets to turn a drawback into casting spells at a discount."
     },
     "fear": {
       "name": "Fear",
-      "description": "This creature can only be blocked by artifact creatures and/or black creatures."
+      "description": "This creature can only be blocked by artifact creatures and/or black creatures.",
+      "example": "Your fear creature attacks. Only artifact creatures or black creatures can block it.",
+      "tip": "Fear is the predecessor to intimidate - effective against non-black decks."
     },
     "morph": {
       "name": "Morph",
-      "description": "You may cast this card face down as a 2/2 creature for 3 mana. Turn it face up any time for its morph cost."
+      "description": "You may cast this card face down as a 2/2 creature for 3 mana. Turn it face up any time for its morph cost.",
+      "example": "Cast your creature face-down as a 2/2 for 3. Later, pay its morph cost to flip it face-up with its real stats and abilities.",
+      "tip": "Morph creates mind games - opponents don't know what's face-down until you flip it."
     },
     "amplify": {
       "name": "Amplify",
-      "description": "As this creature enters, reveal any number of cards from your hand that share a creature type with it. This creature enters with +1/+1 counters equal to the amplify value times the number of cards revealed."
+      "description": "As this creature enters, reveal any number of cards from your hand that share a creature type with it. This creature enters with +1/+1 counters equal to the amplify value times the number of cards revealed.",
+      "example": "Your Amplify 2 Dragon enters. Reveal 3 Dragons from hand - it enters with 6 +1/+1 counters.",
+      "tip": "Build tribal decks to maximize amplify payoffs."
     },
     "provoke": {
       "name": "Provoke",
-      "description": "Whenever this creature attacks, you may have target creature defending player controls untap and block it if able."
+      "description": "Whenever this creature attacks, you may have target creature defending player controls untap and block it if able.",
+      "example": "Attack with your provoke creature and force their best blocker to block it, even if it was tapped.",
+      "tip": "Use provoke to pick off utility creatures or force unfavorable blocks."
     },
     "storm": {
       "name": "Storm",
-      "description": "When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies."
+      "description": "When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.",
+      "example": "You cast 5 spells, then cast a storm spell. You get the original plus 5 copies - 6 total.",
+      "tip": "Storm is extremely powerful. Build decks with cheap spells to maximize the storm count."
     },
     "affinity": {
       "name": "Affinity",
-      "description": "This spell costs 1 less to cast for each permanent of the specified type you control."
+      "description": "This spell costs 1 less to cast for each permanent of the specified type you control.",
+      "example": "Your 'Affinity for artifacts' spell costs 6. You control 4 artifacts, so it costs only 2.",
+      "tip": "Affinity can reduce costs to zero with enough permanents of the right type."
     },
     "entwine": {
       "name": "Entwine",
-      "description": "Pay the entwine cost to choose all modes of this spell instead of just one."
+      "description": "Pay the entwine cost to choose all modes of this spell instead of just one.",
+      "example": "A modal spell says 'Choose one.' Pay its entwine cost to choose all modes instead.",
+      "tip": "Entwine turns flexible spells into powerful combined effects."
     },
     "modular": {
       "name": "Modular",
-      "description": "This creature enters with +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature."
+      "description": "This creature enters with +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.",
+      "example": "Your Modular 3 creature dies with 5 counters. Move all 5 to another artifact creature.",
+      "tip": "Modular counters persist across deaths - great for building up a single threat."
     },
     "sunburst": {
       "name": "Sunburst",
-      "description": "This permanent enters with a counter for each color of mana spent to cast it."
+      "description": "This permanent enters with a counter for each color of mana spent to cast it.",
+      "example": "Cast a sunburst artifact using white, blue, and green mana. It enters with 3 counters.",
+      "tip": "Five-color mana bases maximize sunburst payoffs."
     },
     "bushido": {
       "name": "Bushido",
-      "description": "Whenever this creature blocks or becomes blocked, it gets +N/+N until end of turn."
+      "description": "Whenever this creature blocks or becomes blocked, it gets +N/+N until end of turn.",
+      "example": "Your Bushido 2 creature blocks. It gets +2/+2 until end of turn during that combat.",
+      "tip": "Bushido makes creatures better in combat but doesn't help them get through unblocked."
     },
     "soulshift": {
       "name": "Soulshift",
-      "description": "When this creature dies, you may return target Spirit card with mana value N or less from your graveyard to your hand."
+      "description": "When this creature dies, you may return target Spirit card with mana value N or less from your graveyard to your hand.",
+      "example": "Your Soulshift 4 creature dies. Return a Spirit with mana value 4 or less from your graveyard to hand.",
+      "tip": "Chain soulshift creatures to maintain card advantage in Spirit tribal decks."
     },
     "splice": {
       "name": "Splice",
-      "description": "As you cast a spell of the specified type, you may reveal this card and pay its splice cost to copy its text onto that spell."
+      "description": "As you cast a spell of the specified type, you may reveal this card and pay its splice cost to copy its text onto that spell.",
+      "example": "Cast an Arcane spell. Reveal a card with 'Splice onto Arcane' and pay its cost to add that card's effect.",
+      "tip": "Splicing doesn't use the card - you keep it in hand to splice again and again."
     },
     "offering": {
       "name": "Offering",
-      "description": "You may cast this card any time you could cast an instant by sacrificing a creature of the specified type and paying the difference in mana costs."
+      "description": "You may cast this card any time you could cast an instant by sacrificing a creature of the specified type and paying the difference in mana costs.",
+      "example": "Your 'Goblin offering' creature costs 5. Sacrifice a 2-mana Goblin, pay 3, cast at instant speed.",
+      "tip": "Offering provides flash and a mana discount for tribal synergies."
     },
     "ninjutsu": {
       "name": "Ninjutsu",
-      "description": "Pay the ninjutsu cost and return an unblocked attacking creature you control to its owner's hand to put this card onto the battlefield tapped and attacking."
+      "description": "Pay the ninjutsu cost and return an unblocked attacking creature you control to its owner's hand to put this card onto the battlefield tapped and attacking.",
+      "example": "Your 1/1 is unblocked. Pay ninjutsu cost, return it to hand, put your Ninja onto the battlefield attacking.",
+      "tip": "Ninjutsu reuses enter-the-battlefield effects and surprises opponents with larger attackers."
     },
     "epic": {
       "name": "Epic",
-      "description": "For the rest of the game, you cannot cast spells. At the beginning of each of your upkeeps, copy this spell."
+      "description": "For the rest of the game, you cannot cast spells. At the beginning of each of your upkeeps, copy this spell.",
+      "example": "Cast an epic spell. You can't cast any more spells this game, but you copy this spell every upkeep.",
+      "tip": "Epic is all-in - make sure the repeated effect is worth giving up all other spells."
     },
     "convoke": {
       "name": "Convoke",
-      "description": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color."
+      "description": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color.",
+      "example": "Your spell costs 5W. Tap 3 white creatures and pay 2W, or tap 5 creatures and pay just W.",
+      "tip": "Convoke works best with token strategies that generate many creatures."
     },
     "dredge": {
       "name": "Dredge",
-      "description": "If you would draw a card, you may mill cards equal to this card's dredge number and return this card from your graveyard to your hand instead."
+      "description": "If you would draw a card, you may mill cards equal to this card's dredge number and return this card from your graveyard to your hand instead.",
+      "example": "You would draw a card. Instead, mill 5 cards and return your Dredge 5 card from graveyard to hand.",
+      "tip": "Dredge fills your graveyard rapidly - combine with graveyard synergies."
     },
     "transmute": {
       "name": "Transmute",
-      "description": "Pay the transmute cost and discard this card to search your library for a card with the same mana value, reveal it, and put it into your hand."
+      "description": "Pay the transmute cost and discard this card to search your library for a card with the same mana value, reveal it, and put it into your hand.",
+      "example": "Your 3-mana card has transmute. Pay the cost, discard it, search for any other 3-mana card.",
+      "tip": "Transmute acts as a tutor for specific mana values - build around key costs."
     },
     "bloodthirst": {
       "name": "Bloodthirst",
-      "description": "If an opponent was dealt damage this turn, this creature enters with +1/+1 counters on it."
+      "description": "If an opponent was dealt damage this turn, this creature enters with +1/+1 counters on it.",
+      "example": "Deal any damage to an opponent, then cast your Bloodthirst 2 creature. It enters with 2 +1/+1 counters.",
+      "tip": "Cheap creatures and burn spells enable bloodthirst before casting your main threat."
     },
     "haunt": {
       "name": "Haunt",
-      "description": "When this card is put into a graveyard from the battlefield or when it resolves, exile it haunting target creature. When that creature dies, you may use this card's ability again."
+      "description": "When this card is put into a graveyard from the battlefield or when it resolves, exile it haunting target creature. When that creature dies, you may use this card's ability again.",
+      "example": "Your haunt creature dies and haunts an opponent's creature. When that creature dies, trigger the ability again.",
+      "tip": "Haunt provides two uses of an ability - once when cast/dying, once when the haunted creature dies."
     },
     "replicate": {
       "name": "Replicate",
-      "description": "When you cast this spell, you may pay its replicate cost any number of times. Copy it that many times."
+      "description": "When you cast this spell, you may pay its replicate cost any number of times. Copy it that many times.",
+      "example": "Cast a replicate spell and pay its replicate cost 3 times. You get the original plus 3 copies.",
+      "tip": "Replicate scales with available mana - save it for late game when you can copy multiple times."
     },
     "forecast": {
       "name": "Forecast",
-      "description": "During your upkeep, you may reveal this card from your hand and pay its forecast cost to activate its forecast ability."
+      "description": "During your upkeep, you may reveal this card from your hand and pay its forecast cost to activate its forecast ability.",
+      "example": "During upkeep, reveal this from hand and pay 2 to gain 2 life. The card stays in your hand.",
+      "tip": "Forecast provides repeatable effects while keeping the card available to cast later."
     },
     "graft": {
       "name": "Graft",
-      "description": "This creature enters with +1/+1 counters on it. Whenever another creature enters, you may move a +1/+1 counter from this creature to it."
+      "description": "This creature enters with +1/+1 counters on it. Whenever another creature enters, you may move a +1/+1 counter from this creature to it.",
+      "example": "Your Graft 3 creature is in play. A new creature enters - move one +1/+1 counter to it if you want.",
+      "tip": "Graft distributes counters to new creatures, enabling various +1/+1 counter synergies."
     },
     "recover": {
       "name": "Recover",
-      "description": "When a creature is put into your graveyard from the battlefield, you may pay this card's recover cost to return it from your graveyard to your hand. Otherwise, exile it."
+      "description": "When a creature is put into your graveyard from the battlefield, you may pay this card's recover cost to return it from your graveyard to your hand. Otherwise, exile it.",
+      "example": "A creature you control dies. Pay the recover cost on a card in your graveyard to return it to hand, or it exiles.",
+      "tip": "Recover triggers when any of your creatures die - use sacrifice outlets to control timing."
     },
     "ripple": {
       "name": "Ripple",
-      "description": "When you cast this spell, reveal the top cards of your library equal to the ripple number. You may cast any cards with the same name without paying their mana costs."
+      "description": "When you cast this spell, reveal the top cards of your library equal to the ripple number. You may cast any cards with the same name without paying their mana costs.",
+      "example": "Cast a Ripple 4 spell. Reveal top 4 cards - if any share this card's name, cast them free.",
+      "tip": "Ripple rewards running multiple copies of the same card - ideally 4 in constructed."
     },
     "split second": {
       "name": "Split Second",
-      "description": "As long as this spell is on the stack, players cannot cast spells or activate abilities that are not mana abilities."
+      "description": "As long as this spell is on the stack, players cannot cast spells or activate abilities that are not mana abilities.",
+      "example": "Cast a split second spell. Opponents cannot respond with instants or activated abilities.",
+      "tip": "Split second prevents most responses but doesn't stop triggered abilities or mana abilities."
     },
     "suspend": {
       "name": "Suspend",
-      "description": "Rather than cast this card from your hand, pay its suspend cost and exile it with time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost."
+      "description": "Rather than cast this card from your hand, pay its suspend cost and exile it with time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.",
+      "example": "Suspend a spell with 3 time counters. Three upkeeps later, it casts for free.",
+      "tip": "Suspend trades tempo for mana efficiency - plan around the delayed casting."
     },
     "vanishing": {
       "name": "Vanishing",
-      "description": "This permanent enters with time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, sacrifice it."
+      "description": "This permanent enters with time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, sacrifice it.",
+      "example": "Your Vanishing 3 permanent enters with 3 time counters. It lasts 3 upkeeps before being sacrificed.",
+      "tip": "Vanishing creates a countdown - extract maximum value before time runs out."
     },
     "absorb": {
       "name": "Absorb",
-      "description": "If a source would deal damage to this creature, prevent N of that damage."
+      "description": "If a source would deal damage to this creature, prevent N of that damage.",
+      "example": "Your Absorb 2 creature is dealt 5 damage. 2 is prevented; it only takes 3 damage.",
+      "tip": "Absorb stacks with multiple instances, reducing damage from each source."
     },
     "aura swap": {
       "name": "Aura Swap",
-      "description": "Pay the aura swap cost to exchange this Aura with an Aura card in your hand."
+      "description": "Pay the aura swap cost to exchange this Aura with an Aura card in your hand.",
+      "example": "Your cheap Aura is attached to a creature. Pay aura swap to swap it for a powerful Aura from your hand.",
+      "tip": "Aura swap lets you deploy expensive Auras cheaply by upgrading from a smaller one."
     },
     "delve": {
       "name": "Delve",
-      "description": "Each card you exile from your graveyard while casting this spell pays for 1."
+      "description": "Each card you exile from your graveyard while casting this spell pays for 1.",
+      "example": "Your spell costs 7. Exile 5 cards from your graveyard - now it only costs 2 mana.",
+      "tip": "Fill your graveyard quickly with cantrips and fetch lands to enable cheap delve spells."
     },
     "fortify": {
       "name": "Fortify",
-      "description": "Pay the fortify cost to attach this Fortification to a land you control. Fortify only as a sorcery."
+      "description": "Pay the fortify cost to attach this Fortification to a land you control. Fortify only as a sorcery.",
+      "example": "Pay the fortify cost to attach this Fortification to one of your lands, giving it bonuses.",
+      "tip": "Fortifications work like Equipment but for lands instead of creatures."
     },
     "frenzy": {
       "name": "Frenzy",
-      "description": "Whenever this creature attacks and is not blocked, it gets +N/+0 until end of turn."
+      "description": "Whenever this creature attacks and is not blocked, it gets +N/+0 until end of turn.",
+      "example": "Your Frenzy 2 creature attacks and isn't blocked. It gets +2/+0 for this combat.",
+      "tip": "Frenzy rewards getting through unblocked - pair with evasion abilities."
     },
     "gravestorm": {
       "name": "Gravestorm",
-      "description": "When you cast this spell, copy it for each permanent put into a graveyard this turn."
+      "description": "When you cast this spell, copy it for each permanent put into a graveyard this turn.",
+      "example": "Three permanents went to graveyards this turn. Cast your gravestorm spell - get 3 copies plus the original.",
+      "tip": "Sacrifice effects and board wipes dramatically increase gravestorm count."
     },
     "poisonous": {
       "name": "Poisonous",
-      "description": "Whenever this creature deals combat damage to a player, that player gets poison counters."
+      "description": "Whenever this creature deals combat damage to a player, that player gets poison counters.",
+      "example": "Your Poisonous 2 creature hits a player. They get 2 poison counters (10 poison = they lose).",
+      "tip": "Poisonous gives a fixed number of counters regardless of damage dealt."
     },
     "transfigure": {
       "name": "Transfigure",
-      "description": "Pay the transfigure cost and sacrifice this creature to search your library for a creature card with the same mana value, put it onto the battlefield, then shuffle."
+      "description": "Pay the transfigure cost and sacrifice this creature to search your library for a creature card with the same mana value, put it onto the battlefield, then shuffle.",
+      "example": "Sacrifice your 3-mana creature with transfigure. Search for any 3-mana creature and put it onto the battlefield.",
+      "tip": "Transfigure is a tutor that upgrades your creature into exactly what you need."
     },
     "champion": {
       "name": "Champion",
-      "description": "When this creature enters, sacrifice it unless you exile another creature you control of the specified type. When this creature leaves, return the exiled card to the battlefield."
+      "description": "When this creature enters, sacrifice it unless you exile another creature you control of the specified type. When this creature leaves, return the exiled card to the battlefield.",
+      "example": "Your 'Champion an Elf' creature enters. Exile an Elf you control. If this creature leaves, that Elf returns.",
+      "tip": "Champion temporarily removes your creature but protects it from most removal."
     },
     "changeling": {
       "name": "Changeling",
-      "description": "This card is every creature type."
+      "description": "This card is every creature type.",
+      "example": "Your changeling creature counts as a Goblin, Elf, Dragon, Zombie - every creature type at once.",
+      "tip": "Changelings work with any tribal synergy, making them highly versatile."
     },
     "evoke": {
       "name": "Evoke",
-      "description": "You may cast this spell for its evoke cost. If you do, sacrifice it when it enters the battlefield."
+      "description": "You may cast this spell for its evoke cost. If you do, sacrifice it when it enters the battlefield.",
+      "example": "Cast your creature for its evoke cost. Its enter-the-battlefield ability triggers, then you sacrifice it.",
+      "tip": "Evoke turns creatures into one-shot spells - great when you just need the ETB effect."
     },
     "hideaway": {
       "name": "Hideaway",
-      "description": "This permanent enters tapped. When it does, look at the top cards of your library, exile one face down, then put the rest on the bottom."
+      "description": "This permanent enters tapped. When it does, look at the top cards of your library, exile one face down, then put the rest on the bottom.",
+      "example": "Your hideaway land enters tapped. Look at top 4 cards, hide one face-down, bottom the rest.",
+      "tip": "Hideaway cards have conditions to cast the hidden card for free - build around them."
     },
     "prowl": {
       "name": "Prowl",
-      "description": "You may cast this for its prowl cost if you dealt combat damage to a player this turn with a creature that shares a creature type with this spell."
+      "description": "You may cast this for its prowl cost if you dealt combat damage to a player this turn with a creature that shares a creature type with this spell.",
+      "example": "Your Rogue dealt combat damage. Now cast your Rogue spell for its cheaper prowl cost.",
+      "tip": "Prowl rewards aggressive tribal strategies with discounted spells."
     },
     "reinforce": {
       "name": "Reinforce",
-      "description": "Pay the reinforce cost and discard this card to put +1/+1 counters on target creature."
+      "description": "Pay the reinforce cost and discard this card to put +1/+1 counters on target creature.",
+      "example": "Discard your Reinforce 2 card and pay the cost. Put 2 +1/+1 counters on a creature.",
+      "tip": "Reinforce makes creature cards useful even when you'd rather have a combat trick."
     },
     "conspire": {
       "name": "Conspire",
-      "description": "As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it."
+      "description": "As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.",
+      "example": "Cast a red spell with conspire. Tap two red creatures to copy the spell.",
+      "tip": "Conspire doubles spell effects at the cost of tapping creatures."
     },
     "persist": {
       "name": "Persist",
-      "description": "When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield with a -1/-1 counter on it."
+      "description": "When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield with a -1/-1 counter on it.",
+      "example": "Your 3/3 persist creature dies. It returns as a 2/2 with a -1/-1 counter. Die again? Stays dead.",
+      "tip": "Remove the -1/-1 counter (with +1/+1 counters or other effects) for infinite death triggers."
     },
     "wither": {
       "name": "Wither",
-      "description": "This deals damage to creatures in the form of -1/-1 counters."
+      "description": "This deals damage to creatures in the form of -1/-1 counters.",
+      "example": "Your 2/2 wither creature deals 2 damage to a 3/3. It gets two -1/-1 counters, becoming a 1/1.",
+      "tip": "Wither damage is permanent - the creature stays smaller even after combat."
     },
     "retrace": {
       "name": "Retrace",
-      "description": "You may cast this card from your graveyard by discarding a land card in addition to paying its other costs."
+      "description": "You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.",
+      "example": "Your retrace spell is in the graveyard. Discard a land and pay its cost to cast it again.",
+      "tip": "Retrace turns excess lands into repeated spell casts - great in long games."
     },
     "devour": {
       "name": "Devour",
-      "description": "As this creature enters, you may sacrifice any number of creatures. This creature enters with +1/+1 counters equal to the devour value times the number of creatures sacrificed."
+      "description": "As this creature enters, you may sacrifice any number of creatures. This creature enters with +1/+1 counters equal to the devour value times the number of creatures sacrificed.",
+      "example": "Your Devour 2 creature enters. Sacrifice 3 creatures - it enters with 6 +1/+1 counters.",
+      "tip": "Token generators provide fodder for devour without losing real cards."
     },
     "exalted": {
       "name": "Exalted",
-      "description": "Whenever a creature you control attacks alone, it gets +1/+1 until end of turn."
+      "description": "Whenever a creature you control attacks alone, it gets +1/+1 until end of turn.",
+      "example": "You have 3 creatures with exalted. Attack with just one creature - it gets +3/+3.",
+      "tip": "Exalted stacks across all your permanents with exalted, not just creatures."
     },
     "unearth": {
       "name": "Unearth",
-      "description": "Pay the unearth cost to return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield."
+      "description": "Pay the unearth cost to return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield.",
+      "example": "Your creature is in the graveyard. Pay unearth - it returns with haste for one last attack, then exiles.",
+      "tip": "Unearth provides one final use of a creature - maximize enter-the-battlefield or attack triggers."
     },
     "cascade": {
       "name": "Cascade",
-      "description": "When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order."
+      "description": "When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.",
+      "example": "Cast a 5-mana cascade spell. Flip until you hit a 4-or-less mana nonland spell - cast it free.",
+      "tip": "Build your deck so cascade always hits what you want - control the mana curve carefully."
     },
     "annihilator": {
       "name": "Annihilator",
-      "description": "Whenever this creature attacks, defending player sacrifices permanents equal to the annihilator value."
+      "description": "Whenever this creature attacks, defending player sacrifices permanents equal to the annihilator value.",
+      "example": "Your Annihilator 4 creature attacks. Before blockers, your opponent sacrifices 4 permanents.",
+      "tip": "Annihilator triggers on attack declaration - even if blocked, the sacrifice happens."
     },
     "level up": {
       "name": "Level Up",
-      "description": "Pay the level up cost to put a level counter on this creature. Level up only as a sorcery."
+      "description": "Pay the level up cost to put a level counter on this creature. Level up only as a sorcery.",
+      "example": "Pay the level up cost multiple times to add level counters. At certain levels, the creature gains new abilities and stats.",
+      "tip": "Level up is mana-intensive but creates a creature that scales throughout the game."
     },
     "rebound": {
       "name": "Rebound",
-      "description": "If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast it from exile without paying its mana cost."
+      "description": "If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast it from exile without paying its mana cost.",
+      "example": "Cast a rebound spell. It exiles, then you cast it again for free next upkeep.",
+      "tip": "Rebound gives you two casts for one card - excellent value on powerful effects."
     },
     "totem armor": {
       "name": "Totem Armor",
-      "description": "If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura."
+      "description": "If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.",
+      "example": "Your aura-enchanted creature would die. Instead, the totem armor Aura is destroyed and the creature lives.",
+      "tip": "Totem armor protects against destroy effects and lethal damage, but not exile or sacrifice."
     },
     "infect": {
       "name": "Infect",
-      "description": "This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters."
+      "description": "This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.",
+      "example": "Your 2/2 infect hits a player - 2 poison counters. At 10 poison, they lose regardless of life total.",
+      "tip": "Infect ignores life totals and permanently shrinks creatures - a completely different damage axis."
     },
     "battle cry": {
       "name": "Battle Cry",
-      "description": "Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn."
+      "description": "Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.",
+      "example": "Attack with your battle cry creature and 3 others. The other 3 each get +1/+0.",
+      "tip": "Battle cry stacks - multiple battle cry attackers boost each other."
     },
     "living weapon": {
       "name": "Living Weapon",
-      "description": "When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it."
+      "description": "When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it.",
+      "example": "Cast living weapon Equipment. A 0/0 Germ token is created and equipped - it survives due to the Equipment's stats.",
+      "tip": "Living weapon creates an immediate creature, then the Equipment can be moved to better creatures later."
     },
     "undying": {
       "name": "Undying",
-      "description": "When this creature dies, if it had no +1/+1 counters on it, return it to the battlefield with a +1/+1 counter on it."
+      "description": "When this creature dies, if it had no +1/+1 counters on it, return it to the battlefield with a +1/+1 counter on it.",
+      "example": "Your 2/2 undying creature dies. It returns as a 3/3 with a +1/+1 counter. If it dies again with that counter, it stays dead.",
+      "tip": "Sacrifice outlets with undying creatures provide repeated value. Remove the counter for infinite loops."
     },
     "miracle": {
       "name": "Miracle",
-      "description": "You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn."
+      "description": "You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.",
+      "example": "Draw this as your first card of the turn. Reveal it immediately and cast it for its miracle cost.",
+      "tip": "Miracle rewards deck manipulation - set up your draws with scry or similar effects."
     },
     "soulbond": {
       "name": "Soulbond",
-      "description": "You may pair this creature with another unpaired creature when either enters. They remain paired for as long as you control both of them."
+      "description": "You may pair this creature with another unpaired creature when either enters. They remain paired for as long as you control both of them.",
+      "example": "Your soulbond creature enters. Pair it with another creature - both gain the soulbond ability.",
+      "tip": "Soulbond pairs can be broken by flickering or losing control of either creature."
     },
     "overload": {
       "name": "Overload",
-      "description": "You may cast this spell for its overload cost. If you do, change its text by replacing all instances of 'target' with 'each'."
+      "description": "You may cast this spell for its overload cost. If you do, change its text by replacing all instances of 'target' with 'each'.",
+      "example": "A spell says 'Destroy target artifact.' Pay overload - it becomes 'Destroy each artifact.'",
+      "tip": "Overload turns targeted removal into board wipes at a higher mana cost."
     },
     "scavenge": {
       "name": "Scavenge",
-      "description": "Exile this card from your graveyard and pay its scavenge cost to put +1/+1 counters equal to this creature's power on target creature."
+      "description": "Exile this card from your graveyard and pay its scavenge cost to put +1/+1 counters equal to this creature's power on target creature.",
+      "example": "Your 4/4 is in the graveyard. Pay scavenge, exile it, put 4 +1/+1 counters on a creature.",
+      "tip": "Scavenge provides value from the graveyard - the bigger the creature, the more counters."
     },
     "unleash": {
       "name": "Unleash",
-      "description": "You may have this creature enter with a +1/+1 counter on it. It cannot block as long as it has a +1/+1 counter on it."
+      "description": "You may have this creature enter with a +1/+1 counter on it. It cannot block as long as it has a +1/+1 counter on it.",
+      "example": "Your unleash creature enters. Choose: enter normally, or enter with +1/+1 but can't block.",
+      "tip": "Unleash is best in aggressive decks that don't plan to block anyway."
     },
     "cipher": {
       "name": "Cipher",
-      "description": "You may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost."
+      "description": "You may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.",
+      "example": "Cast a cipher spell, encode it on your creature. Each time that creature hits a player, cast the spell again free.",
+      "tip": "Encode cipher spells on evasive creatures for repeated free casts."
     },
     "evolve": {
       "name": "Evolve",
-      "description": "Whenever a creature enters under your control, if that creature has greater power or toughness than this creature, put a +1/+1 counter on this creature."
+      "description": "Whenever a creature enters under your control, if that creature has greater power or toughness than this creature, put a +1/+1 counter on this creature.",
+      "example": "Your 1/1 evolve creature is out. Play a 2/2 - evolve triggers because 2 > 1, putting a counter on the evolve creature.",
+      "tip": "Evolve creatures grow as you play larger creatures - sequence your plays to maximize triggers."
     },
     "extort": {
       "name": "Extort",
-      "description": "Whenever you cast a spell, you may pay W/B. If you do, each opponent loses 1 life and you gain that much life."
+      "description": "Whenever you cast a spell, you may pay W/B. If you do, each opponent loses 1 life and you gain that much life.",
+      "example": "Cast any spell, pay 1 white or black mana, drain 1 life from each opponent.",
+      "tip": "Extort stacks - multiple extort permanents let you pay multiple times per spell."
     },
     "fuse": {
       "name": "Fuse",
-      "description": "You may cast one or both halves of this card from your hand."
+      "description": "You may cast one or both halves of this card from your hand.",
+      "example": "A split card has two halves. With fuse, cast both halves together as one combined spell.",
+      "tip": "Fused spells have combined mana costs - useful for effects that care about mana value."
     },
     "bestow": {
       "name": "Bestow",
-      "description": "If you cast this card for its bestow cost, it's an Aura spell with enchant creature. It becomes a creature again if it's not attached to a creature."
+      "description": "If you cast this card for its bestow cost, it's an Aura spell with enchant creature. It becomes a creature again if it's not attached to a creature.",
+      "example": "Cast for bestow cost as an Aura on a creature. If that creature dies, this becomes a creature instead of going to the graveyard.",
+      "tip": "Bestow provides resilience - you get a creature even if the enchanted creature is removed."
     },
     "tribute": {
       "name": "Tribute",
-      "description": "As this creature enters, an opponent of your choice may put +1/+1 counters on it. If they don't, an ability triggers."
+      "description": "As this creature enters, an opponent of your choice may put +1/+1 counters on it. If they don't, an ability triggers.",
+      "example": "Your Tribute 3 creature enters. Opponent chooses: let it have +3/+3, or face its triggered ability.",
+      "tip": "Both tribute options should be good for you - put your opponent in a lose-lose situation."
     },
     "inspired": {
       "name": "Inspired",
-      "description": "Whenever this creature becomes untapped, an ability triggers."
+      "description": "Whenever this creature becomes untapped, an ability triggers.",
+      "example": "Your inspired creature untaps during your untap step. Its ability triggers.",
+      "tip": "Tap your inspired creatures with other effects to trigger inspired more often."
     },
     "constellation": {
       "name": "Constellation",
-      "description": "Whenever an enchantment enters under your control, an ability triggers."
-    },
-    "convoke": {
-      "name": "Convoke",
-      "description": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color."
+      "description": "Whenever an enchantment enters under your control, an ability triggers.",
+      "example": "You cast an enchantment. All your constellation permanents trigger their abilities.",
+      "tip": "Build enchantment-heavy decks to maximize constellation triggers."
     },
     "outlast": {
       "name": "Outlast",
-      "description": "Pay the outlast cost and tap this creature to put a +1/+1 counter on it. Outlast only as a sorcery."
+      "description": "Pay the outlast cost and tap this creature to put a +1/+1 counter on it. Outlast only as a sorcery.",
+      "example": "During your main phase, pay the outlast cost and tap your creature to add a +1/+1 counter.",
+      "tip": "Outlast is slow but steady - best when you have nothing better to do with mana."
     },
     "prowess": {
       "name": "Prowess",
-      "description": "Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn."
+      "description": "Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.",
+      "example": "Cast 3 instants in one turn. Your prowess creature gets +3/+3 until end of turn.",
+      "tip": "Cheap cantrips (spells that draw cards) maximize prowess by chaining multiple triggers."
     },
     "dash": {
       "name": "Dash",
-      "description": "You may cast this spell for its dash cost. If you do, it gains haste, and is returned to its owner's hand at the beginning of the next end step."
+      "description": "You may cast this spell for its dash cost. If you do, it gains haste, and is returned to its owner's hand at the beginning of the next end step.",
+      "example": "Cast for dash cost. The creature has haste, attacks, then bounces to your hand at end of turn.",
+      "tip": "Dash provides repeated enter-the-battlefield triggers and dodges sorcery-speed removal."
     },
     "exploit": {
       "name": "Exploit",
-      "description": "When this creature enters, you may sacrifice a creature."
+      "description": "When this creature enters, you may sacrifice a creature.",
+      "example": "Your exploit creature enters. You may sacrifice any creature (including itself) to trigger death synergies.",
+      "tip": "Exploit can sacrifice itself or tokens for value - it's optional, so always beneficial."
     },
     "megamorph": {
       "name": "Megamorph",
-      "description": "You may cast this card face down as a 2/2 creature for 3 mana. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it."
+      "description": "You may cast this card face down as a 2/2 creature for 3 mana. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.",
+      "example": "Cast face-down as a 2/2. Later, pay megamorph cost to flip it and add a +1/+1 counter.",
+      "tip": "Megamorph is morph with a bonus counter - same mind games, slightly bigger payoff."
     },
     "renown": {
       "name": "Renown",
-      "description": "When this creature deals combat damage to a player, if it isn't renowned, put +1/+1 counters on it and it becomes renowned."
+      "description": "When this creature deals combat damage to a player, if it isn't renowned, put +1/+1 counters on it and it becomes renowned.",
+      "example": "Your Renown 2 creature hits a player. It gets 2 +1/+1 counters and becomes renowned (only once).",
+      "tip": "Renown triggers once ever - prioritize getting the first hit through for permanent stats."
     },
     "awaken": {
       "name": "Awaken",
-      "description": "If you cast this spell for its awaken cost, also put +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land."
+      "description": "If you cast this spell for its awaken cost, also put +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land.",
+      "example": "Pay awaken cost on an instant. The spell happens AND a land becomes a creature with counters.",
+      "tip": "Awakened lands are vulnerable to creature removal - the counters stay if it stops being a creature."
     },
     "devoid": {
       "name": "Devoid",
-      "description": "This card has no color."
+      "description": "This card has no color.",
+      "example": "A devoid card might cost blue mana but is colorless - it can't be countered by 'counter target blue spell.'",
+      "tip": "Devoid cards benefit from colorless synergies while being cast with colored mana."
     },
     "ingest": {
       "name": "Ingest",
-      "description": "Whenever this creature deals combat damage to a player, that player exiles the top card of their library."
+      "description": "Whenever this creature deals combat damage to a player, that player exiles the top card of their library.",
+      "example": "Your ingest creature hits a player. They exile the top card of their library face-up.",
+      "tip": "Ingest fuels processors that use opponents' exiled cards - part of the Eldrazi strategy."
     },
     "rally": {
       "name": "Rally",
-      "description": "Whenever a creature enters under your control, an ability triggers."
+      "description": "Whenever a creature enters under your control, an ability triggers.",
+      "example": "Play a creature. Your rally permanents each trigger their abilities.",
+      "tip": "Maximize rally with token generation and flicker effects."
     },
     "surge": {
       "name": "Surge",
-      "description": "You may cast this spell for its surge cost if you or a teammate has cast another spell this turn."
+      "description": "You may cast this spell for its surge cost if you or a teammate has cast another spell this turn.",
+      "example": "Your teammate cast a spell. Now cast your surge spell at its cheaper surge cost.",
+      "tip": "In multiplayer, surge becomes easier to enable with teammates' help."
     },
     "skulk": {
       "name": "Skulk",
-      "description": "This creature cannot be blocked by creatures with greater power."
+      "description": "This creature cannot be blocked by creatures with greater power.",
+      "example": "Your 2/1 skulk creature attacks. Enemy 3/3s and 4/4s can't block it - only 2-power or less creatures can.",
+      "tip": "Skulk is better on small creatures - they slip past big blockers."
     },
     "emerge": {
       "name": "Emerge",
-      "description": "You may cast this spell by sacrificing a creature and paying the emerge cost reduced by that creature's mana value."
+      "description": "You may cast this spell by sacrificing a creature and paying the emerge cost reduced by that creature's mana value.",
+      "example": "Your Emerge 7 creature: sacrifice a 4-mana creature, pay only 3 mana to cast it.",
+      "tip": "Sacrifice creatures with good death triggers or enter-the-battlefield effects already used."
     },
     "escalate": {
       "name": "Escalate",
-      "description": "Pay the escalate cost for each mode chosen beyond the first."
+      "description": "Pay the escalate cost for each mode chosen beyond the first.",
+      "example": "A modal spell with Escalate 1: choose 2 modes for +1 mana, or 3 modes for +2 mana total.",
+      "tip": "Escalate provides flexibility - choose modes based on the situation and available mana."
     },
     "meld": {
       "name": "Meld",
-      "description": "If you control both members of a meld pair, exile them, then meld them into a single oversized card."
+      "description": "If you control both members of a meld pair, exile them, then meld them into a single oversized card.",
+      "example": "You control both meld pair cards. They exile and combine into one powerful oversized creature.",
+      "tip": "Meld requires both specific cards - build decks to find and protect both pieces."
     },
     "crew": {
       "name": "Crew",
-      "description": "Tap any number of creatures you control with total power N or more to turn this Vehicle into an artifact creature until end of turn."
+      "description": "Tap any number of creatures you control with total power N or more to turn this Vehicle into an artifact creature until end of turn.",
+      "example": "Your Vehicle has Crew 3. Tap creatures totaling 3+ power to make it a creature this turn.",
+      "tip": "Creatures with summoning sickness can still crew Vehicles."
     },
     "fabricate": {
       "name": "Fabricate",
-      "description": "When this creature enters, put +1/+1 counters on it, or create that many 1/1 colorless Servo artifact creature tokens."
+      "description": "When this creature enters, put +1/+1 counters on it, or create that many 1/1 colorless Servo artifact creature tokens.",
+      "example": "Your Fabricate 2 creature enters. Choose: +2/+2 on it, OR create 2 Servo tokens.",
+      "tip": "Choose tokens for go-wide strategies; choose counters for a single large threat."
     },
     "partner": {
       "name": "Partner",
-      "description": "You can have two commanders if both have partner."
+      "description": "You can have two commanders if both have partner.",
+      "example": "Choose two partner commanders for your deck. You have access to both commanders' colors.",
+      "tip": "Partner expands color combinations and provides backup if one commander is removed."
     },
     "undaunted": {
       "name": "Undaunted",
-      "description": "This spell costs 1 less to cast for each opponent."
+      "description": "This spell costs 1 less to cast for each opponent.",
+      "example": "In a 4-player game with 3 opponents, your Undaunted spell costs 3 less.",
+      "tip": "Undaunted scales with opponent count - best in multiplayer formats."
     },
     "improvise": {
       "name": "Improvise",
-      "description": "Each artifact you tap while casting this spell pays for 1."
+      "description": "Each artifact you tap while casting this spell pays for 1.",
+      "example": "Your spell costs 5. Tap 3 artifacts - now pay only 2 mana.",
+      "tip": "Improvise works with any artifacts, including Equipment and tokens."
     },
     "revolt": {
       "name": "Revolt",
-      "description": "An ability that checks if a permanent you controlled left the battlefield this turn."
+      "description": "An ability that checks if a permanent you controlled left the battlefield this turn.",
+      "example": "A creature you controlled died this turn. Your revolt spell gets its bonus effect.",
+      "tip": "Enable revolt with fetch lands, sacrifice effects, or flicker abilities."
     },
     "aftermath": {
       "name": "Aftermath",
-      "description": "Cast this spell only from your graveyard. Then exile it."
+      "description": "Cast this spell only from your graveyard. Then exile it.",
+      "example": "The aftermath half of a split card can only be cast from your graveyard, then it exiles.",
+      "tip": "Cast the first half normally, then the aftermath half later from graveyard."
     },
     "embalm": {
       "name": "Embalm",
-      "description": "Pay the embalm cost and exile this card from your graveyard to create a token copy of it, except it's a white Zombie with no mana cost."
+      "description": "Pay the embalm cost and exile this card from your graveyard to create a token copy of it, except it's a white Zombie with no mana cost.",
+      "example": "Your creature is in the graveyard. Pay embalm - exile it and create a white Zombie token copy.",
+      "tip": "Embalm provides a second use for creatures - the token has the same abilities."
     },
     "eternalize": {
       "name": "Eternalize",
-      "description": "Pay the eternalize cost and exile this card from your graveyard to create a token copy of it, except it's a 4/4 black Zombie."
+      "description": "Pay the eternalize cost and exile this card from your graveyard to create a token copy of it, except it's a 4/4 black Zombie.",
+      "example": "Exile your creature from graveyard. Create a 4/4 black Zombie token copy with its abilities.",
+      "tip": "Eternalize always makes a 4/4 regardless of original stats - abilities are what matter."
     },
     "afflict": {
       "name": "Afflict",
-      "description": "Whenever this creature becomes blocked, defending player loses life equal to the afflict value."
+      "description": "Whenever this creature becomes blocked, defending player loses life equal to the afflict value.",
+      "example": "Your Afflict 3 creature is blocked. The blocking player loses 3 life regardless of combat outcome.",
+      "tip": "Afflict punishes blocking - opponents take damage whether they block or not."
     },
     "ascend": {
       "name": "Ascend",
-      "description": "If you control ten or more permanents, you get the city's blessing for the rest of the game."
+      "description": "If you control ten or more permanents, you get the city's blessing for the rest of the game.",
+      "example": "You control 10 permanents. You have the city's blessing permanently, enabling bonus effects.",
+      "tip": "The city's blessing is permanent once earned - it doesn't go away if permanents are lost."
     },
     "assist": {
       "name": "Assist",
-      "description": "Another player can pay up to the full cost of this spell."
+      "description": "Another player can pay up to the full cost of this spell.",
+      "example": "Your assist spell costs 6. An ally pays 4, you pay 2.",
+      "tip": "Assist is a political tool in multiplayer - negotiate help from allies."
     },
     "jump-start": {
       "name": "Jump-Start",
-      "description": "You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile it."
+      "description": "You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile it.",
+      "example": "Your instant is in the graveyard. Discard a card, pay its cost, cast it again, then exile it.",
+      "tip": "Jump-start turns dead cards in hand into fuel for graveyard spells."
     },
     "mentor": {
       "name": "Mentor",
-      "description": "Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power."
+      "description": "Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.",
+      "example": "Your 3/3 mentor and 2/2 attack together. The 3/3 mentors the 2/2, putting a +1/+1 counter on it.",
+      "tip": "Mentor permanently grows smaller creatures - repeated attacks build an army."
     },
     "surveil": {
       "name": "Surveil",
-      "description": "Look at the top cards of your library, then put any number of them into your graveyard and the rest back on top in any order."
+      "description": "Look at the top cards of your library, then put any number of them into your graveyard and the rest back on top in any order.",
+      "example": "Surveil 2: look at top 2 cards, put any in graveyard, keep the rest on top in any order.",
+      "tip": "Surveil is like scry but better for graveyard strategies - fuel flashback, escape, etc."
     },
     "undergrowth": {
       "name": "Undergrowth",
-      "description": "An ability that counts or cares about creature cards in your graveyard."
+      "description": "An ability that counts or cares about creature cards in your graveyard.",
+      "example": "Your undergrowth spell checks creatures in your graveyard. 5 creature cards = more powerful effect.",
+      "tip": "Self-mill and sacrifice fuel undergrowth counts."
     },
     "afterlife": {
       "name": "Afterlife",
-      "description": "When this creature dies, create 1/1 white and black Spirit creature tokens with flying."
+      "description": "When this creature dies, create 1/1 white and black Spirit creature tokens with flying.",
+      "example": "Your Afterlife 2 creature dies. Create 2 Spirit tokens with flying.",
+      "tip": "Afterlife provides death insurance - you keep a board presence even when creatures die."
     },
     "riot": {
       "name": "Riot",
-      "description": "This creature enters with your choice of a +1/+1 counter or haste."
+      "description": "This creature enters with your choice of a +1/+1 counter or haste.",
+      "example": "Your riot creature enters. Choose: bigger stats with a counter, or attack immediately with haste.",
+      "tip": "Choose haste when you need immediate impact; choose the counter for a bigger threat."
     },
     "spectacle": {
       "name": "Spectacle",
-      "description": "You may cast this spell for its spectacle cost if an opponent lost life this turn."
+      "description": "You may cast this spell for its spectacle cost if an opponent lost life this turn.",
+      "example": "You dealt damage to an opponent. Now cast your spell at its cheaper spectacle cost.",
+      "tip": "Any life loss enables spectacle - damage, life payment, or drain effects all count."
     },
     "adapt": {
       "name": "Adapt",
-      "description": "If this creature has no +1/+1 counters on it, put +1/+1 counters on it."
+      "description": "If this creature has no +1/+1 counters on it, put +1/+1 counters on it.",
+      "example": "Pay the Adapt 3 cost. If your creature has no +1/+1 counters, it gets 3.",
+      "tip": "Adapt only works once unless you remove the counters somehow."
     },
     "addendum": {
       "name": "Addendum",
-      "description": "If you cast this spell during your main phase, you get an additional effect."
+      "description": "If you cast this spell during your main phase, you get an additional effect.",
+      "example": "Cast at instant speed normally, or during main phase for a bonus addendum effect.",
+      "tip": "Addendum rewards patience - cast during main phase when you can afford to."
     },
     "amass": {
       "name": "Amass",
-      "description": "Put +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first."
+      "description": "Put +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.",
+      "example": "Amass 3: if you have no Army, create a 0/0 Zombie Army, then put 3 +1/+1 counters on it.",
+      "tip": "Amass builds a single large Army creature over multiple spells."
     },
     "proliferate": {
       "name": "Proliferate",
-      "description": "Choose any number of permanents and/or players, then give each another counter of each kind already there."
+      "description": "Choose any number of permanents and/or players, then give each another counter of each kind already there.",
+      "example": "Your creature has 2 +1/+1 counters. Proliferate - now it has 3. An opponent has 1 poison - now 2.",
+      "tip": "Proliferate adds counters of every type - +1/+1, loyalty, poison, charge, etc."
     },
     "adventure": {
       "name": "Adventure",
-      "description": "Cast this as an Adventure, then exile it. You may cast the creature later from exile."
+      "description": "Cast this as an Adventure, then exile it. You may cast the creature later from exile.",
+      "example": "Cast the Adventure spell half first. It exiles. Later, cast the creature from exile.",
+      "tip": "Adventures provide two cards in one - instant/sorcery effect plus creature."
     },
     "adamant": {
       "name": "Adamant",
-      "description": "If at least three mana of the same color was spent to cast this spell, you get an additional effect."
+      "description": "If at least three mana of the same color was spent to cast this spell, you get an additional effect.",
+      "example": "Your spell costs 2W. Pay WWW instead - adamant triggers for a bonus effect.",
+      "tip": "Adamant rewards mono-color or heavily-weighted mana bases."
     },
     "food": {
       "name": "Food",
-      "description": "Food is an artifact type. Food tokens typically have: '2, Tap, Sacrifice this: You gain 3 life.'"
+      "description": "Food is an artifact type. Food tokens typically have: '2, Tap, Sacrifice this: You gain 3 life.'",
+      "example": "Sacrifice your Food token and pay 2 mana to gain 3 life.",
+      "tip": "Food provides repeatable life gain and can be sacrificed for other effects."
     },
     "escape": {
       "name": "Escape",
-      "description": "You may cast this card from your graveyard for its escape cost."
+      "description": "You may cast this card from your graveyard for its escape cost.",
+      "example": "Your creature is in the graveyard. Pay its escape cost (usually mana plus exiling cards) to cast it again.",
+      "tip": "Escape is repeatable as long as you can pay the cost - great inevitability in long games."
     },
     "mutate": {
       "name": "Mutate",
-      "description": "If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it."
+      "description": "If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.",
+      "example": "Mutate onto your creature. Choose which is on top for stats - it has all abilities from both.",
+      "tip": "Mutate stacks - pile multiple mutations for a single creature with many abilities."
     },
     "companion": {
       "name": "Companion",
-      "description": "If you've fulfilled this card's companion requirement during deckbuilding, you may pay 3 to put it from outside the game into your hand once during the game."
-    },
-    "cycling": {
-      "name": "Cycling",
-      "description": "Pay the cycling cost and discard this card to draw a card."
+      "description": "If you've fulfilled this card's companion requirement during deckbuilding, you may pay 3 to put it from outside the game into your hand once during the game.",
+      "example": "Your deck meets the companion restriction. Pay 3 mana to put your companion into your hand.",
+      "tip": "Companions provide a guaranteed 8th card if you build your deck correctly."
     },
     "boast": {
       "name": "Boast",
-      "description": "Activate this ability only if this creature attacked this turn and only once each turn."
+      "description": "Activate this ability only if this creature attacked this turn and only once each turn.",
+      "example": "Your creature attacked this turn. Now you can activate its boast ability once.",
+      "tip": "Boast rewards attacking - it doesn't require dealing damage, just declaring an attack."
     },
     "foretell": {
       "name": "Foretell",
-      "description": "During your turn, you may pay 2 and exile this card from your hand face down. Cast it on a later turn for its foretell cost."
+      "description": "During your turn, you may pay 2 and exile this card from your hand face down. Cast it on a later turn for its foretell cost.",
+      "example": "Pay 2, exile a card face-down. Later, cast it for its foretell cost (often cheaper).",
+      "tip": "Foretell spreads mana cost across turns and creates uncertainty for opponents."
     },
     "magecraft": {
       "name": "Magecraft",
-      "description": "Whenever you cast or copy an instant or sorcery spell, an ability triggers."
-    },
-    "ward": {
-      "name": "Ward",
-      "description": "Whenever this permanent becomes the target of a spell or ability an opponent controls, counter it unless that player pays the ward cost."
+      "description": "Whenever you cast or copy an instant or sorcery spell, an ability triggers.",
+      "example": "Cast an instant. Your magecraft creatures all trigger their abilities.",
+      "tip": "Copy effects trigger magecraft too - spell-copy decks maximize these triggers."
     },
     "learn": {
       "name": "Learn",
-      "description": "You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card."
+      "description": "You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.",
+      "example": "When you learn, get a Lesson from your sideboard, OR discard and draw if you have no Lessons.",
+      "tip": "In formats with sideboards, keep Lessons there for flexible options."
     },
     "daybound": {
       "name": "Daybound",
-      "description": "If a player casts no spells during their own turn, it becomes night next turn. This permanent transforms."
+      "description": "If a player casts no spells during their own turn, it becomes night next turn. This permanent transforms.",
+      "example": "No one cast spells during your turn - it becomes night and daybound creatures transform.",
+      "tip": "Daybound creates a mini-game of spell counting - plan around day/night shifts."
     },
     "nightbound": {
       "name": "Nightbound",
-      "description": "If a player casts at least two spells during their own turn, it becomes day next turn. This permanent transforms."
+      "description": "If a player casts at least two spells during their own turn, it becomes day next turn. This permanent transforms.",
+      "example": "Two spells were cast during a turn - it becomes day and nightbound creatures transform.",
+      "tip": "Control day/night by managing how many spells you cast per turn."
     },
     "decayed": {
       "name": "Decayed",
-      "description": "This creature cannot block. When it attacks, sacrifice it at end of combat."
+      "description": "This creature cannot block. When it attacks, sacrifice it at end of combat.",
+      "example": "Your decayed zombie attacks. After combat damage, sacrifice it.",
+      "tip": "Decayed creatures are disposable - use death triggers or sacrifice before end of combat."
     },
     "disturb": {
       "name": "Disturb",
-      "description": "You may cast this card transformed from your graveyard for its disturb cost."
+      "description": "You may cast this card transformed from your graveyard for its disturb cost.",
+      "example": "Your creature is in the graveyard. Pay disturb cost to cast its transformed (back) side.",
+      "tip": "Disturb creatures have two lives - the front and back are often different card types."
     },
     "cleave": {
       "name": "Cleave",
-      "description": "You may cast this spell for its cleave cost. If you do, remove the words in brackets."
+      "description": "You may cast this spell for its cleave cost. If you do, remove the words in brackets.",
+      "example": "'Destroy target [creature with power 2 or less]' - pay cleave to destroy any creature.",
+      "tip": "Cleave removes restrictions - the cleave version is usually more powerful."
     },
     "training": {
       "name": "Training",
-      "description": "Whenever this creature attacks with another creature with greater power, put a +1/+1 counter on this creature."
+      "description": "Whenever this creature attacks with another creature with greater power, put a +1/+1 counter on this creature.",
+      "example": "Your 2/2 training creature attacks alongside a 4/4. It gets a +1/+1 counter.",
+      "tip": "Training creatures grow when attacking with bigger allies - sequence your creature plays."
     },
     "casualty": {
       "name": "Casualty",
-      "description": "As you cast this spell, you may sacrifice a creature with power N or greater. When you do, copy this spell."
+      "description": "As you cast this spell, you may sacrifice a creature with power N or greater. When you do, copy this spell.",
+      "example": "Cast a Casualty 2 spell. Sacrifice a 2+ power creature to copy the spell.",
+      "tip": "Casualty turns creatures into spell copies - great with token generators."
     },
     "connive": {
       "name": "Connive",
-      "description": "Draw cards equal to the connive value, then discard that many cards. Put a +1/+1 counter on this creature for each nonland card discarded this way."
-    },
-    "hideaway": {
-      "name": "Hideaway",
-      "description": "This permanent enters tapped. When it does, look at the top cards of your library, exile one face down, then put the rest on the bottom."
+      "description": "Draw cards equal to the connive value, then discard that many cards. Put a +1/+1 counter on this creature for each nonland card discarded this way.",
+      "example": "Connive 2: draw 2, discard 2. For each nonland discarded, put a +1/+1 counter on the creature.",
+      "tip": "Connive filters your hand and grows your creature - discard nonlands for counters."
     },
     "blitz": {
       "name": "Blitz",
-      "description": "If you cast this spell for its blitz cost, it gains haste and 'When this creature dies, draw a card.' Sacrifice it at end of turn."
+      "description": "If you cast this spell for its blitz cost, it gains haste and 'When this creature dies, draw a card.' Sacrifice it at end of turn.",
+      "example": "Cast for blitz: creature has haste, attacks, draws a card when it dies, then sacrifices end of turn.",
+      "tip": "Blitz is great for enter-the-battlefield and death triggers plus immediate pressure."
     },
     "alliance": {
       "name": "Alliance",
-      "description": "Whenever another creature enters under your control, an ability triggers."
+      "description": "Whenever another creature enters under your control, an ability triggers.",
+      "example": "Play a creature. All your alliance permanents trigger their abilities.",
+      "tip": "Token generation and flicker effects maximize alliance triggers."
     },
     "shield counter": {
       "name": "Shield Counter",
-      "description": "If this creature would be dealt damage or destroyed, remove a shield counter from it instead."
+      "description": "If this creature would be dealt damage or destroyed, remove a shield counter from it instead.",
+      "example": "Your creature with a shield counter would die. Remove the shield counter - it survives.",
+      "tip": "Shield counters prevent both damage and destroy effects - versatile protection."
     },
     "read ahead": {
       "name": "Read Ahead",
-      "description": "Choose a chapter and start with that many lore counters. Skip chapters before that chapter."
+      "description": "Choose a chapter and start with that many lore counters. Skip chapters before that chapter.",
+      "example": "A Saga has chapters I, II, III. Read ahead to chapter II - skip I, start at II.",
+      "tip": "Read ahead lets you skip to powerful later chapters immediately."
     },
     "enlist": {
       "name": "Enlist",
-      "description": "As this creature attacks, you may tap a non-attacking creature you control without summoning sickness. When you do, add its power to this creature's until end of turn."
+      "description": "As this creature attacks, you may tap a non-attacking creature you control without summoning sickness. When you do, add its power to this creature's until end of turn.",
+      "example": "Attack with an enlist creature. Tap a 3/3 ally - the attacker gets +3/+0.",
+      "tip": "Enlist lets non-attackers contribute power - use on creatures that can't attack safely."
     },
     "domain": {
       "name": "Domain",
-      "description": "An ability that counts or cares about the number of basic land types among lands you control."
+      "description": "An ability that counts or cares about the number of basic land types among lands you control.",
+      "example": "You control Plains, Island, Swamp, Mountain, Forest. Domain is 5 - maximum effect.",
+      "tip": "Triomes and other multi-type lands help reach higher domain counts."
     },
     "prototype": {
       "name": "Prototype",
-      "description": "You may cast this spell with different mana cost, color, power, and toughness using the prototype values."
-    },
-    "unearth": {
-      "name": "Unearth",
-      "description": "Pay the unearth cost to return this card from your graveyard to the battlefield. It gains haste. Exile it at end of turn or if it would leave the battlefield."
+      "description": "You may cast this spell with different mana cost, color, power, and toughness using the prototype values.",
+      "example": "A 7/7 for 8 mana OR a 3/3 for 3 mana (prototype). Same abilities, different stats and cost.",
+      "tip": "Prototype provides flexibility - cheap early version or expensive powerful version."
     },
     "toxic": {
       "name": "Toxic",
-      "description": "Whenever this creature deals combat damage to a player, that player gets poison counters equal to the toxic value."
+      "description": "Whenever this creature deals combat damage to a player, that player gets poison counters equal to the toxic value.",
+      "example": "Your Toxic 2 creature hits a player. They get 2 poison counters (plus any damage dealt).",
+      "tip": "Toxic is separate from damage - you deal both regular damage AND poison."
     },
     "corrupted": {
       "name": "Corrupted",
-      "description": "An ability that checks if an opponent has three or more poison counters."
+      "description": "An ability that checks if an opponent has three or more poison counters.",
+      "example": "An opponent has 3 poison. Your corrupted effects are now active.",
+      "tip": "Corrupted turns on at 3 poison - pair with toxic creatures to enable it."
     },
     "for mirrodin!": {
       "name": "For Mirrodin!",
-      "description": "When this Equipment enters, create a 2/2 red Rebel creature token, then attach this to it."
+      "description": "When this Equipment enters, create a 2/2 red Rebel creature token, then attach this to it.",
+      "example": "Cast this Equipment. A 2/2 Rebel token appears already equipped with it.",
+      "tip": "For Mirrodin! provides an equipped creature immediately - the token carries the Equipment."
     },
     "oil counter": {
       "name": "Oil Counter",
-      "description": "A counter type used by various Phyrexian cards for different effects."
+      "description": "A counter type used by various Phyrexian cards for different effects.",
+      "example": "Your permanent uses oil counters for its ability. Add or remove them as specified.",
+      "tip": "Oil counters work with proliferate - add more over time."
     },
     "incubate": {
       "name": "Incubate",
-      "description": "Create an Incubator token with +1/+1 counters on it. It has '2: Transform this artifact.' It transforms into a 0/0 Phyrexian artifact creature."
+      "description": "Create an Incubator token with +1/+1 counters on it. It has '2: Transform this artifact.' It transforms into a 0/0 Phyrexian artifact creature.",
+      "example": "Incubate 3: create an Incubator artifact with 3 +1/+1 counters. Pay 2 to make it a 3/3 creature.",
+      "tip": "Incubators let you deploy creatures later - store them until you need threats."
     },
     "backup": {
       "name": "Backup",
-      "description": "When this creature enters, put +1/+1 counters on target creature. If that's another creature, it gains this creature's abilities until end of turn."
+      "description": "When this creature enters, put +1/+1 counters on target creature. If that's another creature, it gains this creature's abilities until end of turn.",
+      "example": "Your Backup 2 creature enters. Put 2 counters on another creature - it also gains this creature's abilities until end of turn.",
+      "tip": "Backup can target itself for just counters, or another creature for counters plus abilities."
     },
     "battles": {
       "name": "Battles",
-      "description": "A card type that enters with defense counters and can be attacked. When defeated, it transforms."
-    },
-    "convoke": {
-      "name": "Convoke",
-      "description": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color."
+      "description": "A card type that enters with defense counters and can be attacked. When defeated, it transforms.",
+      "example": "Your Siege battle enters under an opponent's protection. Attack it to remove defense counters - when defeated, it transforms.",
+      "tip": "Battles provide bonuses when you defeat them - coordinate attacks to destroy them."
     },
     "craft": {
       "name": "Craft",
-      "description": "Pay the craft cost and exile this permanent and other specified materials from among permanents you control and/or your graveyard. Return this card to the battlefield transformed."
+      "description": "Pay the craft cost and exile this permanent and other specified materials from among permanents you control and/or your graveyard. Return this card to the battlefield transformed.",
+      "example": "Exile this artifact and 4 other artifacts from battlefield/graveyard. It returns transformed.",
+      "tip": "Craft requires resources but the transformed side is typically powerful."
     },
     "discover": {
       "name": "Discover",
-      "description": "Exile cards from the top of your library until you exile a nonland card with mana value N or less. Cast it without paying its mana cost or put it into your hand."
+      "description": "Exile cards from the top of your library until you exile a nonland card with mana value N or less. Cast it without paying its mana cost or put it into your hand.",
+      "example": "Discover 3: flip until you find a nonland with mana value 3 or less. Cast free or add to hand.",
+      "tip": "Discover gives choice unlike cascade - put in hand if the free spell isn't ideal now."
     },
     "finality counter": {
       "name": "Finality Counter",
-      "description": "If a creature with a finality counter on it would die, exile it instead."
+      "description": "If a creature with a finality counter on it would die, exile it instead.",
+      "example": "Your creature with a finality counter dies. It exiles instead of going to the graveyard.",
+      "tip": "Finality counters prevent graveyard strategies - use on threats you need gone permanently."
     },
     "descend": {
       "name": "Descend",
-      "description": "An ability that checks how many permanent cards are in your graveyard."
+      "description": "An ability that checks how many permanent cards are in your graveyard.",
+      "example": "You have 4 permanent cards in graveyard. 'Descend 4' abilities are active.",
+      "tip": "Self-mill and sacrifice fuel descend - permanent cards include creatures, artifacts, lands, etc."
     },
     "bargain": {
       "name": "Bargain",
-      "description": "You may sacrifice an artifact, enchantment, or token as you cast this spell for an additional effect."
+      "description": "You may sacrifice an artifact, enchantment, or token as you cast this spell for an additional effect.",
+      "example": "Cast a bargain spell. Sacrifice a token for the enhanced bargain effect.",
+      "tip": "Food tokens and other disposable artifacts are perfect bargain fodder."
     },
     "role token": {
       "name": "Role Token",
-      "description": "An Aura enchantment token that attaches to a creature. Only one Role can be attached to a creature at a time."
+      "description": "An Aura enchantment token that attaches to a creature. Only one Role can be attached to a creature at a time.",
+      "example": "Attach a Cursed Role to an enemy creature. If you add another Role, the old one falls off.",
+      "tip": "Roles are Auras that replace each other - use beneficial roles on your creatures."
     },
     "celebration": {
       "name": "Celebration",
-      "description": "An ability that checks if two or more nonland permanents entered under your control this turn."
+      "description": "An ability that checks if two or more nonland permanents entered under your control this turn.",
+      "example": "You played a creature and an artifact this turn. Celebration is active for bonus effects.",
+      "tip": "Cheap permanents and tokens easily trigger celebration."
     },
     "offspring": {
       "name": "Offspring",
-      "description": "You may pay an additional cost as you cast this spell. If you do, when this creature enters, create a 1/1 token copy of it."
+      "description": "You may pay an additional cost as you cast this spell. If you do, when this creature enters, create a 1/1 token copy of it.",
+      "example": "Cast your creature and pay its offspring cost. Get the creature plus a 1/1 token copy.",
+      "tip": "Offspring copies have the same abilities - doubling enter-the-battlefield effects."
     },
     "saddle": {
       "name": "Saddle",
-      "description": "Tap creatures you control with total power N or more: This Mount becomes saddled until end of turn."
+      "description": "Tap creatures you control with total power N or more: This Mount becomes saddled until end of turn.",
+      "example": "Your Saddle 3 Mount: tap creatures totaling 3+ power to saddle it for bonus effects.",
+      "tip": "Saddled Mounts often have attack triggers or stat boosts when saddled."
     },
     "plot": {
       "name": "Plot",
-      "description": "You may pay the plot cost and exile this card from your hand. Cast it as a sorcery on a later turn without paying its mana cost."
+      "description": "You may pay the plot cost and exile this card from your hand. Cast it as a sorcery on a later turn without paying its mana cost.",
+      "example": "Pay 2 to plot a spell. Next turn, cast it for free during your main phase.",
+      "tip": "Plot spreads costs across turns and lets you cast expensive spells 'for free'."
     },
     "spree": {
       "name": "Spree",
-      "description": "Choose one or more additional costs. Add their effects to the spell."
+      "description": "Choose one or more additional costs. Add their effects to the spell.",
+      "example": "A spree spell has mode A (pay 1) and mode B (pay 2). Choose both for 3 total - get both effects.",
+      "tip": "Spree is flexible - pay for exactly the modes you need."
     },
     "impending": {
       "name": "Impending",
-      "description": "If you cast this spell for its impending cost, it enters with time counters and isn't a creature until the counters are removed."
+      "description": "If you cast this spell for its impending cost, it enters with time counters and isn't a creature until the counters are removed.",
+      "example": "Cast for impending cost. It enters as a non-creature with time counters. Remove counters each upkeep until it's a creature.",
+      "tip": "Impending provides a discount but delays the creature - the enchantment is still useful meanwhile."
     },
     "eerie": {
       "name": "Eerie",
-      "description": "Whenever an enchantment you control enters and whenever you fully unlock a Room, an ability triggers."
+      "description": "Whenever an enchantment you control enters and whenever you fully unlock a Room, an ability triggers.",
+      "example": "Play an enchantment or unlock a Room. Your eerie abilities all trigger.",
+      "tip": "Eerie rewards enchantment-heavy decks and Room cards."
     },
     "survival": {
       "name": "Survival",
-      "description": "At the beginning of your second main phase, if this creature is tapped, an ability triggers."
+      "description": "At the beginning of your second main phase, if this creature is tapped, an ability triggers.",
+      "example": "Your survival creature attacked (and tapped). In second main phase, its ability triggers.",
+      "tip": "Tap your creature by attacking or other means to ensure survival triggers."
     },
     "manifest dread": {
       "name": "Manifest Dread",
-      "description": "Look at the top two cards of your library. Put one onto the battlefield face down as a 2/2 creature. Put the other into your graveyard."
+      "description": "Look at the top two cards of your library. Put one onto the battlefield face down as a 2/2 creature. Put the other into your graveyard.",
+      "example": "Look at top 2 cards. One becomes a face-down 2/2, the other goes to graveyard.",
+      "tip": "Manifest dread provides card selection and a creature - turn face-down creatures face-up later."
     },
     "delirium": {
       "name": "Delirium",
-      "description": "An ability that checks if there are four or more card types among cards in your graveyard."
+      "description": "An ability that checks if there are four or more card types among cards in your graveyard.",
+      "example": "Your graveyard has creature, instant, land, artifact. Four types = delirium active.",
+      "tip": "Card types: Creature, Instant, Sorcery, Artifact, Enchantment, Land, Planeswalker. Self-mill helps."
     },
     "threshold": {
       "name": "Threshold",
-      "description": "An ability that checks if there are seven or more cards in your graveyard."
+      "description": "An ability that checks if there are seven or more cards in your graveyard.",
+      "example": "You have 7 cards in graveyard. Threshold abilities are active.",
+      "tip": "Self-mill and fetch lands help reach threshold quickly."
     },
     "metalcraft": {
       "name": "Metalcraft",
-      "description": "An ability that checks if you control three or more artifacts."
+      "description": "An ability that checks if you control three or more artifacts.",
+      "example": "You control 3 artifacts. Metalcraft abilities are now active.",
+      "tip": "Artifact tokens and cheap artifacts help maintain metalcraft."
     },
     "landfall": {
       "name": "Landfall",
-      "description": "Whenever a land enters under your control, an ability triggers."
+      "description": "Whenever a land enters under your control, an ability triggers.",
+      "example": "Play a land. All your landfall abilities trigger.",
+      "tip": "Fetch lands trigger landfall twice - once when played, once when finding a land."
     },
     "ferocious": {
       "name": "Ferocious",
-      "description": "An ability that checks if you control a creature with power 4 or greater."
+      "description": "An ability that checks if you control a creature with power 4 or greater.",
+      "example": "You control a 4/4. Ferocious abilities are active.",
+      "tip": "Keep at least one big creature to maintain ferocious effects."
     },
     "formidable": {
       "name": "Formidable",
-      "description": "An ability that checks if creatures you control have total power 8 or greater."
+      "description": "An ability that checks if creatures you control have total power 8 or greater.",
+      "example": "Your creatures have total power 8. Formidable abilities are active.",
+      "tip": "Multiple small creatures can reach 8 total power as easily as one big creature."
     },
     "spell mastery": {
       "name": "Spell Mastery",
-      "description": "An ability that checks if there are two or more instant and/or sorcery cards in your graveyard."
+      "description": "An ability that checks if there are two or more instant and/or sorcery cards in your graveyard.",
+      "example": "You have 2 instants in graveyard. Spell mastery is active for bonus effects.",
+      "tip": "Cheap instants and cantrips help reach spell mastery quickly."
     },
     "raid": {
       "name": "Raid",
-      "description": "An ability that checks if you attacked with a creature this turn."
+      "description": "An ability that checks if you attacked with a creature this turn.",
+      "example": "You attacked with a creature. Cast a raid spell for its bonus effect.",
+      "tip": "Even a small attacker enables raid - attack before casting raid spells."
     },
     "morbid": {
       "name": "Morbid",
-      "description": "An ability that checks if a creature died this turn."
+      "description": "An ability that checks if a creature died this turn.",
+      "example": "A creature died this turn (yours or opponent's). Morbid abilities are active.",
+      "tip": "Sacrifice effects reliably enable morbid on your terms."
     },
     "hellbent": {
       "name": "Hellbent",
-      "description": "An ability that checks if you have no cards in hand."
+      "description": "An ability that checks if you have no cards in hand.",
+      "example": "You have zero cards in hand. Hellbent abilities are active.",
+      "tip": "Aggressive decks naturally reach hellbent - empty your hand quickly."
     },
     "kinship": {
       "name": "Kinship",
-      "description": "At the beginning of your upkeep, look at the top card of your library. If it shares a creature type with this creature, reveal it and trigger an ability."
+      "description": "At the beginning of your upkeep, look at the top card of your library. If it shares a creature type with this creature, reveal it and trigger an ability.",
+      "example": "Your Elf has kinship. Upkeep: top card is another Elf - reveal it and get the bonus.",
+      "tip": "Tribal decks maximize kinship by running many shared creature types."
     },
     "heroic": {
       "name": "Heroic",
-      "description": "Whenever you cast a spell that targets this creature, an ability triggers."
+      "description": "Whenever you cast a spell that targets this creature, an ability triggers.",
+      "example": "Cast a buff spell targeting your heroic creature. Its heroic ability triggers.",
+      "tip": "Cheap targeted spells like combat tricks maximize heroic triggers."
     },
     "battalion": {
       "name": "Battalion",
-      "description": "Whenever this creature and at least two other creatures attack, an ability triggers."
+      "description": "Whenever this creature and at least two other creatures attack, an ability triggers.",
+      "example": "Attack with 3+ creatures including this one. Battalion triggers.",
+      "tip": "Token generation helps maintain the three-creature attack requirement."
     },
     "bloodrush": {
       "name": "Bloodrush",
-      "description": "Discard this card and pay its bloodrush cost to give target attacking creature bonuses until end of turn."
+      "description": "Discard this card and pay its bloodrush cost to give target attacking creature bonuses until end of turn.",
+      "example": "Discard a bloodrush creature, pay 1 mana, give an attacker +3/+3 until end of turn.",
+      "tip": "Bloodrush makes creature cards double as combat tricks."
     },
     "radiance": {
       "name": "Radiance",
-      "description": "An ability that affects the target and each other permanent/creature that shares a color with it."
+      "description": "An ability that affects the target and each other permanent/creature that shares a color with it.",
+      "example": "Target a red creature with radiance. The effect hits ALL red creatures.",
+      "tip": "Radiance can hit many creatures at once in multicolor-heavy games."
     },
     "imprint": {
       "name": "Imprint",
-      "description": "When this permanent enters or is used, exile a card from a specified zone. The exiled card affects this permanent's abilities."
+      "description": "When this permanent enters or is used, exile a card from a specified zone. The exiled card affects this permanent's abilities.",
+      "example": "Your artifact imprints a card when it enters. Its abilities reference the imprinted card.",
+      "tip": "Choose carefully what to imprint - it typically can't be changed later."
     },
     "eminence": {
       "name": "Eminence",
-      "description": "This ability works as long as this creature is in the command zone or on the battlefield."
+      "description": "This ability works as long as this creature is in the command zone or on the battlefield.",
+      "example": "Your commander has eminence. Its ability works even while in the command zone.",
+      "tip": "Eminence provides value before you even cast your commander."
     },
     "partner with": {
       "name": "Partner With",
-      "description": "When this creature enters, target player may search their library for the named partner card and put it into their hand."
+      "description": "When this creature enters, target player may search their library for the named partner card and put it into their hand.",
+      "example": "Your 'Partner with X' creature enters. Search for X and put it in your hand.",
+      "tip": "Partner with is a tutor built into the creature - you'll find the other half."
     },
     "friends forever": {
       "name": "Friends Forever",
-      "description": "You can have two commanders if both have friends forever."
+      "description": "You can have two commanders if both have friends forever.",
+      "example": "Choose two friends forever commanders. They both lead your deck together.",
+      "tip": "Friends forever is a variant of partner for specific flavor sets."
     },
     "choose a background": {
       "name": "Choose a Background",
-      "description": "You can have a Background as a second commander."
+      "description": "You can have a Background as a second commander.",
+      "example": "Your commander has 'Choose a Background.' Pick a Background enchantment as second commander.",
+      "tip": "Backgrounds provide additional color identity and abilities from the command zone."
     },
     "doctor's companion": {
       "name": "Doctor's Companion",
-      "description": "You can have two commanders if the other one is a Time Lord Doctor."
+      "description": "You can have two commanders if the other one is a Time Lord Doctor.",
+      "example": "Your Doctor's companion pairs with a Time Lord Doctor commander.",
+      "tip": "Doctor's companion is a themed partner variant for Doctor Who crossovers."
     },
     "more than meets the eye": {
       "name": "More Than Meets the Eye",
-      "description": "You may cast this card converted for its alternate cost."
+      "description": "You may cast this card converted for its alternate cost.",
+      "example": "Cast a Transformer for its converted cost - it enters already transformed.",
+      "tip": "More than meets the eye is the Transformers-themed morph variant."
     },
     "living metal": {
       "name": "Living Metal",
-      "description": "As long as it's your turn, this Vehicle is also a creature."
+      "description": "As long as it's your turn, this Vehicle is also a creature.",
+      "example": "Your living metal Vehicle is automatically a creature on your turn - no crewing needed.",
+      "tip": "Living metal removes the crew requirement on your turn - it's always ready to attack."
     }
   }
 }

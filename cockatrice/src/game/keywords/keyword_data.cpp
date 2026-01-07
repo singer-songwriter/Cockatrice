@@ -52,6 +52,8 @@ void KeywordData::loadKeywords()
         KeywordDefinition def;
         def.name = kwObj.value("name").toString();
         def.description = kwObj.value("description").toString();
+        def.example = kwObj.value("example").toString();
+        def.tip = kwObj.value("tip").toString();
 
         if (!def.name.isEmpty() && !def.description.isEmpty()) {
             keywords.insert(key, def);

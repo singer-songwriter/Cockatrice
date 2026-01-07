@@ -10,6 +10,8 @@ struct KeywordDefinition
 {
     QString name;        // Display name (e.g., "Double Strike")
     QString description; // Rules description
+    QString example;     // Gameplay example showing the ability in action
+    QString tip;         // Optional strategic advice
 };
 
 class KeywordData : public QObject

@@ -3,6 +3,7 @@
 #include "../../../../game/keywords/keyword_data.h"
 
 #include <QLabel>
+#include <QPalette>
 #include <QScrollArea>
 #include <QTextEdit>
 #include <QVBoxLayout>
@@ -53,11 +54,49 @@ void CardInfoKeywordsWidget::updateDisplay()
     noKeywordsLabel->hide();
     keywordsText->show();
 
-    QString html = "<html><body style=\"margin: 8px;\">";
+    // Get palette colors for theme compatibility
+    QPalette pal = palette();
+    QString textColor = pal.color(QPalette::Text).name();
+    QString dimTextColor = pal.color(QPalette::PlaceholderText).name();
+    QString borderColor = pal.color(QPalette::Mid).name();
+    QString linkColor = pal.color(QPalette::Link).name();
+
+    QString html = QString("<html><head><style>"
+                           "body { margin: 8px; }"
+                           ".keyword-block { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid %1; }"
+                           ".keyword-block:last-child { border-bottom: none; margin-bottom: 0; }"
+                           ".keyword-name { font-size: 14px; font-weight: bold; color: %2; margin-bottom: 4px; }"
+                           ".description { font-size: 12px; color: %2; margin-bottom: 8px; }"
+                           ".example { font-size: 12px; color: %2; margin-bottom: 6px; padding-left: 8px; "
+                           "border-left: 3px solid %4; }"
+                           ".tip { font-size: 12px; color: %3; margin-bottom: 6px; padding-left: 8px; "
+                           "border-left: 3px solid %3; font-style: italic; }"
+                           ".section-label { font-weight: bold; }"
+                           "</style></head><body>")
+                       .arg(borderColor, textColor, dimTextColor, linkColor);
 
     for (const KeywordDefinition *kw : keywords) {
-        html += QString("<p><b>%1</b><br>%2</p>")
-                    .arg(kw->name.toHtmlEscaped(), kw->description.toHtmlEscaped());
+        html += "<div class=\"keyword-block\">";
+
+        // Keyword name
+        html += QString("<div class=\"keyword-name\">%1</div>").arg(kw->name.toHtmlEscaped());
+
+        // Description
+        html += QString("<div class=\"description\">%1</div>").arg(kw->description.toHtmlEscaped());
+
+        // Example (if available)
+        if (!kw->example.isEmpty()) {
+            html += QString("<div class=\"example\"><span class=\"section-label\">Example:</span> %1</div>")
+                        .arg(kw->example.toHtmlEscaped());
+        }
+
+        // Tip (if available)
+        if (!kw->tip.isEmpty()) {
+            html +=
+                QString("<div class=\"tip\"><span class=\"section-label\">Tip:</span> %1</div>").arg(kw->tip.toHtmlEscaped());
+        }
+
+        html += "</div>";
     }
 
     html += "</body></html>";
