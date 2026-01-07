@@ -55,48 +55,50 @@ void CardInfoKeywordsWidget::updateDisplay()
     keywordsText->show();
 
     // Get palette colors for theme compatibility
+    // Use Text color for all content to ensure readability on both light and dark themes
     QPalette pal = palette();
     QString textColor = pal.color(QPalette::Text).name();
-    QString dimTextColor = pal.color(QPalette::PlaceholderText).name();
     QString borderColor = pal.color(QPalette::Mid).name();
     QString linkColor = pal.color(QPalette::Link).name();
 
     QString html = QString("<html><head><style>"
-                           "body { margin: 8px; }"
-                           ".keyword-block { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid %1; }"
-                           ".keyword-block:last-child { border-bottom: none; margin-bottom: 0; }"
-                           ".keyword-name { font-size: 14px; font-weight: bold; color: %2; margin-bottom: 4px; }"
-                           ".description { font-size: 12px; color: %2; margin-bottom: 8px; }"
-                           ".example { font-size: 12px; color: %2; margin-bottom: 6px; padding-left: 8px; "
-                           "border-left: 3px solid %4; }"
-                           ".tip { font-size: 12px; color: %3; margin-bottom: 6px; padding-left: 8px; "
+                           "body { margin: 8px; color: %1; }"
+                           ".keyword-name { font-size: 14px; font-weight: bold; color: %1; margin-bottom: 6px; }"
+                           ".info-line { font-size: 12px; color: %1; margin-bottom: 6px; padding-left: 8px; "
+                           "border-left: 3px solid %3; }"
+                           ".tip-line { font-size: 12px; color: %1; margin-bottom: 6px; padding-left: 8px; "
                            "border-left: 3px solid %3; font-style: italic; }"
                            ".section-label { font-weight: bold; }"
+                           ".divider { border: none; border-top: 1px solid %2; margin: 12px 0; }"
                            "</style></head><body>")
-                       .arg(borderColor, textColor, dimTextColor, linkColor);
+                       .arg(textColor, borderColor, linkColor);
 
-    for (const KeywordDefinition *kw : keywords) {
-        html += "<div class=\"keyword-block\">";
+    for (int i = 0; i < keywords.size(); ++i) {
+        const KeywordDefinition *kw = keywords.at(i);
 
         // Keyword name
         html += QString("<div class=\"keyword-name\">%1</div>").arg(kw->name.toHtmlEscaped());
 
         // Description
-        html += QString("<div class=\"description\">%1</div>").arg(kw->description.toHtmlEscaped());
+        html += QString("<div class=\"info-line\"><span class=\"section-label\">Description:</span> %1</div>")
+                    .arg(kw->description.toHtmlEscaped());
 
         // Example (if available)
         if (!kw->example.isEmpty()) {
-            html += QString("<div class=\"example\"><span class=\"section-label\">Example:</span> %1</div>")
+            html += QString("<div class=\"info-line\"><span class=\"section-label\">Example:</span> %1</div>")
                         .arg(kw->example.toHtmlEscaped());
         }
 
         // Tip (if available)
         if (!kw->tip.isEmpty()) {
-            html +=
-                QString("<div class=\"tip\"><span class=\"section-label\">Tip:</span> %1</div>").arg(kw->tip.toHtmlEscaped());
+            html += QString("<div class=\"tip-line\"><span class=\"section-label\">Tip:</span> %1</div>")
+                        .arg(kw->tip.toHtmlEscaped());
         }
 
-        html += "</div>";
+        // Add divider between keywords (but not after the last one)
+        if (i < keywords.size() - 1) {
+            html += "<hr class=\"divider\">";
+        }
     }
 
     html += "</body></html>";
