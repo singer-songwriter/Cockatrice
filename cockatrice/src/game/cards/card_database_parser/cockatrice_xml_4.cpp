@@ -140,6 +140,7 @@ void CockatriceXml4Parser::loadCardsFromXml(QXmlStreamReader &xml)
             QVariantHash properties = QVariantHash();
             QList<CardRelation *> relatedCards, reverseRelatedCards;
             auto _sets = CardInfoPerSetMap();
+            QList<CardRuling> rulings;
             int tableRow = 0;
             bool cipt = false;
             bool landscapeOrientation = false;
@@ -241,6 +242,21 @@ void CockatriceXml4Parser::loadCardsFromXml(QXmlStreamReader &xml)
                     } else {
                         relatedCards << relation;
                     }
+                    // rulings
+                } else if (xmlName == "rulings") {
+                    while (!xml.atEnd()) {
+                        if (xml.readNext() == QXmlStreamReader::EndElement) {
+                            break;
+                        }
+                        auto rulingXmlName = xml.name().toString();
+                        if (rulingXmlName == "ruling") {
+                            QString date = xml.attributes().value("date").toString();
+                            QString rulingText = xml.readElementText(QXmlStreamReader::IncludeChildElements);
+                            if (!rulingText.isEmpty()) {
+                                rulings.append(CardRuling(date, rulingText));
+                            }
+                        }
+                    }
                 } else if (!xmlName.isEmpty()) {
                     qCInfo(CockatriceXml4Log) << "Unknown card property" << xmlName << ", trying to continue anyway";
                     xml.skipCurrentElement();
@@ -249,7 +265,7 @@ void CockatriceXml4Parser::loadCardsFromXml(QXmlStreamReader &xml)
 
             CardInfoPtr newCard =
                 CardInfo::newInstance(name, text, isToken, properties, relatedCards, reverseRelatedCards, _sets, cipt,
-                                      landscapeOrientation, tableRow, upsideDown);
+                                      landscapeOrientation, tableRow, upsideDown, rulings);
             emit addCard(newCard);
         }
     }
@@ -360,6 +376,21 @@ static QXmlStreamWriter &operator<<(QXmlStreamWriter &xml, const CardInfoPtr &in
             xml.writeAttribute("count", QString::number(i->getDefaultCount()));
         }
         xml.writeCharacters(i->getName());
+        xml.writeEndElement();
+    }
+
+    // rulings
+    const QList<CardRuling> &rulings = info->getRulings();
+    if (!rulings.isEmpty()) {
+        xml.writeStartElement("rulings");
+        for (const CardRuling &ruling : rulings) {
+            xml.writeStartElement("ruling");
+            if (!ruling.date.isEmpty()) {
+                xml.writeAttribute("date", ruling.date);
+            }
+            xml.writeCharacters(ruling.text);
+            xml.writeEndElement();
+        }
         xml.writeEndElement();
     }
 

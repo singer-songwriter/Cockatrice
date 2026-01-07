@@ -134,7 +134,8 @@ private:
                         bool isToken,
                         QVariantHash properties,
                         QList<CardRelation *> &relatedCards,
-                        CardInfoPerSet setInfo);
+                        CardInfoPerSet setInfo,
+                        const QList<CardRuling> &rulings = QList<CardRuling>());
 signals:
     void setIndexChanged(int cardsImported, int setIndex, const QString &setName);
     void dataReadProgress(int bytesRead, int totalBytes);

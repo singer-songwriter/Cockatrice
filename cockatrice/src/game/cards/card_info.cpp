@@ -227,10 +227,11 @@ CardInfo::CardInfo(const QString &_name,
                    bool _cipt,
                    bool _landscapeOrientation,
                    int _tableRow,
-                   bool _upsideDownArt)
+                   bool _upsideDownArt,
+                   const QList<CardRuling> &_rulings)
     : name(_name), text(_text), isToken(_isToken), properties(std::move(_properties)), relatedCards(_relatedCards),
       reverseRelatedCards(_reverseRelatedCards), sets(std::move(_sets)), cipt(_cipt),
-      landscapeOrientation(_landscapeOrientation), tableRow(_tableRow), upsideDownArt(_upsideDownArt)
+      landscapeOrientation(_landscapeOrientation), tableRow(_tableRow), upsideDownArt(_upsideDownArt), rulings(_rulings)
 {
     pixmapCacheKey = QLatin1String("card_") + name;
     simpleName = CardInfo::simplifyName(name);
@@ -246,7 +247,7 @@ CardInfo::~CardInfo()
 CardInfoPtr CardInfo::newInstance(const QString &_name)
 {
     return newInstance(_name, QString(), false, QVariantHash(), QList<CardRelation *>(), QList<CardRelation *>(),
-                       CardInfoPerSetMap(), false, false, 0, false);
+                       CardInfoPerSetMap(), false, false, 0, false, QList<CardRuling>());
 }
 
 CardInfoPtr CardInfo::newInstance(const QString &_name,
@@ -259,10 +260,11 @@ CardInfoPtr CardInfo::newInstance(const QString &_name,
                                   bool _cipt,
                                   bool _landscapeOrientation,
                                   int _tableRow,
-                                  bool _upsideDownArt)
+                                  bool _upsideDownArt,
+                                  const QList<CardRuling> &_rulings)
 {
     CardInfoPtr ptr(new CardInfo(_name, _text, _isToken, std::move(_properties), _relatedCards, _reverseRelatedCards,
-                                 _sets, _cipt, _landscapeOrientation, _tableRow, _upsideDownArt));
+                                 _sets, _cipt, _landscapeOrientation, _tableRow, _upsideDownArt, _rulings));
     ptr->setSmartPointer(ptr);
 
     for (const auto &cardInfoPerSetList : _sets) {

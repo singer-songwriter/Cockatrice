@@ -9,6 +9,13 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+    <xs:complexType name="rulingType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="date" use="optional" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
     <xs:complexType name="setType">
         <xs:all>
             <xs:element type="xs:string" name="name" minOccurs="1" maxOccurs="1" />
@@ -52,6 +59,13 @@
                 <xs:element type="relatedType" name="related" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element type="relatedType" name="reverse-related" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
+            <xs:element name="rulings" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="rulingType" name="ruling" minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element type="xs:boolean" name="token" minOccurs="0" maxOccurs="1" />
             <xs:element type="xs:integer" name="tablerow" minOccurs="0" maxOccurs="1" />
             <xs:element type="xs:boolean" name="cipt" minOccurs="0" maxOccurs="1" />

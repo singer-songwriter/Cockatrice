@@ -20,6 +20,18 @@ class CardSet;
 class CardRelation;
 class ICardDatabaseParser;
 
+// Represents a single card ruling with date and text
+struct CardRuling
+{
+    QString date; // ISO 8601 format (YYYY-MM-DD)
+    QString text; // The ruling text
+
+    CardRuling() = default;
+    CardRuling(const QString &_date, const QString &_text) : date(_date), text(_text)
+    {
+    }
+};
+
 typedef QMap<QString, QString> QStringMap;
 typedef QSharedPointer<CardInfo> CardInfoPtr;
 typedef QSharedPointer<CardSet> CardSetPtr;
@@ -205,6 +217,8 @@ private:
     bool landscapeOrientation;
     int tableRow;
     bool upsideDownArt;
+    // card rulings from official sources
+    QList<CardRuling> rulings;
 
 public:
     explicit CardInfo(const QString &_name,
@@ -217,13 +231,15 @@ public:
                       bool _cipt,
                       bool _landscapeOrientation,
                       int _tableRow,
-                      bool _upsideDownArt);
+                      bool _upsideDownArt,
+                      const QList<CardRuling> &_rulings = QList<CardRuling>());
     CardInfo(const CardInfo &other)
         : QObject(other.parent()), name(other.name), simpleName(other.simpleName), pixmapCacheKey(other.pixmapCacheKey),
           text(other.text), isToken(other.isToken), properties(other.properties), relatedCards(other.relatedCards),
           reverseRelatedCards(other.reverseRelatedCards), reverseRelatedCardsToMe(other.reverseRelatedCardsToMe),
           sets(other.sets), setsNames(other.setsNames), cipt(other.cipt),
-          landscapeOrientation(other.landscapeOrientation), tableRow(other.tableRow), upsideDownArt(other.upsideDownArt)
+          landscapeOrientation(other.landscapeOrientation), tableRow(other.tableRow), upsideDownArt(other.upsideDownArt),
+          rulings(other.rulings)
     {
     }
     ~CardInfo() override;
@@ -240,7 +256,8 @@ public:
                                    bool _cipt,
                                    bool _landscapeOrientation,
                                    int _tableRow,
-                                   bool _upsideDownArt);
+                                   bool _upsideDownArt,
+                                   const QList<CardRuling> &_rulings = QList<CardRuling>());
 
     CardInfoPtr clone() const
     {
@@ -375,6 +392,20 @@ public:
         return upsideDownArt;
     }
     const QChar getColorChar() const;
+
+    // rulings
+    const QList<CardRuling> &getRulings() const
+    {
+        return rulings;
+    }
+    void setRulings(const QList<CardRuling> &_rulings)
+    {
+        rulings = _rulings;
+    }
+    void addRuling(const CardRuling &ruling)
+    {
+        rulings.append(ruling);
+    }
 
     // Back-compatibility methods. Remove ASAP
     const QString getCardType() const;

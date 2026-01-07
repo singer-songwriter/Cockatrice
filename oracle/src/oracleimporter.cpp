@@ -113,7 +113,8 @@ CardInfoPtr OracleImporter::addCard(QString name,
                                     bool isToken,
                                     QVariantHash properties,
                                     QList<CardRelation *> &relatedCards,
-                                    CardInfoPerSet setInfo)
+                                    CardInfoPerSet setInfo,
+                                    const QList<CardRuling> &rulings)
 {
     // Workaround for card name weirdness
     name = name.replace("Æ", "AE");
@@ -187,7 +188,7 @@ CardInfoPtr OracleImporter::addCard(QString name,
     CardInfoPerSetMap setsInfo;
     setsInfo[setInfo.getPtr()->getShortName()].append(setInfo);
     CardInfoPtr newCard = CardInfo::newInstance(name, text, isToken, properties, relatedCards, reverseRelatedCards,
-                                                setsInfo, cipt, landscapeOrientation, tableRow, upsideDown);
+                                                setsInfo, cipt, landscapeOrientation, tableRow, upsideDown, rulings);
 
     if (name.isEmpty()) {
         qDebug() << "warning: an empty card was added to set" << setInfo.getPtr()->getShortName();
@@ -229,6 +230,7 @@ int OracleImporter::importCardsFromSet(const CardSetPtr &currentSet, const QList
     CardInfoPerSet setInfo;
     QList<CardRelation *> relatedCards;
     QList<QString> allNameProps;
+    QList<CardRuling> rulings;
 
     for (const QVariant &cardVar : cardsList) {
         card = cardVar.toMap();
@@ -333,6 +335,20 @@ int OracleImporter::importCardsFromSet(const CardSetPtr &currentSet, const QList
             properties.insert(QString("format-%1").arg(fmtName), legalities.value(fmtName).toString().toLower());
         }
 
+        // parse rulings from MTGJSON
+        rulings.clear();
+        if (card.contains("rulings")) {
+            QVariantList rulingsList = card.value("rulings").toList();
+            for (const QVariant &rulingVar : rulingsList) {
+                QVariantMap rulingMap = rulingVar.toMap();
+                QString date = rulingMap.value("date").toString();
+                QString rulingText = rulingMap.value("text").toString();
+                if (!rulingText.isEmpty()) {
+                    rulings.append(CardRuling(date, rulingText));
+                }
+            }
+        }
+
         // split cards are considered a single card, enqueue for later merging
         if (layout == "split" || layout == "aftermath" || layout == "adventure") {
             auto _faceName = getStringPropertyFromMap(card, "faceName");
@@ -387,7 +403,7 @@ int OracleImporter::importCardsFromSet(const CardSetPtr &currentSet, const QList
                 }
             }
 
-            CardInfoPtr newCard = addCard(name + numComponent, text, isToken, properties, relatedCards, setInfo);
+            CardInfoPtr newCard = addCard(name + numComponent, text, isToken, properties, relatedCards, setInfo, rulings);
             numCards++;
         }
     }
@@ -441,7 +457,8 @@ int OracleImporter::importCardsFromSet(const CardSetPtr &currentSet, const QList
                 }
             }
         }
-        CardInfoPtr newCard = addCard(nameSplit, text, isToken, properties, relatedCards, setInfo);
+        // Note: Split cards don't have rulings in the merged format, pass empty list
+        CardInfoPtr newCard = addCard(nameSplit, text, isToken, properties, relatedCards, setInfo, QList<CardRuling>());
         numCards++;
     }
 

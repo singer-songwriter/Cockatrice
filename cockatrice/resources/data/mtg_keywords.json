@@ -1,0 +1,884 @@
+{
+  "keywords": {
+    "deathtouch": {
+      "name": "Deathtouch",
+      "description": "Any amount of damage this deals to a creature is enough to destroy it."
+    },
+    "defender": {
+      "name": "Defender",
+      "description": "This creature cannot attack."
+    },
+    "double strike": {
+      "name": "Double Strike",
+      "description": "This creature deals both first-strike and regular combat damage."
+    },
+    "enchant": {
+      "name": "Enchant",
+      "description": "This Aura can only be attached to the specified type of permanent or player."
+    },
+    "equip": {
+      "name": "Equip",
+      "description": "Pay the equip cost to attach this Equipment to a creature you control. Equip only as a sorcery."
+    },
+    "first strike": {
+      "name": "First Strike",
+      "description": "This creature deals combat damage before creatures without first strike."
+    },
+    "flash": {
+      "name": "Flash",
+      "description": "You may cast this spell any time you could cast an instant."
+    },
+    "flying": {
+      "name": "Flying",
+      "description": "This creature can only be blocked by creatures with flying or reach."
+    },
+    "haste": {
+      "name": "Haste",
+      "description": "This creature can attack and use tap abilities the turn it comes under your control."
+    },
+    "hexproof": {
+      "name": "Hexproof",
+      "description": "This permanent cannot be the target of spells or abilities your opponents control."
+    },
+    "indestructible": {
+      "name": "Indestructible",
+      "description": "Damage and effects that say 'destroy' do not destroy this permanent."
+    },
+    "intimidate": {
+      "name": "Intimidate",
+      "description": "This creature can only be blocked by artifact creatures and creatures that share a color with it."
+    },
+    "landwalk": {
+      "name": "Landwalk",
+      "description": "This creature is unblockable as long as the defending player controls a land of the specified type."
+    },
+    "lifelink": {
+      "name": "Lifelink",
+      "description": "Damage dealt by this creature also causes you to gain that much life."
+    },
+    "menace": {
+      "name": "Menace",
+      "description": "This creature cannot be blocked except by two or more creatures."
+    },
+    "protection": {
+      "name": "Protection",
+      "description": "This permanent cannot be damaged, enchanted, equipped, blocked, or targeted by sources of the specified quality."
+    },
+    "reach": {
+      "name": "Reach",
+      "description": "This creature can block creatures with flying."
+    },
+    "shroud": {
+      "name": "Shroud",
+      "description": "This permanent cannot be the target of spells or abilities."
+    },
+    "trample": {
+      "name": "Trample",
+      "description": "This creature can deal excess combat damage to the defending player or planeswalker."
+    },
+    "vigilance": {
+      "name": "Vigilance",
+      "description": "Attacking does not cause this creature to tap."
+    },
+    "ward": {
+      "name": "Ward",
+      "description": "Whenever this permanent becomes the target of a spell or ability an opponent controls, counter it unless that player pays the ward cost."
+    },
+    "banding": {
+      "name": "Banding",
+      "description": "Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage among any of the creatures it's being blocked by or is blocking."
+    },
+    "rampage": {
+      "name": "Rampage",
+      "description": "Whenever this creature becomes blocked, it gets +N/+N until end of turn for each creature blocking it beyond the first."
+    },
+    "cumulative upkeep": {
+      "name": "Cumulative Upkeep",
+      "description": "At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it."
+    },
+    "flanking": {
+      "name": "Flanking",
+      "description": "Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn."
+    },
+    "phasing": {
+      "name": "Phasing",
+      "description": "This permanent phases in and out at the beginning of your untap step. While phased out, it is treated as if it does not exist."
+    },
+    "buyback": {
+      "name": "Buyback",
+      "description": "You may pay the buyback cost in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves."
+    },
+    "shadow": {
+      "name": "Shadow",
+      "description": "This creature can only block or be blocked by creatures with shadow."
+    },
+    "cycling": {
+      "name": "Cycling",
+      "description": "Pay the cycling cost and discard this card to draw a card."
+    },
+    "echo": {
+      "name": "Echo",
+      "description": "At the beginning of your upkeep, if this permanent came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost."
+    },
+    "horsemanship": {
+      "name": "Horsemanship",
+      "description": "This creature can only be blocked by creatures with horsemanship."
+    },
+    "fading": {
+      "name": "Fading",
+      "description": "This permanent enters with fade counters on it. At the beginning of your upkeep, remove a fade counter. If you cannot, sacrifice this permanent."
+    },
+    "kicker": {
+      "name": "Kicker",
+      "description": "You may pay an additional kicker cost as you cast this spell for an enhanced effect."
+    },
+    "flashback": {
+      "name": "Flashback",
+      "description": "You may cast this card from your graveyard for its flashback cost. Then exile it."
+    },
+    "madness": {
+      "name": "Madness",
+      "description": "If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard."
+    },
+    "fear": {
+      "name": "Fear",
+      "description": "This creature can only be blocked by artifact creatures and/or black creatures."
+    },
+    "morph": {
+      "name": "Morph",
+      "description": "You may cast this card face down as a 2/2 creature for 3 mana. Turn it face up any time for its morph cost."
+    },
+    "amplify": {
+      "name": "Amplify",
+      "description": "As this creature enters, reveal any number of cards from your hand that share a creature type with it. This creature enters with +1/+1 counters equal to the amplify value times the number of cards revealed."
+    },
+    "provoke": {
+      "name": "Provoke",
+      "description": "Whenever this creature attacks, you may have target creature defending player controls untap and block it if able."
+    },
+    "storm": {
+      "name": "Storm",
+      "description": "When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies."
+    },
+    "affinity": {
+      "name": "Affinity",
+      "description": "This spell costs 1 less to cast for each permanent of the specified type you control."
+    },
+    "entwine": {
+      "name": "Entwine",
+      "description": "Pay the entwine cost to choose all modes of this spell instead of just one."
+    },
+    "modular": {
+      "name": "Modular",
+      "description": "This creature enters with +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature."
+    },
+    "sunburst": {
+      "name": "Sunburst",
+      "description": "This permanent enters with a counter for each color of mana spent to cast it."
+    },
+    "bushido": {
+      "name": "Bushido",
+      "description": "Whenever this creature blocks or becomes blocked, it gets +N/+N until end of turn."
+    },
+    "soulshift": {
+      "name": "Soulshift",
+      "description": "When this creature dies, you may return target Spirit card with mana value N or less from your graveyard to your hand."
+    },
+    "splice": {
+      "name": "Splice",
+      "description": "As you cast a spell of the specified type, you may reveal this card and pay its splice cost to copy its text onto that spell."
+    },
+    "offering": {
+      "name": "Offering",
+      "description": "You may cast this card any time you could cast an instant by sacrificing a creature of the specified type and paying the difference in mana costs."
+    },
+    "ninjutsu": {
+      "name": "Ninjutsu",
+      "description": "Pay the ninjutsu cost and return an unblocked attacking creature you control to its owner's hand to put this card onto the battlefield tapped and attacking."
+    },
+    "epic": {
+      "name": "Epic",
+      "description": "For the rest of the game, you cannot cast spells. At the beginning of each of your upkeeps, copy this spell."
+    },
+    "convoke": {
+      "name": "Convoke",
+      "description": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color."
+    },
+    "dredge": {
+      "name": "Dredge",
+      "description": "If you would draw a card, you may mill cards equal to this card's dredge number and return this card from your graveyard to your hand instead."
+    },
+    "transmute": {
+      "name": "Transmute",
+      "description": "Pay the transmute cost and discard this card to search your library for a card with the same mana value, reveal it, and put it into your hand."
+    },
+    "bloodthirst": {
+      "name": "Bloodthirst",
+      "description": "If an opponent was dealt damage this turn, this creature enters with +1/+1 counters on it."
+    },
+    "haunt": {
+      "name": "Haunt",
+      "description": "When this card is put into a graveyard from the battlefield or when it resolves, exile it haunting target creature. When that creature dies, you may use this card's ability again."
+    },
+    "replicate": {
+      "name": "Replicate",
+      "description": "When you cast this spell, you may pay its replicate cost any number of times. Copy it that many times."
+    },
+    "forecast": {
+      "name": "Forecast",
+      "description": "During your upkeep, you may reveal this card from your hand and pay its forecast cost to activate its forecast ability."
+    },
+    "graft": {
+      "name": "Graft",
+      "description": "This creature enters with +1/+1 counters on it. Whenever another creature enters, you may move a +1/+1 counter from this creature to it."
+    },
+    "recover": {
+      "name": "Recover",
+      "description": "When a creature is put into your graveyard from the battlefield, you may pay this card's recover cost to return it from your graveyard to your hand. Otherwise, exile it."
+    },
+    "ripple": {
+      "name": "Ripple",
+      "description": "When you cast this spell, reveal the top cards of your library equal to the ripple number. You may cast any cards with the same name without paying their mana costs."
+    },
+    "split second": {
+      "name": "Split Second",
+      "description": "As long as this spell is on the stack, players cannot cast spells or activate abilities that are not mana abilities."
+    },
+    "suspend": {
+      "name": "Suspend",
+      "description": "Rather than cast this card from your hand, pay its suspend cost and exile it with time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost."
+    },
+    "vanishing": {
+      "name": "Vanishing",
+      "description": "This permanent enters with time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, sacrifice it."
+    },
+    "absorb": {
+      "name": "Absorb",
+      "description": "If a source would deal damage to this creature, prevent N of that damage."
+    },
+    "aura swap": {
+      "name": "Aura Swap",
+      "description": "Pay the aura swap cost to exchange this Aura with an Aura card in your hand."
+    },
+    "delve": {
+      "name": "Delve",
+      "description": "Each card you exile from your graveyard while casting this spell pays for 1."
+    },
+    "fortify": {
+      "name": "Fortify",
+      "description": "Pay the fortify cost to attach this Fortification to a land you control. Fortify only as a sorcery."
+    },
+    "frenzy": {
+      "name": "Frenzy",
+      "description": "Whenever this creature attacks and is not blocked, it gets +N/+0 until end of turn."
+    },
+    "gravestorm": {
+      "name": "Gravestorm",
+      "description": "When you cast this spell, copy it for each permanent put into a graveyard this turn."
+    },
+    "poisonous": {
+      "name": "Poisonous",
+      "description": "Whenever this creature deals combat damage to a player, that player gets poison counters."
+    },
+    "transfigure": {
+      "name": "Transfigure",
+      "description": "Pay the transfigure cost and sacrifice this creature to search your library for a creature card with the same mana value, put it onto the battlefield, then shuffle."
+    },
+    "champion": {
+      "name": "Champion",
+      "description": "When this creature enters, sacrifice it unless you exile another creature you control of the specified type. When this creature leaves, return the exiled card to the battlefield."
+    },
+    "changeling": {
+      "name": "Changeling",
+      "description": "This card is every creature type."
+    },
+    "evoke": {
+      "name": "Evoke",
+      "description": "You may cast this spell for its evoke cost. If you do, sacrifice it when it enters the battlefield."
+    },
+    "hideaway": {
+      "name": "Hideaway",
+      "description": "This permanent enters tapped. When it does, look at the top cards of your library, exile one face down, then put the rest on the bottom."
+    },
+    "prowl": {
+      "name": "Prowl",
+      "description": "You may cast this for its prowl cost if you dealt combat damage to a player this turn with a creature that shares a creature type with this spell."
+    },
+    "reinforce": {
+      "name": "Reinforce",
+      "description": "Pay the reinforce cost and discard this card to put +1/+1 counters on target creature."
+    },
+    "conspire": {
+      "name": "Conspire",
+      "description": "As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it."
+    },
+    "persist": {
+      "name": "Persist",
+      "description": "When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield with a -1/-1 counter on it."
+    },
+    "wither": {
+      "name": "Wither",
+      "description": "This deals damage to creatures in the form of -1/-1 counters."
+    },
+    "retrace": {
+      "name": "Retrace",
+      "description": "You may cast this card from your graveyard by discarding a land card in addition to paying its other costs."
+    },
+    "devour": {
+      "name": "Devour",
+      "description": "As this creature enters, you may sacrifice any number of creatures. This creature enters with +1/+1 counters equal to the devour value times the number of creatures sacrificed."
+    },
+    "exalted": {
+      "name": "Exalted",
+      "description": "Whenever a creature you control attacks alone, it gets +1/+1 until end of turn."
+    },
+    "unearth": {
+      "name": "Unearth",
+      "description": "Pay the unearth cost to return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield."
+    },
+    "cascade": {
+      "name": "Cascade",
+      "description": "When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order."
+    },
+    "annihilator": {
+      "name": "Annihilator",
+      "description": "Whenever this creature attacks, defending player sacrifices permanents equal to the annihilator value."
+    },
+    "level up": {
+      "name": "Level Up",
+      "description": "Pay the level up cost to put a level counter on this creature. Level up only as a sorcery."
+    },
+    "rebound": {
+      "name": "Rebound",
+      "description": "If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast it from exile without paying its mana cost."
+    },
+    "totem armor": {
+      "name": "Totem Armor",
+      "description": "If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura."
+    },
+    "infect": {
+      "name": "Infect",
+      "description": "This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters."
+    },
+    "battle cry": {
+      "name": "Battle Cry",
+      "description": "Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn."
+    },
+    "living weapon": {
+      "name": "Living Weapon",
+      "description": "When this Equipment enters, create a 0/0 black Phyrexian Germ creature token, then attach this to it."
+    },
+    "undying": {
+      "name": "Undying",
+      "description": "When this creature dies, if it had no +1/+1 counters on it, return it to the battlefield with a +1/+1 counter on it."
+    },
+    "miracle": {
+      "name": "Miracle",
+      "description": "You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn."
+    },
+    "soulbond": {
+      "name": "Soulbond",
+      "description": "You may pair this creature with another unpaired creature when either enters. They remain paired for as long as you control both of them."
+    },
+    "overload": {
+      "name": "Overload",
+      "description": "You may cast this spell for its overload cost. If you do, change its text by replacing all instances of 'target' with 'each'."
+    },
+    "scavenge": {
+      "name": "Scavenge",
+      "description": "Exile this card from your graveyard and pay its scavenge cost to put +1/+1 counters equal to this creature's power on target creature."
+    },
+    "unleash": {
+      "name": "Unleash",
+      "description": "You may have this creature enter with a +1/+1 counter on it. It cannot block as long as it has a +1/+1 counter on it."
+    },
+    "cipher": {
+      "name": "Cipher",
+      "description": "You may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost."
+    },
+    "evolve": {
+      "name": "Evolve",
+      "description": "Whenever a creature enters under your control, if that creature has greater power or toughness than this creature, put a +1/+1 counter on this creature."
+    },
+    "extort": {
+      "name": "Extort",
+      "description": "Whenever you cast a spell, you may pay W/B. If you do, each opponent loses 1 life and you gain that much life."
+    },
+    "fuse": {
+      "name": "Fuse",
+      "description": "You may cast one or both halves of this card from your hand."
+    },
+    "bestow": {
+      "name": "Bestow",
+      "description": "If you cast this card for its bestow cost, it's an Aura spell with enchant creature. It becomes a creature again if it's not attached to a creature."
+    },
+    "tribute": {
+      "name": "Tribute",
+      "description": "As this creature enters, an opponent of your choice may put +1/+1 counters on it. If they don't, an ability triggers."
+    },
+    "inspired": {
+      "name": "Inspired",
+      "description": "Whenever this creature becomes untapped, an ability triggers."
+    },
+    "constellation": {
+      "name": "Constellation",
+      "description": "Whenever an enchantment enters under your control, an ability triggers."
+    },
+    "convoke": {
+      "name": "Convoke",
+      "description": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color."
+    },
+    "outlast": {
+      "name": "Outlast",
+      "description": "Pay the outlast cost and tap this creature to put a +1/+1 counter on it. Outlast only as a sorcery."
+    },
+    "prowess": {
+      "name": "Prowess",
+      "description": "Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn."
+    },
+    "dash": {
+      "name": "Dash",
+      "description": "You may cast this spell for its dash cost. If you do, it gains haste, and is returned to its owner's hand at the beginning of the next end step."
+    },
+    "exploit": {
+      "name": "Exploit",
+      "description": "When this creature enters, you may sacrifice a creature."
+    },
+    "megamorph": {
+      "name": "Megamorph",
+      "description": "You may cast this card face down as a 2/2 creature for 3 mana. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it."
+    },
+    "renown": {
+      "name": "Renown",
+      "description": "When this creature deals combat damage to a player, if it isn't renowned, put +1/+1 counters on it and it becomes renowned."
+    },
+    "awaken": {
+      "name": "Awaken",
+      "description": "If you cast this spell for its awaken cost, also put +1/+1 counters on target land you control and it becomes a 0/0 Elemental creature with haste. It's still a land."
+    },
+    "devoid": {
+      "name": "Devoid",
+      "description": "This card has no color."
+    },
+    "ingest": {
+      "name": "Ingest",
+      "description": "Whenever this creature deals combat damage to a player, that player exiles the top card of their library."
+    },
+    "rally": {
+      "name": "Rally",
+      "description": "Whenever a creature enters under your control, an ability triggers."
+    },
+    "surge": {
+      "name": "Surge",
+      "description": "You may cast this spell for its surge cost if you or a teammate has cast another spell this turn."
+    },
+    "skulk": {
+      "name": "Skulk",
+      "description": "This creature cannot be blocked by creatures with greater power."
+    },
+    "emerge": {
+      "name": "Emerge",
+      "description": "You may cast this spell by sacrificing a creature and paying the emerge cost reduced by that creature's mana value."
+    },
+    "escalate": {
+      "name": "Escalate",
+      "description": "Pay the escalate cost for each mode chosen beyond the first."
+    },
+    "meld": {
+      "name": "Meld",
+      "description": "If you control both members of a meld pair, exile them, then meld them into a single oversized card."
+    },
+    "crew": {
+      "name": "Crew",
+      "description": "Tap any number of creatures you control with total power N or more to turn this Vehicle into an artifact creature until end of turn."
+    },
+    "fabricate": {
+      "name": "Fabricate",
+      "description": "When this creature enters, put +1/+1 counters on it, or create that many 1/1 colorless Servo artifact creature tokens."
+    },
+    "partner": {
+      "name": "Partner",
+      "description": "You can have two commanders if both have partner."
+    },
+    "undaunted": {
+      "name": "Undaunted",
+      "description": "This spell costs 1 less to cast for each opponent."
+    },
+    "improvise": {
+      "name": "Improvise",
+      "description": "Each artifact you tap while casting this spell pays for 1."
+    },
+    "revolt": {
+      "name": "Revolt",
+      "description": "An ability that checks if a permanent you controlled left the battlefield this turn."
+    },
+    "aftermath": {
+      "name": "Aftermath",
+      "description": "Cast this spell only from your graveyard. Then exile it."
+    },
+    "embalm": {
+      "name": "Embalm",
+      "description": "Pay the embalm cost and exile this card from your graveyard to create a token copy of it, except it's a white Zombie with no mana cost."
+    },
+    "eternalize": {
+      "name": "Eternalize",
+      "description": "Pay the eternalize cost and exile this card from your graveyard to create a token copy of it, except it's a 4/4 black Zombie."
+    },
+    "afflict": {
+      "name": "Afflict",
+      "description": "Whenever this creature becomes blocked, defending player loses life equal to the afflict value."
+    },
+    "ascend": {
+      "name": "Ascend",
+      "description": "If you control ten or more permanents, you get the city's blessing for the rest of the game."
+    },
+    "assist": {
+      "name": "Assist",
+      "description": "Another player can pay up to the full cost of this spell."
+    },
+    "jump-start": {
+      "name": "Jump-Start",
+      "description": "You may cast this card from your graveyard by discarding a card in addition to paying its other costs. Then exile it."
+    },
+    "mentor": {
+      "name": "Mentor",
+      "description": "Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power."
+    },
+    "surveil": {
+      "name": "Surveil",
+      "description": "Look at the top cards of your library, then put any number of them into your graveyard and the rest back on top in any order."
+    },
+    "undergrowth": {
+      "name": "Undergrowth",
+      "description": "An ability that counts or cares about creature cards in your graveyard."
+    },
+    "afterlife": {
+      "name": "Afterlife",
+      "description": "When this creature dies, create 1/1 white and black Spirit creature tokens with flying."
+    },
+    "riot": {
+      "name": "Riot",
+      "description": "This creature enters with your choice of a +1/+1 counter or haste."
+    },
+    "spectacle": {
+      "name": "Spectacle",
+      "description": "You may cast this spell for its spectacle cost if an opponent lost life this turn."
+    },
+    "adapt": {
+      "name": "Adapt",
+      "description": "If this creature has no +1/+1 counters on it, put +1/+1 counters on it."
+    },
+    "addendum": {
+      "name": "Addendum",
+      "description": "If you cast this spell during your main phase, you get an additional effect."
+    },
+    "amass": {
+      "name": "Amass",
+      "description": "Put +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first."
+    },
+    "proliferate": {
+      "name": "Proliferate",
+      "description": "Choose any number of permanents and/or players, then give each another counter of each kind already there."
+    },
+    "adventure": {
+      "name": "Adventure",
+      "description": "Cast this as an Adventure, then exile it. You may cast the creature later from exile."
+    },
+    "adamant": {
+      "name": "Adamant",
+      "description": "If at least three mana of the same color was spent to cast this spell, you get an additional effect."
+    },
+    "food": {
+      "name": "Food",
+      "description": "Food is an artifact type. Food tokens typically have: '2, Tap, Sacrifice this: You gain 3 life.'"
+    },
+    "escape": {
+      "name": "Escape",
+      "description": "You may cast this card from your graveyard for its escape cost."
+    },
+    "mutate": {
+      "name": "Mutate",
+      "description": "If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it."
+    },
+    "companion": {
+      "name": "Companion",
+      "description": "If you've fulfilled this card's companion requirement during deckbuilding, you may pay 3 to put it from outside the game into your hand once during the game."
+    },
+    "cycling": {
+      "name": "Cycling",
+      "description": "Pay the cycling cost and discard this card to draw a card."
+    },
+    "boast": {
+      "name": "Boast",
+      "description": "Activate this ability only if this creature attacked this turn and only once each turn."
+    },
+    "foretell": {
+      "name": "Foretell",
+      "description": "During your turn, you may pay 2 and exile this card from your hand face down. Cast it on a later turn for its foretell cost."
+    },
+    "magecraft": {
+      "name": "Magecraft",
+      "description": "Whenever you cast or copy an instant or sorcery spell, an ability triggers."
+    },
+    "ward": {
+      "name": "Ward",
+      "description": "Whenever this permanent becomes the target of a spell or ability an opponent controls, counter it unless that player pays the ward cost."
+    },
+    "learn": {
+      "name": "Learn",
+      "description": "You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card."
+    },
+    "daybound": {
+      "name": "Daybound",
+      "description": "If a player casts no spells during their own turn, it becomes night next turn. This permanent transforms."
+    },
+    "nightbound": {
+      "name": "Nightbound",
+      "description": "If a player casts at least two spells during their own turn, it becomes day next turn. This permanent transforms."
+    },
+    "decayed": {
+      "name": "Decayed",
+      "description": "This creature cannot block. When it attacks, sacrifice it at end of combat."
+    },
+    "disturb": {
+      "name": "Disturb",
+      "description": "You may cast this card transformed from your graveyard for its disturb cost."
+    },
+    "cleave": {
+      "name": "Cleave",
+      "description": "You may cast this spell for its cleave cost. If you do, remove the words in brackets."
+    },
+    "training": {
+      "name": "Training",
+      "description": "Whenever this creature attacks with another creature with greater power, put a +1/+1 counter on this creature."
+    },
+    "casualty": {
+      "name": "Casualty",
+      "description": "As you cast this spell, you may sacrifice a creature with power N or greater. When you do, copy this spell."
+    },
+    "connive": {
+      "name": "Connive",
+      "description": "Draw cards equal to the connive value, then discard that many cards. Put a +1/+1 counter on this creature for each nonland card discarded this way."
+    },
+    "hideaway": {
+      "name": "Hideaway",
+      "description": "This permanent enters tapped. When it does, look at the top cards of your library, exile one face down, then put the rest on the bottom."
+    },
+    "blitz": {
+      "name": "Blitz",
+      "description": "If you cast this spell for its blitz cost, it gains haste and 'When this creature dies, draw a card.' Sacrifice it at end of turn."
+    },
+    "alliance": {
+      "name": "Alliance",
+      "description": "Whenever another creature enters under your control, an ability triggers."
+    },
+    "shield counter": {
+      "name": "Shield Counter",
+      "description": "If this creature would be dealt damage or destroyed, remove a shield counter from it instead."
+    },
+    "read ahead": {
+      "name": "Read Ahead",
+      "description": "Choose a chapter and start with that many lore counters. Skip chapters before that chapter."
+    },
+    "enlist": {
+      "name": "Enlist",
+      "description": "As this creature attacks, you may tap a non-attacking creature you control without summoning sickness. When you do, add its power to this creature's until end of turn."
+    },
+    "domain": {
+      "name": "Domain",
+      "description": "An ability that counts or cares about the number of basic land types among lands you control."
+    },
+    "prototype": {
+      "name": "Prototype",
+      "description": "You may cast this spell with different mana cost, color, power, and toughness using the prototype values."
+    },
+    "unearth": {
+      "name": "Unearth",
+      "description": "Pay the unearth cost to return this card from your graveyard to the battlefield. It gains haste. Exile it at end of turn or if it would leave the battlefield."
+    },
+    "toxic": {
+      "name": "Toxic",
+      "description": "Whenever this creature deals combat damage to a player, that player gets poison counters equal to the toxic value."
+    },
+    "corrupted": {
+      "name": "Corrupted",
+      "description": "An ability that checks if an opponent has three or more poison counters."
+    },
+    "for mirrodin!": {
+      "name": "For Mirrodin!",
+      "description": "When this Equipment enters, create a 2/2 red Rebel creature token, then attach this to it."
+    },
+    "oil counter": {
+      "name": "Oil Counter",
+      "description": "A counter type used by various Phyrexian cards for different effects."
+    },
+    "incubate": {
+      "name": "Incubate",
+      "description": "Create an Incubator token with +1/+1 counters on it. It has '2: Transform this artifact.' It transforms into a 0/0 Phyrexian artifact creature."
+    },
+    "backup": {
+      "name": "Backup",
+      "description": "When this creature enters, put +1/+1 counters on target creature. If that's another creature, it gains this creature's abilities until end of turn."
+    },
+    "battles": {
+      "name": "Battles",
+      "description": "A card type that enters with defense counters and can be attacked. When defeated, it transforms."
+    },
+    "convoke": {
+      "name": "Convoke",
+      "description": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for 1 or one mana of that creature's color."
+    },
+    "craft": {
+      "name": "Craft",
+      "description": "Pay the craft cost and exile this permanent and other specified materials from among permanents you control and/or your graveyard. Return this card to the battlefield transformed."
+    },
+    "discover": {
+      "name": "Discover",
+      "description": "Exile cards from the top of your library until you exile a nonland card with mana value N or less. Cast it without paying its mana cost or put it into your hand."
+    },
+    "finality counter": {
+      "name": "Finality Counter",
+      "description": "If a creature with a finality counter on it would die, exile it instead."
+    },
+    "descend": {
+      "name": "Descend",
+      "description": "An ability that checks how many permanent cards are in your graveyard."
+    },
+    "bargain": {
+      "name": "Bargain",
+      "description": "You may sacrifice an artifact, enchantment, or token as you cast this spell for an additional effect."
+    },
+    "role token": {
+      "name": "Role Token",
+      "description": "An Aura enchantment token that attaches to a creature. Only one Role can be attached to a creature at a time."
+    },
+    "celebration": {
+      "name": "Celebration",
+      "description": "An ability that checks if two or more nonland permanents entered under your control this turn."
+    },
+    "offspring": {
+      "name": "Offspring",
+      "description": "You may pay an additional cost as you cast this spell. If you do, when this creature enters, create a 1/1 token copy of it."
+    },
+    "saddle": {
+      "name": "Saddle",
+      "description": "Tap creatures you control with total power N or more: This Mount becomes saddled until end of turn."
+    },
+    "plot": {
+      "name": "Plot",
+      "description": "You may pay the plot cost and exile this card from your hand. Cast it as a sorcery on a later turn without paying its mana cost."
+    },
+    "spree": {
+      "name": "Spree",
+      "description": "Choose one or more additional costs. Add their effects to the spell."
+    },
+    "impending": {
+      "name": "Impending",
+      "description": "If you cast this spell for its impending cost, it enters with time counters and isn't a creature until the counters are removed."
+    },
+    "eerie": {
+      "name": "Eerie",
+      "description": "Whenever an enchantment you control enters and whenever you fully unlock a Room, an ability triggers."
+    },
+    "survival": {
+      "name": "Survival",
+      "description": "At the beginning of your second main phase, if this creature is tapped, an ability triggers."
+    },
+    "manifest dread": {
+      "name": "Manifest Dread",
+      "description": "Look at the top two cards of your library. Put one onto the battlefield face down as a 2/2 creature. Put the other into your graveyard."
+    },
+    "delirium": {
+      "name": "Delirium",
+      "description": "An ability that checks if there are four or more card types among cards in your graveyard."
+    },
+    "threshold": {
+      "name": "Threshold",
+      "description": "An ability that checks if there are seven or more cards in your graveyard."
+    },
+    "metalcraft": {
+      "name": "Metalcraft",
+      "description": "An ability that checks if you control three or more artifacts."
+    },
+    "landfall": {
+      "name": "Landfall",
+      "description": "Whenever a land enters under your control, an ability triggers."
+    },
+    "ferocious": {
+      "name": "Ferocious",
+      "description": "An ability that checks if you control a creature with power 4 or greater."
+    },
+    "formidable": {
+      "name": "Formidable",
+      "description": "An ability that checks if creatures you control have total power 8 or greater."
+    },
+    "spell mastery": {
+      "name": "Spell Mastery",
+      "description": "An ability that checks if there are two or more instant and/or sorcery cards in your graveyard."
+    },
+    "raid": {
+      "name": "Raid",
+      "description": "An ability that checks if you attacked with a creature this turn."
+    },
+    "morbid": {
+      "name": "Morbid",
+      "description": "An ability that checks if a creature died this turn."
+    },
+    "hellbent": {
+      "name": "Hellbent",
+      "description": "An ability that checks if you have no cards in hand."
+    },
+    "kinship": {
+      "name": "Kinship",
+      "description": "At the beginning of your upkeep, look at the top card of your library. If it shares a creature type with this creature, reveal it and trigger an ability."
+    },
+    "heroic": {
+      "name": "Heroic",
+      "description": "Whenever you cast a spell that targets this creature, an ability triggers."
+    },
+    "battalion": {
+      "name": "Battalion",
+      "description": "Whenever this creature and at least two other creatures attack, an ability triggers."
+    },
+    "bloodrush": {
+      "name": "Bloodrush",
+      "description": "Discard this card and pay its bloodrush cost to give target attacking creature bonuses until end of turn."
+    },
+    "radiance": {
+      "name": "Radiance",
+      "description": "An ability that affects the target and each other permanent/creature that shares a color with it."
+    },
+    "imprint": {
+      "name": "Imprint",
+      "description": "When this permanent enters or is used, exile a card from a specified zone. The exiled card affects this permanent's abilities."
+    },
+    "eminence": {
+      "name": "Eminence",
+      "description": "This ability works as long as this creature is in the command zone or on the battlefield."
+    },
+    "partner with": {
+      "name": "Partner With",
+      "description": "When this creature enters, target player may search their library for the named partner card and put it into their hand."
+    },
+    "friends forever": {
+      "name": "Friends Forever",
+      "description": "You can have two commanders if both have friends forever."
+    },
+    "choose a background": {
+      "name": "Choose a Background",
+      "description": "You can have a Background as a second commander."
+    },
+    "doctor's companion": {
+      "name": "Doctor's Companion",
+      "description": "You can have two commanders if the other one is a Time Lord Doctor."
+    },
+    "more than meets the eye": {
+      "name": "More Than Meets the Eye",
+      "description": "You may cast this card converted for its alternate cost."
+    },
+    "living metal": {
+      "name": "Living Metal",
+      "description": "As long as it's your turn, this Vehicle is also a creature."
+    }
+  }
+}
