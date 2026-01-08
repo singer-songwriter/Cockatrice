@@ -4,9 +4,7 @@
 #include "../../../../game/cards/card_item.h"
 #include "../../../../settings/cache_settings.h"
 #include "card_info_display_widget.h"
-#include "card_info_keywords_widget.h"
 #include "card_info_picture_widget.h"
-#include "card_info_rulings_widget.h"
 #include "card_info_text_widget.h"
 
 #include <QSplitter>
@@ -25,29 +23,17 @@ CardInfoFrameWidget::CardInfoFrameWidget(const QString &cardName, QWidget *paren
     text->setObjectName("text");
     connect(text, SIGNAL(linkActivated(const QString &)), this, SLOT(setCard(const QString &)));
 
-    keywords = new CardInfoKeywordsWidget();
-    keywords->setObjectName("keywords");
-
-    rulings = new CardInfoRulingsWidget();
-    rulings->setObjectName("rulings");
-
     tab1 = new QWidget(this);
     tab2 = new QWidget(this);
     tab3 = new QWidget(this);
-    tab4 = new QWidget(this);
-    tab5 = new QWidget(this);
 
     tab1->setObjectName("tab1");
     tab2->setObjectName("tab2");
     tab3->setObjectName("tab3");
-    tab4->setObjectName("tab4");
-    tab5->setObjectName("tab5");
 
     insertTab(ImageOnlyView, tab1, QString());
     insertTab(TextOnlyView, tab2, QString());
     insertTab(ImageAndTextView, tab3, QString());
-    insertTab(KeywordsView, tab4, QString());
-    insertTab(RulingsView, tab5, QString());
     connect(this, SIGNAL(currentChanged(int)), this, SLOT(setViewMode(int)));
 
     tab1Layout = new QVBoxLayout();
@@ -73,21 +59,11 @@ CardInfoFrameWidget::CardInfoFrameWidget(const QString &cardName, QWidget *paren
     tab3Layout->addWidget(splitter);
     tab3->setLayout(tab3Layout);
 
-    tab4Layout = new QVBoxLayout();
-    tab4Layout->setObjectName("tab4Layout");
-    tab4Layout->setContentsMargins(0, 0, 0, 0);
-    tab4Layout->setSpacing(0);
-    tab4Layout->addWidget(keywords);
-    tab4->setLayout(tab4Layout);
-
-    tab5Layout = new QVBoxLayout();
-    tab5Layout->setObjectName("tab5Layout");
-    tab5Layout->setContentsMargins(0, 0, 0, 0);
-    tab5Layout->setSpacing(0);
-    tab5Layout->addWidget(rulings);
-    tab5->setLayout(tab5Layout);
-
-    setViewMode(SettingsCache::instance().getCardInfoViewMode());
+    int savedMode = SettingsCache::instance().getCardInfoViewMode();
+    if (savedMode > ImageAndTextView) {
+        savedMode = ImageAndTextView;
+    }
+    setViewMode(savedMode);
 
     setCard(CardDatabaseManager::getInstance()->getCard(cardName));
 }
@@ -97,15 +73,10 @@ void CardInfoFrameWidget::retranslateUi()
     setTabText(ImageOnlyView, tr("Image"));
     setTabText(TextOnlyView, tr("Description"));
     setTabText(ImageAndTextView, tr("Both"));
-    setTabText(KeywordsView, tr("Keywords"));
-    setTabText(RulingsView, tr("Rulings"));
 
     if (viewTransformationButton) {
         viewTransformationButton->setText(tr("View transformation"));
     }
-
-    keywords->retranslateUi();
-    rulings->retranslateUi();
 }
 
 void CardInfoFrameWidget::setViewTransformationButtonVisibility(bool visible)
@@ -194,8 +165,8 @@ void CardInfoFrameWidget::setCard(CardInfoPtr card)
 
     text->setCard(info);
     pic->setCard(info);
-    keywords->setCard(info);
-    rulings->setCard(info);
+
+    emit cardChanged(info);
 }
 
 void CardInfoFrameWidget::setCard(const QString &cardName)

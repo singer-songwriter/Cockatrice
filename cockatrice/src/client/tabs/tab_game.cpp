@@ -13,6 +13,7 @@
 #include "../../game/player/player_list_widget.h"
 #include "../../game/zones/card_zone.h"
 #include "../../game/triggers/trigger_manager.h"
+#include "../../client/ui/widgets/game/card_details_dock_widget.h"
 #include "../../client/ui/widgets/game/trigger_reminder_dock_widget.h"
 #include "../../client/ui/widgets/game/trigger_reminder_widget.h"
 #include "../../main.h"
@@ -144,6 +145,7 @@ TabGame::TabGame(TabSupervisor *_tabSupervisor,
     createPlayerListDock();
     createMessageDock();
     createTriggerReminderDock();
+    createCardDetailsDock();
     createPlayAreaWidget();
     createDeckViewContainerWidget();
 
@@ -151,6 +153,7 @@ TabGame::TabGame(TabSupervisor *_tabSupervisor,
     addDockWidget(Qt::RightDockWidgetArea, playerListDock);
     addDockWidget(Qt::RightDockWidgetArea, messageLayoutDock);
     addDockWidget(Qt::RightDockWidgetArea, triggerReminderDock);
+    addDockWidget(Qt::RightDockWidgetArea, cardDetailsDock);
 
     mainWidget = new QStackedWidget(this);
     mainWidget->addWidget(deckViewContainerWidget);
@@ -218,6 +221,8 @@ void TabGame::retranslateUi()
     messageLayoutDock->setWindowTitle(tr("Messages") + (messageLayoutDock->isWindow() ? tabText : QString()));
     if (triggerReminderDock)
         triggerReminderDock->retranslateUi();
+    if (cardDetailsDock)
+        cardDetailsDock->retranslateUi();
     if (replayDock)
         replayDock->setWindowTitle(tr("Replay Timeline") + (replayDock->isWindow() ? tabText : QString()));
 
@@ -288,6 +293,12 @@ void TabGame::retranslateUi()
     triggerDockMenu->setTitle(tr("Trigger Reminder"));
     aTriggerDockVisible->setText(tr("Visible"));
     aTriggerDockFloating->setText(tr("Floating"));
+
+    if (cardDetailsDockMenu) {
+        cardDetailsDockMenu->setTitle(tr("Card Details"));
+        aCardDetailsDockVisible->setText(tr("Visible"));
+        aCardDetailsDockFloating->setText(tr("Floating"));
+    }
 
     if (replayDock) {
         replayDockMenu->setTitle(tr("Replay Timeline"));
@@ -1424,6 +1435,17 @@ void TabGame::createViewMenuItems()
     aTriggerDockFloating->setCheckable(true);
     connect(aTriggerDockFloating, SIGNAL(triggered()), this, SLOT(dockFloatingTriggered()));
 
+    if (cardDetailsDock) {
+        cardDetailsDockMenu = viewMenu->addMenu(QString());
+
+        aCardDetailsDockVisible = cardDetailsDockMenu->addAction(QString());
+        aCardDetailsDockVisible->setCheckable(true);
+        connect(aCardDetailsDockVisible, SIGNAL(triggered()), this, SLOT(dockVisibleTriggered()));
+        aCardDetailsDockFloating = cardDetailsDockMenu->addAction(QString());
+        aCardDetailsDockFloating->setCheckable(true);
+        connect(aCardDetailsDockFloating, SIGNAL(triggered()), this, SLOT(dockFloatingTriggered()));
+    }
+
     if (replayDock) {
         replayDockMenu = viewMenu->addMenu(QString());
 
@@ -1823,6 +1845,21 @@ void TabGame::createTriggerReminderDock()
             QOverload<const QString &>::of(&CardInfoFrameWidget::setCard));
 }
 
+void TabGame::createCardDetailsDock()
+{
+    cardDetailsDock = new CardDetailsDockWidget(this);
+    cardDetailsDock->setObjectName("cardDetailsDock");
+    cardDetailsDock->setFloating(false);
+    cardDetailsDock->setVisible(true);
+
+    cardDetailsDock->installEventFilter(this);
+    connect(cardDetailsDock, SIGNAL(topLevelChanged(bool)), this, SLOT(dockTopLevelChanged(bool)));
+
+    // Update card details when card info changes
+    connect(cardInfoFrameWidget, &CardInfoFrameWidget::cardChanged, cardDetailsDock,
+            QOverload<CardInfoPtr>::of(&CardDetailsDockWidget::setCard));
+}
+
 void TabGame::hideEvent(QHideEvent *event)
 {
     LayoutsSettings &layouts = SettingsCache::instance().layouts();
@@ -1860,6 +1897,9 @@ bool TabGame::eventFilter(QObject *o, QEvent *e)
         } else if (o == triggerReminderDock) {
             aTriggerDockVisible->setChecked(false);
             aTriggerDockFloating->setEnabled(false);
+        } else if (o == cardDetailsDock) {
+            aCardDetailsDockVisible->setChecked(false);
+            aCardDetailsDockFloating->setEnabled(false);
         } else if (o == replayDock) {
             aReplayDockVisible->setChecked(false);
             aReplayDockFloating->setEnabled(false);
@@ -1898,6 +1938,14 @@ void TabGame::dockVisibleTriggered()
         return;
     }
 
+    if (o == aCardDetailsDockVisible) {
+        if (cardDetailsDock) {
+            cardDetailsDock->setVisible(aCardDetailsDockVisible->isChecked());
+            aCardDetailsDockFloating->setEnabled(aCardDetailsDockVisible->isChecked());
+        }
+        return;
+    }
+
     if (o == aReplayDockVisible) {
         replayDock->setVisible(aReplayDockVisible->isChecked());
         aReplayDockFloating->setEnabled(aReplayDockVisible->isChecked());
@@ -1926,6 +1974,13 @@ void TabGame::dockFloatingTriggered()
     if (o == aTriggerDockFloating) {
         if (triggerReminderDock) {
             triggerReminderDock->setFloating(aTriggerDockFloating->isChecked());
+        }
+        return;
+    }
+
+    if (o == aCardDetailsDockFloating) {
+        if (cardDetailsDock) {
+            cardDetailsDock->setFloating(aCardDetailsDockFloating->isChecked());
         }
         return;
     }

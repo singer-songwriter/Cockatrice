@@ -7,9 +7,7 @@
 #include <QTabWidget>
 
 class AbstractCardItem;
-class CardInfoKeywordsWidget;
 class CardInfoPictureWidget;
-class CardInfoRulingsWidget;
 class CardInfoTextWidget;
 class QVBoxLayout;
 class QSplitter;
@@ -21,12 +19,10 @@ private:
     CardInfoPtr info;
     CardInfoPictureWidget *pic;
     CardInfoTextWidget *text;
-    CardInfoKeywordsWidget *keywords;
-    CardInfoRulingsWidget *rulings;
     QPushButton *viewTransformationButton;
     bool cardTextOnly;
-    QWidget *tab1, *tab2, *tab3, *tab4, *tab5;
-    QVBoxLayout *tab1Layout, *tab2Layout, *tab3Layout, *tab4Layout, *tab5Layout;
+    QWidget *tab1, *tab2, *tab3;
+    QVBoxLayout *tab1Layout, *tab2Layout, *tab3Layout;
     QSplitter *splitter;
 
     void setViewTransformationButtonVisibility(bool visible);
@@ -37,9 +33,7 @@ public:
     {
         ImageOnlyView,
         TextOnlyView,
-        ImageAndTextView,
-        KeywordsView,
-        RulingsView
+        ImageAndTextView
     };
 
     explicit CardInfoFrameWidget(const QString &cardName = QString(), QWidget *parent = nullptr);
@@ -48,6 +42,9 @@ public:
         return info;
     }
     void retranslateUi();
+
+signals:
+    void cardChanged(CardInfoPtr card);
 
 public slots:
     void setCard(CardInfoPtr card);
