@@ -37,6 +37,7 @@ on:
       - 'CMakeLists.txt'
       - 'vcpkg.json'
       - 'vcpkg'
+  workflow_dispatch:
 
 # Cancel earlier, unfinished runs of this workflow on the same branch (unless on master)
 concurrency:
