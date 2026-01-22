@@ -1,0 +1,8 @@
+#ifndef APP_CONFIG_H
+#define APP_CONFIG_H
+
+#define APP_NAME "@COCKATRICE_APP_NAME@"
+#define APP_NAME_LOWER "@COCKATRICE_APP_NAME_LOWER@"
+#define IS_DEV_BUILD @IS_DEV_BUILD@
+
+#endif

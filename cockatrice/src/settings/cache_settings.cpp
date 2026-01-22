@@ -1,6 +1,7 @@
 #include "cache_settings.h"
 
 #include "../client/network/release_channel.h"
+#include "app_config.h"
 #include "card_override_settings.h"
 
 #include <QApplication>
@@ -18,13 +19,20 @@ QString SettingsCache::getDataPath()
 {
     if (isPortableBuild)
         return qApp->applicationDirPath() + "/data";
-    else
-        return QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+
+    // Always use Cockatrice paths for shared data (decks, cards, pics, etc.)
+    // This allows Dickatrice and Cockatrice to share the same data
+    QString basePath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+    return basePath + "/Cockatrice/Cockatrice";
 }
 
 QString SettingsCache::getSettingsPath()
 {
+#if IS_DEV_BUILD
+    return getDataPath() + "/settings-dev/";
+#else
     return getDataPath() + "/settings/";
+#endif
 }
 
 QString SettingsCache::getCachePath() const

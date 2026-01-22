@@ -2,7 +2,7 @@
 #
 # provides the cockatrice binary
 
-project(Cockatrice VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
+project(${COCKATRICE_APP_NAME} VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
 file(GLOB_RECURSE cockatrice_CPP_FILES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/cockatrice/src/*.cpp)
 
@@ -60,6 +60,7 @@ include_directories(../common)
 include_directories(${PROTOBUF_INCLUDE_DIR})
 include_directories(${CMAKE_BINARY_DIR}/common)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_BINARY_DIR}) # For app_config.h
 
 set(COCKATRICE_MAC_QM_INSTALL_DIR "cockatrice.app/Contents/Resources/translations")
 set(COCKATRICE_UNIX_QM_INSTALL_DIR "share/cockatrice/translations")
@@ -67,7 +68,7 @@ set(COCKATRICE_WIN32_QM_INSTALL_DIR "translations")
 
 if(Qt6_FOUND)
   qt6_add_executable(
-    cockatrice
+    ${COCKATRICE_APP_NAME_LOWER}
     WIN32
     MACOSX_BUNDLE
     ${cockatrice_SOURCES}
@@ -85,7 +86,7 @@ elseif(Qt5_FOUND)
     endif()
   endif()
   add_executable(
-    cockatrice WIN32 MACOSX_BUNDLE ${cockatrice_MOC_SRCS} ${cockatrice_QM} ${cockatrice_RESOURCES_RCC}
+    ${COCKATRICE_APP_NAME_LOWER} WIN32 MACOSX_BUNDLE ${cockatrice_MOC_SRCS} ${cockatrice_QM} ${cockatrice_RESOURCES_RCC}
                                    ${cockatrice_SOURCES}
   )
   if(UNIX)
@@ -100,38 +101,42 @@ elseif(Qt5_FOUND)
 endif()
 
 if(Qt5_FOUND)
-  target_link_libraries(cockatrice cockatrice_common ${COCKATRICE_QT_MODULES})
+  target_link_libraries(${COCKATRICE_APP_NAME_LOWER} cockatrice_common ${COCKATRICE_QT_MODULES})
 else()
-  target_link_libraries(cockatrice PUBLIC cockatrice_common ${COCKATRICE_QT_MODULES})
+  target_link_libraries(${COCKATRICE_APP_NAME_LOWER} PUBLIC cockatrice_common ${COCKATRICE_QT_MODULES})
 endif()
 
 if(UNIX)
   if(APPLE)
     set(MACOSX_BUNDLE_INFO_STRING "${PROJECT_NAME}")
-    set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.cockatrice.${PROJECT_NAME}")
+    set(MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_BUNDLE_ID_PREFIX}.${PROJECT_NAME}")
     set(MACOSX_BUNDLE_LONG_VERSION_STRING "${PROJECT_NAME}-${PROJECT_VERSION}")
     set(MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}")
     set(MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION})
     set(MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION})
 
-    set_target_properties(cockatrice PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist)
+    set_target_properties(${COCKATRICE_APP_NAME_LOWER} PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist)
 
-    install(TARGETS cockatrice BUNDLE DESTINATION ./)
+    install(TARGETS ${COCKATRICE_APP_NAME_LOWER} BUNDLE DESTINATION ./)
   else()
     # Assume linux
-    install(TARGETS cockatrice RUNTIME DESTINATION bin/)
+    install(TARGETS ${COCKATRICE_APP_NAME_LOWER} RUNTIME DESTINATION bin/)
     install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/cockatrice.png DESTINATION ${ICONDIR}/hicolor/48x48/apps)
     install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/cockatrice.svg DESTINATION ${ICONDIR}/hicolor/scalable/apps)
-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cockatrice.desktop DESTINATION ${DESKTOPDIR})
+    if(DEV_BUILD)
+      install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/dickatrice.desktop DESTINATION ${DESKTOPDIR})
+    else()
+      install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cockatrice.desktop DESTINATION ${DESKTOPDIR})
+    endif()
   endif()
 elseif(WIN32)
-  install(TARGETS cockatrice RUNTIME DESTINATION ./)
+  install(TARGETS ${COCKATRICE_APP_NAME_LOWER} RUNTIME DESTINATION ./)
 endif()
 
 if(APPLE)
   # these needs to be relative to CMAKE_INSTALL_PREFIX
-  set(plugin_dest_dir cockatrice.app/Contents/Plugins)
-  set(qtconf_dest_dir cockatrice.app/Contents/Resources)
+  set(plugin_dest_dir ${COCKATRICE_APP_NAME_LOWER}.app/Contents/Plugins)
+  set(qtconf_dest_dir ${COCKATRICE_APP_NAME_LOWER}.app/Contents/Resources)
 
   # Qt plugins: audio (Qt5), iconengines, imageformats, multimedia (Qt6), platforms, printsupport (Qt5), styles, tls (Qt6)
   install(
@@ -174,7 +179,7 @@ Data = Resources\")
             \"\${CMAKE_INSTALL_PREFIX}/${plugin_dest_dir}/*.dylib\")
         set(BU_CHMOD_BUNDLE_ITEMS ON)
         include(BundleUtilities)
-        fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/cockatrice.app\" \"\${QTPLUGINS}\" \"${QT_LIBRARY_DIR}\")
+        fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/${COCKATRICE_APP_NAME_LOWER}.app\" \"\${QTPLUGINS}\" \"${QT_LIBRARY_DIR}\")
         "
     COMPONENT Runtime
   )
@@ -242,7 +247,7 @@ Data = Resources\")
             \"\${CMAKE_INSTALL_PREFIX}/${plugin_dest_dir}/*.dll\")
         set(BU_CHMOD_BUNDLE_ITEMS ON)
         include(BundleUtilities)
-        fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/Cockatrice.exe\" \"\${QTPLUGINS}\" \"${QT_LIBRARY_DIR}\")
+        fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/${COCKATRICE_APP_NAME}.exe\" \"\${QTPLUGINS}\" \"${QT_LIBRARY_DIR}\")
         "
     COMPONENT Runtime
   )
@@ -256,7 +261,7 @@ if(Qt6_FOUND AND Qt6LinguistTools_FOUND)
   #Qt6 Translations happen after the executable is built up
   if(UPDATE_TRANSLATIONS)
     qt6_add_translations(
-      cockatrice
+      ${COCKATRICE_APP_NAME_LOWER}
       TS_FILES
       ${cockatrice_TS}
       SOURCES
@@ -265,7 +270,7 @@ if(Qt6_FOUND AND Qt6LinguistTools_FOUND)
       cockatrice_QM
     )
   else()
-    qt6_add_translations(cockatrice TS_FILES ${cockatrice_TS} QM_FILES_OUTPUT_VARIABLE cockatrice_QM)
+    qt6_add_translations(${COCKATRICE_APP_NAME_LOWER} TS_FILES ${cockatrice_TS} QM_FILES_OUTPUT_VARIABLE cockatrice_QM)
   endif()
 
   if(UNIX)
@@ -280,5 +285,5 @@ if(Qt6_FOUND AND Qt6LinguistTools_FOUND)
 endif()
 
 if(Qt6_FOUND)
-  qt6_finalize_target(cockatrice)
+  qt6_finalize_target(${COCKATRICE_APP_NAME_LOWER})
 endif()

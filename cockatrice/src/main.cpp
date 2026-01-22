@@ -20,6 +20,7 @@
 
 #include "main.h"
 
+#include "app_config.h"
 #include "QtNetwork/QNetworkInterface"
 #include "client/network/spoiler_background_updater.h"
 #include "client/sound_engine.h"
@@ -97,13 +98,13 @@ LONG WINAPI CockatriceUnhandledExceptionFilter(EXCEPTION_POINTERS *exceptionPoin
         path = std::filesystem::path(localAppDataFolder);
     }
 
-    // Plan on writing crash files into %LOCALAPPDATA%/CrashDumps/Cockatrice/cockatrice.crash.*.dmp
+    // Plan on writing crash files into %LOCALAPPDATA%/CrashDumps/<AppName>/<appname>.crash.*.dmp
     path /= "CrashDumps";
-    path /= "Cockatrice";
+    path /= APP_NAME;
     if (!std::filesystem::exists(path)) {
         std::filesystem::create_directories(path);
     }
-    path /= "cockatrice.crash." + std::to_string(std::time(0)) + ".dmp";
+    path /= std::string(APP_NAME_LOWER) + ".crash." + std::to_string(std::time(0)) + ".dmp";
 
     // Create and write crash files
 #ifdef UNICODE
@@ -211,7 +212,7 @@ int main(int argc, char *argv[])
     // Wrong or outdated values are kept to not break things
     QCoreApplication::setOrganizationName("Cockatrice");
     QCoreApplication::setOrganizationDomain("cockatrice.de");
-    QCoreApplication::setApplicationName("Cockatrice");
+    QCoreApplication::setApplicationName(APP_NAME);
     QCoreApplication::setApplicationVersion(VERSION_STRING);
 
 #ifdef Q_OS_MAC
@@ -227,7 +228,7 @@ int main(int argc, char *argv[])
 #endif
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Cockatrice");
+    parser.setApplicationDescription(APP_NAME);
     parser.addHelpOption();
     parser.addVersionOption();
 
@@ -262,7 +263,7 @@ int main(int argc, char *argv[])
     ui.setWindowIcon(QPixmap("theme:cockatrice"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     // set name of the app desktop file; used by wayland to load the window icon
-    QGuiApplication::setDesktopFileName("cockatrice");
+    QGuiApplication::setDesktopFileName(APP_NAME_LOWER);
 #endif
 
     SettingsCache::instance().setClientID(generateClientID());

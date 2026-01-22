@@ -44,6 +44,7 @@
 #include "../network/release_channel.h"
 #include "../tabs/tab_game.h"
 #include "../tabs/tab_supervisor.h"
+#include "app_config.h"
 #include "pb/event_connection_closed.pb.h"
 #include "pb/event_server_shutdown.pb.h"
 #include "pb/game_replay.pb.h"
@@ -78,7 +79,7 @@
 #define GITHUB_TROUBLESHOOTING_URL "https://github.com/Cockatrice/Cockatrice/wiki/Troubleshooting"
 #define GITHUB_FAQ_URL "https://github.com/Cockatrice/Cockatrice/wiki/Frequently-Asked-Questions"
 
-const QString MainWindow::appName = "Cockatrice";
+const QString MainWindow::appName = APP_NAME;
 const QStringList MainWindow::fileNameFilters = QStringList() << QObject::tr("Cockatrice card database (*.xml)")
                                                               << QObject::tr("All files (*.*)");
 

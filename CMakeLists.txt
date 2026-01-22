@@ -24,6 +24,8 @@ option(WITH_ORACLE "build oracle" ON)
 option(WITH_DBCONVERTER "build dbconverter" ON)
 # Compile tests
 option(TEST "build tests" OFF)
+# Build as Dickatrice for parallel installation
+option(DEV_BUILD "Build as Dickatrice for parallel installation" OFF)
 
 # Default to "Release" build type
 # User-provided value for CMAKE_BUILD_TYPE must be checked before the PROJECT() call
@@ -75,6 +77,25 @@ endif()
 # A project name is needed for CPack
 # Version can be overriden by git tags, see cmake/getversion.cmake
 project("Cockatrice" VERSION 2.10.2)
+
+# Configure app name based on DEV_BUILD
+if(DEV_BUILD)
+  set(COCKATRICE_APP_NAME "Dickatrice")
+  set(COCKATRICE_APP_NAME_LOWER "dickatrice")
+  set(APP_BUNDLE_ID_PREFIX "com.dickatrice")
+  set(IS_DEV_BUILD 1)
+else()
+  set(COCKATRICE_APP_NAME "Cockatrice")
+  set(COCKATRICE_APP_NAME_LOWER "cockatrice")
+  set(APP_BUNDLE_ID_PREFIX "com.cockatrice")
+  set(IS_DEV_BUILD 0)
+endif()
+
+# Generate app_config.h from template
+configure_file(
+  ${CMAKE_SOURCE_DIR}/cmake/app_config.h.in
+  ${CMAKE_BINARY_DIR}/app_config.h
+)
 
 # Set release name if not provided via env/cmake var
 if(NOT DEFINED GIT_TAG_RELEASENAME)
