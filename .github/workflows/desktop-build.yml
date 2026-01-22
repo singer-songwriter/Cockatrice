@@ -7,6 +7,12 @@ permissions:
   actions: write # needed for ccache action to be able to delete gha caches
 
 on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g., 2026-01-22-Release-2.10.2). Leave empty for build-only.'
+        required: false
+        type: string
   push:
     branches:
       - master
@@ -55,11 +61,17 @@ jobs:
       - name: Configure
         id: configure
         shell: bash
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
         run: |
           tag_regex='^refs/tags/'
-          if [[ $GITHUB_EVENT_NAME == pull-request ]]; then    # pull request
+          if [[ $GITHUB_EVENT_NAME == pull_request ]]; then    # pull request
             sha="${{github.event.pull_request.head.sha}}"
-          elif [[ $GITHUB_REF =~ $tag_regex ]]; then    # release
+          elif [[ -n "$INPUT_TAG" ]]; then    # manual workflow dispatch with tag
+            sha="$GITHUB_SHA"
+            tag="$INPUT_TAG"
+            echo "tag=$tag" >>"$GITHUB_OUTPUT"
+          elif [[ $GITHUB_REF =~ $tag_regex ]]; then    # release via tag push
             sha="$GITHUB_SHA"
             tag="${GITHUB_REF/refs\/tags\//}"
             echo "tag=$tag" >>"$GITHUB_OUTPUT"
@@ -93,11 +105,16 @@ jobs:
           release_name: ${{steps.prepare.outputs.title}}
           body_path: ${{steps.prepare.outputs.body_path}}
           prerelease: ${{steps.prepare.outputs.is_beta}}
+          IS_MANUAL: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           if [[ $prerelease == yes ]]; then
             args="--prerelease"
           fi
-          gh release create "$tag_name" --draft --verify-tag $args \
+          # For tag pushes, verify the tag exists; for manual dispatch, create tag with release
+          if [[ $IS_MANUAL != 'true' ]]; then
+            args="$args --verify-tag"
+          fi
+          gh release create "$tag_name" --draft $args \
               --target "$target" --title "$release_name" \
               --notes-file "$body_path"
 
