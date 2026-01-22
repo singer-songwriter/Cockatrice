@@ -21,6 +21,13 @@ if [[ ! $TAG ]]; then
   exit 2
 fi
 
+# set app name based on DEV_BUILD
+if [[ $DEV_BUILD ]]; then
+  app_name="Dickatrice"
+else
+  app_name="Cockatrice"
+fi
+
 # create title
 if [[ $TAG =~ $beta_regex ]]; then
   echo "is_beta=yes" >>"$GITHUB_OUTPUT"
@@ -33,7 +40,7 @@ else
   echo "is_beta=no" >>"$GITHUB_OUTPUT"
   name="${BASH_REMATCH[1]}"
   version="${TAG##*-}"
-  title="Cockatrice $version: $name"
+  title="$app_name $version: $name"
   no_beta=1
   echo "friendly_name=$name" >>"$GITHUB_OUTPUT"
   echo "creating full release '$title'"

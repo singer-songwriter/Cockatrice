@@ -148,6 +148,9 @@ function RUN ()
       args+=(--mount "type=bind,source=$CCACHE_DIR,target=/.ccache")
       args+=(--env "CCACHE_DIR=/.ccache")
     fi
+    if [[ $DEV_BUILD ]]; then
+      args+=(--env "DEV_BUILD=$DEV_BUILD")
+    fi
     docker run "${args[@]}" $RUN_ARGS "$IMAGE_NAME" bash "$BUILD_SCRIPT" $RUN_OPTS "$@"
     return $?
   else

@@ -12,7 +12,7 @@
 # --ccache [<size>] uses ccache and shows stats, optionally provide size
 # --dir <dir> sets the name of the build dir, default is "build"
 # --parallel <core count> sets how many cores cmake should build with in parallel
-# uses env: BUILDTYPE MAKE_INSTALL MAKE_PACKAGE PACKAGE_TYPE PACKAGE_SUFFIX MAKE_SERVER MAKE_TEST USE_CCACHE CCACHE_SIZE BUILD_DIR PARALLEL_COUNT
+# uses env: BUILDTYPE MAKE_INSTALL MAKE_PACKAGE PACKAGE_TYPE PACKAGE_SUFFIX MAKE_SERVER MAKE_TEST USE_CCACHE CCACHE_SIZE BUILD_DIR PARALLEL_COUNT DEV_BUILD
 # (correspond to args: --debug/--release --install --package <package type> --suffix <suffix> --server --test --ccache <ccache_size> --dir <dir> --parallel <core_count>)
 # exitcode: 1 for failure, 3 for invalid arguments
 
@@ -122,6 +122,9 @@ if [[ $USE_CCACHE ]]; then
 fi
 if [[ $PACKAGE_TYPE ]]; then
   flags+=("-DCPACK_GENERATOR=$PACKAGE_TYPE")
+fi
+if [[ $DEV_BUILD ]]; then
+  flags+=("-DDEV_BUILD=ON")
 fi
 
 # Add cmake --build flags

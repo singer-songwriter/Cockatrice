@@ -13,6 +13,11 @@ on:
         description: 'Release tag (e.g., 2026-01-22-Release-2.10.2). Leave empty for build-only.'
         required: false
         type: string
+      dev_build:
+        description: 'Build as Dickatrice (for parallel installation with Cockatrice)'
+        required: false
+        type: boolean
+        default: false
   push:
     branches:
       - master
@@ -92,6 +97,7 @@ jobs:
         shell: bash
         env:
           TAG: ${{steps.configure.outputs.tag}}
+          DEV_BUILD: ${{ inputs.dev_build && '1' || '' }}
         run: .ci/prep_release.sh
 
       - name: Create release
@@ -199,6 +205,7 @@ jobs:
         shell: bash
         env:
           CMAKE_GENERATOR: '${{env.CMAKE_GENERATOR}}'
+          DEV_BUILD: ${{ inputs.dev_build && '1' || '' }}
         run: |
           source .ci/docker.sh
           RUN --server --debug --test --ccache "$CCACHE_SIZE"
@@ -213,6 +220,7 @@ jobs:
           package: '${{matrix.package}}'
           CMAKE_GENERATOR: '${{env.CMAKE_GENERATOR}}'
           NO_CLIENT: ${{matrix.server_only == 'yes' && '--no-client' || '' }}
+          DEV_BUILD: ${{ inputs.dev_build && '1' || '' }}
         run: |
           source .ci/docker.sh
           RUN --server --release --package "$package" --dir "$BUILD_DIR" \
@@ -457,6 +465,7 @@ jobs:
           USE_CCACHE: ${{matrix.use_ccache}}
           VCPKG_DISABLE_METRICS: 1
           VCPKG_BINARY_SOURCES: 'clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite'
+          DEV_BUILD: ${{ inputs.dev_build && '1' || '' }}
           # macOS-specific environment variables, will be ignored on Windows
           MACOS_CERTIFICATE: ${{ secrets.PROD_MACOS_CERTIFICATE }}
           MACOS_CERTIFICATE_PWD: ${{ secrets.PROD_MACOS_CERTIFICATE_PWD }}
