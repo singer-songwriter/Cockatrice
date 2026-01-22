@@ -2,7 +2,7 @@
 #
 # add themes subfolders
 
-set(defthemes Fabric Leather Plasma VelvetMarble)
+set(defthemes Fabric Leather Plasma VelvetMarble DarkMingo-Theme-for-Cockatrice-1.3)
 
 if(UNIX)
   if(APPLE)

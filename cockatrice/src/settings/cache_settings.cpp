@@ -189,7 +189,7 @@ SettingsCache::SettingsCache()
 
     mbDownloadSpoilers = settings->value("personal/downloadspoilers", false).toBool();
 
-    checkUpdatesOnStartup = settings->value("personal/startupUpdateCheck", true).toBool();
+    checkUpdatesOnStartup = settings->value("personal/startupUpdateCheck", false).toBool();
     notifyAboutUpdates = settings->value("personal/updatenotification", true).toBool();
     notifyAboutNewVersion = settings->value("personal/newversionnotification", true).toBool();
     updateReleaseChannel = settings->value("personal/updatereleasechannel", 0).toInt();
@@ -199,7 +199,7 @@ SettingsCache::SettingsCache()
     timeout = settings->value("personal/timeout", 5).toInt();
 
     // tip of the day settings
-    showTipsOnStartup = settings->value("tipOfDay/showTips", true).toBool();
+    showTipsOnStartup = settings->value("tipOfDay/showTips", false).toBool();
     for (const auto &tipNumber : settings->value("tipOfDay/seenTips").toList()) {
         seenTips.append(tipNumber.toInt());
     }
