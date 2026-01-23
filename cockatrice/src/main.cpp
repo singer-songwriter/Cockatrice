@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
     // Wrong or outdated values are kept to not break things
     QCoreApplication::setOrganizationName("Cockatrice");
     QCoreApplication::setOrganizationDomain("cockatrice.de");
-    QCoreApplication::setApplicationName("Cockatrice");
+    QCoreApplication::setApplicationName("Dickatrice");
     QCoreApplication::setApplicationVersion(VERSION_STRING);
 
 #ifdef Q_OS_MAC

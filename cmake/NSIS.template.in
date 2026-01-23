@@ -23,9 +23,9 @@ Var PortableMode
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "${NSIS_SOURCE_PATH}\cmake\headerimage.bmp"
 !define MUI_HEADERIMAGE_UNBITMAP "${NSIS_SOURCE_PATH}\cmake\headerimage.bmp"
-!define MUI_WELCOMEPAGE_TEXT "This wizard will guide you through the installation of Cockatrice.$\r$\n$\r$\nClick Next to continue."
-!define MUI_FINISHPAGE_RUN "$INSTDIR/cockatrice.exe"
-!define MUI_FINISHPAGE_RUN_TEXT "Run 'Cockatrice' now"
+!define MUI_WELCOMEPAGE_TEXT "This wizard will guide you through the installation of Dickatrice.$\r$\n$\r$\nClick Next to continue."
+!define MUI_FINISHPAGE_RUN "$INSTDIR/dickatrice.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "Run 'Dickatrice' now"
 
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "${NSIS_SOURCE_PATH}\LICENSE"
@@ -47,7 +47,7 @@ Function .onInit
 
 ${If} ${NSIS_IS_64_BIT} == 1    #NSIS 64bit
     ${IfNot} ${RunningX64}
-        MessageBox MB_OK|MB_ICONSTOP "This version of Cockatrice requires a 64-bit Windows system."
+        MessageBox MB_OK|MB_ICONSTOP "This version of Dickatrice requires a 64-bit Windows system."
         Abort
     ${EndIf}
     StrCpy $NormalDestDir "$ProgramFiles64\Cockatrice"
@@ -55,7 +55,7 @@ ${If} ${NSIS_IS_64_BIT} == 1    #NSIS 64bit
 ${Else}    #NSIS 32bit
     ${If} ${RunningX64}
         MessageBox MB_OK|MB_ICONEXCLAMATION \
-        "You are about to install a 32-bit version of Cockatrice on a 64-bit Windows system.$\n\
+        "You are about to install a 32-bit version of Dickatrice on a 64-bit Windows system.$\n\
         We advise you to use the correct 64-bit installer instead to get around potential issues.$\n$\n\
         Download from our webpage: https://cockatrice.github.io"
     ${EndIf}
@@ -110,7 +110,7 @@ Function RequireAdmin
 UserInfo::GetAccountType
 Pop $8
 ${If} $8 != "admin"
-    MessageBox MB_ICONSTOP "You need administrator rights to install Cockatrice"
+    MessageBox MB_ICONSTOP "You need administrator rights to install Dickatrice"
     SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
     Abort
 ${EndIf}
@@ -128,7 +128,7 @@ FunctionEnd
 
 Function PortableModePageCreate
 Call SetModeDestinationFromInstdir ; If the user clicks BACK on the directory page we will remember their mode specific directory
-!insertmacro MUI_HEADER_TEXT "Install Mode" "Choose how you want to install Cockatrice."
+!insertmacro MUI_HEADER_TEXT "Install Mode" "Choose how you want to install Dickatrice."
 nsDialogs::Create 1018
 Pop $0
 ${NSD_CreateLabel} 0 10u 100% 24u "Select install mode:"
@@ -167,7 +167,7 @@ ${If} $PortableMode = 0
     ReadRegStr $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "UninstallString"
     StrCmp $R0 "" done32
 
-    MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "A previous version of Cockatrice must be uninstalled before installing the new one." IDOK uninst32
+    MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "A previous version of Dickatrice must be uninstalled before installing the new one." IDOK uninst32
     Abort
 
     uninst32:
@@ -183,7 +183,7 @@ ${If} $PortableMode = 0
 	    ReadRegStr $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "UninstallString"
 	    StrCmp $R0 "" done64
 
-	    MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "A previous version of Cockatrice must be uninstalled before installing the new one." IDOK uninst64
+	    MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "A previous version of Dickatrice must be uninstalled before installing the new one." IDOK uninst64
 	    Abort
 
 	    uninst64:
@@ -211,7 +211,7 @@ ${AndIf} ${FileExists} "$INSTDIR\portable.dat"
 	RMDir /r "$INSTDIR\themes"
 	RMDir /r "$INSTDIR\translations"
 	Delete "$INSTDIR\uninstall.exe"
-	Delete "$INSTDIR\cockatrice.exe"
+	Delete "$INSTDIR\dickatrice.exe"
 	Delete "$INSTDIR\oracle.exe"
 	Delete "$INSTDIR\dbconverter.exe"
 	Delete "$INSTDIR\servatrice.exe"
@@ -238,12 +238,12 @@ ${If} $PortableMode = 0
 
 	; Enable Windows User-Mode Dumps
 	; https://learn.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps
-	WriteRegExpandStr HKLM "Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\cockatrice.exe" "DumpFolder" "%LOCALAPPDATA%\CrashDumps\Cockatrice"
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\cockatrice.exe" "DumpCount" "5"
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\cockatrice.exe" "DumpType" "2"
+	WriteRegExpandStr HKLM "Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\dickatrice.exe" "DumpFolder" "%LOCALAPPDATA%\CrashDumps\Cockatrice"
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\dickatrice.exe" "DumpCount" "5"
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\dickatrice.exe" "DumpType" "2"
 
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "DisplayIcon" "$INSTDIR\cockatrice.exe"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "DisplayName" "Cockatrice"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "DisplayIcon" "$INSTDIR\dickatrice.exe"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "DisplayName" "Dickatrice"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "DisplayVersion" "@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@.@CPACK_PACKAGE_VERSION_PATCH@"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "EstimatedSize" "$0"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Cockatrice" "InstallLocation" "$INSTDIR"
@@ -283,7 +283,7 @@ Section "Start menu item" SecStartMenu
 ${If} $PortableMode = 0
 	SetShellVarContext all
 	createDirectory "$SMPROGRAMS\Cockatrice"
-	createShortCut "$SMPROGRAMS\Cockatrice\Cockatrice.lnk" "$INSTDIR\cockatrice.exe"
+	createShortCut "$SMPROGRAMS\Cockatrice\Dickatrice.lnk" "$INSTDIR\dickatrice.exe"
 	createShortCut "$SMPROGRAMS\Cockatrice\Oracle.lnk" "$INSTDIR\oracle.exe"
 	createShortCut "$SMPROGRAMS\Cockatrice\Servatrice.lnk" "$INSTDIR\servatrice.exe"
 ${EndIf}

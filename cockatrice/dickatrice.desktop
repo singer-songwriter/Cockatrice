@@ -2,7 +2,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Cockatrice
-Exec=cockatrice
+Name=Dickatrice
+Exec=dickatrice
 Icon=cockatrice
 Categories=Game;CardGame;
