@@ -6,7 +6,7 @@
 # expected to be run in the build directory unless BUILD_DIR is set
 # adds output to GITHUB_OUTPUT
 builddir="${BUILD_DIR:=.}"
-findrx="Cockatrice-*.*"
+findrx="Dickatrice-*.*"
 
 if [[ $1 ]]; then
   SUFFIX="$1"
