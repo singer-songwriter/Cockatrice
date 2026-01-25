@@ -49,7 +49,7 @@ QStringMap &ThemeManager::getAvailableThemes()
     dir.setPath(SettingsCache::instance().getThemesPath());
 
     for (QString themeName : dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot, QDir::Name)) {
-        if (!availableThemes.contains(themeName)) {
+        if (!availableThemes.contains(themeName) && themeName != "CMakeFiles") {
             availableThemes.insert(themeName, dir.absoluteFilePath(themeName));
         }
     }
@@ -66,7 +66,7 @@ QStringMap &ThemeManager::getAvailableThemes()
     );
 
     for (QString themeName : dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot, QDir::Name)) {
-        if (!availableThemes.contains(themeName)) {
+        if (!availableThemes.contains(themeName) && themeName != "CMakeFiles") {
             availableThemes.insert(themeName, dir.absoluteFilePath(themeName));
         }
     }

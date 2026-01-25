@@ -105,7 +105,7 @@ QStringMap &SoundEngine::getAvailableThemes()
     dir.setPath(SettingsCache::instance().getDataPath() + "/sounds");
 
     for (const QString &themeName : dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot, QDir::Name)) {
-        if (!availableThemes.contains(themeName))
+        if (!availableThemes.contains(themeName) && themeName != "CMakeFiles")
             availableThemes.insert(themeName, dir.absoluteFilePath(themeName));
     }
 
@@ -121,7 +121,7 @@ QStringMap &SoundEngine::getAvailableThemes()
     );
 
     for (const QString &themeName : dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot, QDir::Name)) {
-        if (!availableThemes.contains(themeName))
+        if (!availableThemes.contains(themeName) && themeName != "CMakeFiles")
             availableThemes.insert(themeName, dir.absoluteFilePath(themeName));
     }
 
