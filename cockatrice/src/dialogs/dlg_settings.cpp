@@ -126,29 +126,10 @@ GeneralSettingsPage::GeneralSettingsPage()
     QPushButton *tokenDatabasePathButton = new QPushButton("...");
     connect(tokenDatabasePathButton, SIGNAL(clicked()), this, SLOT(tokenDatabasePathButtonClicked()));
 
-    // Required init here to avoid crashing on Portable builds
     resetAllPathsButton = new QPushButton;
-
-    bool isPortable = settings.getIsPortableBuild();
-    if (isPortable) {
-        deckPathEdit->setEnabled(false);
-        replaysPathEdit->setEnabled(false);
-        picsPathEdit->setEnabled(false);
-        cardDatabasePathEdit->setEnabled(false);
-        customCardDatabasePathEdit->setEnabled(false);
-        tokenDatabasePathEdit->setEnabled(false);
-
-        deckPathButton->setVisible(false);
-        replaysPathButton->setVisible(false);
-        picsPathButton->setVisible(false);
-        cardDatabasePathButton->setVisible(false);
-        customCardDatabasePathButton->setVisible(false);
-        tokenDatabasePathButton->setVisible(false);
-    } else {
-        connect(resetAllPathsButton, SIGNAL(clicked()), this, SLOT(resetAllPathsClicked()));
-        allPathsResetLabel = new QLabel(tr("All paths have been reset"));
-        allPathsResetLabel->setVisible(false);
-    }
+    connect(resetAllPathsButton, SIGNAL(clicked()), this, SLOT(resetAllPathsClicked()));
+    allPathsResetLabel = new QLabel(tr("All paths have been reset"));
+    allPathsResetLabel->setVisible(false);
 
     auto *pathsGrid = new QGridLayout;
     pathsGrid->addWidget(&deckPathLabel, 0, 0);
@@ -169,10 +150,8 @@ GeneralSettingsPage::GeneralSettingsPage()
     pathsGrid->addWidget(&tokenDatabasePathLabel, 5, 0);
     pathsGrid->addWidget(tokenDatabasePathEdit, 5, 1);
     pathsGrid->addWidget(tokenDatabasePathButton, 5, 2);
-    if (!isPortable) {
-        pathsGrid->addWidget(resetAllPathsButton, 6, 0);
-        pathsGrid->addWidget(allPathsResetLabel, 6, 1);
-    }
+    pathsGrid->addWidget(resetAllPathsButton, 6, 0);
+    pathsGrid->addWidget(allPathsResetLabel, 6, 1);
     pathsGroupBox = new QGroupBox;
     pathsGroupBox->setLayout(pathsGrid);
 
@@ -299,11 +278,7 @@ void GeneralSettingsPage::retranslateUi()
     personalGroupBox->setTitle(tr("Personal settings"));
     languageLabel.setText(tr("Language:"));
 
-    if (SettingsCache::instance().getIsPortableBuild()) {
-        pathsGroupBox->setTitle(tr("Paths (editing disabled in portable mode)"));
-    } else {
-        pathsGroupBox->setTitle(tr("Paths"));
-    }
+    pathsGroupBox->setTitle(tr("Paths"));
     advertiseTranslationPageLabel.setText(
         QString("<a href='%1'>%2</a>").arg(WIKI_TRANSLATION_FAQ).arg(tr("How to help with translations")));
     deckPathLabel.setText(tr("Decks directory:"));
