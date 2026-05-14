@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
 
     ui.setWindowIcon(QPixmap("theme:cockatrice"));
     // set name of the app desktop file; used by wayland to load the window icon
-    QGuiApplication::setDesktopFileName("cockatrice");
+    QGuiApplication::setDesktopFileName("cockatrice-dev");
 
     SettingsCache::instance().setClientID(generateClientID());
 

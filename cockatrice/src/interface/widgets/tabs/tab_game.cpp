@@ -1,6 +1,8 @@
 #include "tab_game.h"
 
 #include "../../../client/settings/cache_settings.h"
+#include "../../../game/board_state/board_state_copy_widget.h"
+#include "../../../game/triggers/trigger_widget.h"
 #include "../game/board/arrow_item.h"
 #include "../game/board/card_item.h"
 #include "../game/deckview/deck_view_container.h"
@@ -52,13 +54,17 @@ TabGame::TabGame(TabSupervisor *_tabSupervisor, GameReplay *_replay)
     createCardInfoDock(true);
     createPlayerListDock(true);
     createMessageDock(true);
+    createTriggerDock(true);
     createPlayAreaWidget(true);
     createDeckViewContainerWidget(true);
     createReplayDock(_replay);
+    createBoardStateCopyDock();
 
     addDockWidget(Qt::RightDockWidgetArea, cardInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, playerListDock);
     addDockWidget(Qt::RightDockWidgetArea, messageLayoutDock);
+    addDockWidget(Qt::RightDockWidgetArea, triggerDock);
+    addDockWidget(Qt::RightDockWidgetArea, boardStateCopyDock);
     addDockWidget(Qt::BottomDockWidgetArea, replayDock);
 
     mainWidget = new QStackedWidget(this);
@@ -96,13 +102,17 @@ TabGame::TabGame(TabSupervisor *_tabSupervisor,
     createCardInfoDock();
     createPlayerListDock();
     createMessageDock();
+    createTriggerDock();
     createPlayAreaWidget();
     createDeckViewContainerWidget();
     replayDock = nullptr;
+    createBoardStateCopyDock();
 
     addDockWidget(Qt::RightDockWidgetArea, cardInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, playerListDock);
     addDockWidget(Qt::RightDockWidgetArea, messageLayoutDock);
+    addDockWidget(Qt::RightDockWidgetArea, triggerDock);
+    addDockWidget(Qt::RightDockWidgetArea, boardStateCopyDock);
 
     mainWidget = new QStackedWidget(this);
     mainWidget->addWidget(deckViewContainerWidget);
@@ -279,6 +289,7 @@ void TabGame::retranslateUi()
     updatePlayerListDockTitle();
     cardInfoDock->setWindowTitle(tr("Card Info") + (cardInfoDock->isWindow() ? tabText : QString()));
     messageLayoutDock->setWindowTitle(tr("Messages") + (messageLayoutDock->isWindow() ? tabText : QString()));
+    triggerDock->setWindowTitle(tr("Triggers") + (triggerDock->isWindow() ? tabText : QString()));
     if (replayDock)
         replayDock->setWindowTitle(tr("Replay Timeline") + (replayDock->isWindow() ? tabText : QString()));
 
@@ -342,6 +353,8 @@ void TabGame::retranslateUi()
     dockToActions[cardInfoDock].menu->setTitle(tr("Card Info"));
     dockToActions[messageLayoutDock].menu->setTitle(tr("Messages"));
     dockToActions[playerListDock].menu->setTitle(tr("Player List"));
+    dockToActions[triggerDock].menu->setTitle(tr("Triggers"));
+    dockToActions[boardStateCopyDock].menu->setTitle(tr("Board State"));
 
     if (replayDock) {
         dockToActions[replayDock].menu->setTitle(tr("Replay Timeline"));
@@ -671,6 +684,8 @@ void TabGame::addLocalPlayer(Player *newPlayer, int playerId)
     if (game->getGameState()->getClients().size() == 1) {
         newPlayer->getPlayerMenu()->setShortcutsActive();
     }
+
+    triggerWidget->setLocalPlayer(newPlayer);
 
     auto *deckView = new TabbedDeckViewContainer(playerId, this);
     connect(deckView->playerDeckView, &DeckViewContainer::newCardAdded, this, &TabGame::newCardAdded);
@@ -1035,6 +1050,8 @@ void TabGame::createViewMenuItems()
     registerDockWidget(viewMenu, cardInfoDock, {250, 360});
     registerDockWidget(viewMenu, messageLayoutDock, {250, 200});
     registerDockWidget(viewMenu, playerListDock, {250, 50});
+    registerDockWidget(viewMenu, triggerDock, {250, 200});
+    registerDockWidget(viewMenu, boardStateCopyDock, {250, 80});
 
     if (replayDock) {
         registerDockWidget(viewMenu, replayDock, {900, 100});
@@ -1125,14 +1142,20 @@ void TabGame::actResetLayout()
     cardInfoDock->setVisible(true);
     playerListDock->setVisible(true);
     messageLayoutDock->setVisible(true);
+    triggerDock->setVisible(true);
+    boardStateCopyDock->setVisible(true);
 
     cardInfoDock->setFloating(false);
     playerListDock->setFloating(false);
     messageLayoutDock->setFloating(false);
+    triggerDock->setFloating(false);
+    boardStateCopyDock->setFloating(false);
 
     addDockWidget(Qt::RightDockWidgetArea, cardInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, playerListDock);
     addDockWidget(Qt::RightDockWidgetArea, messageLayoutDock);
+    addDockWidget(Qt::RightDockWidgetArea, triggerDock);
+    addDockWidget(Qt::RightDockWidgetArea, boardStateCopyDock);
 
     if (replayDock) {
         replayDock->setVisible(true);
@@ -1145,6 +1168,10 @@ void TabGame::actResetLayout()
         messageLayoutDock->setMaximumSize(250, 200);
         playerListDock->setMinimumSize(250, 50);
         playerListDock->setMaximumSize(250, 50);
+        triggerDock->setMinimumSize(250, 200);
+        triggerDock->setMaximumSize(250, 200);
+        boardStateCopyDock->setMinimumSize(250, 80);
+        boardStateCopyDock->setMaximumSize(250, 80);
         replayDock->setMinimumSize(900, 100);
         replayDock->setMaximumSize(900, 100);
     } else {
@@ -1154,6 +1181,10 @@ void TabGame::actResetLayout()
         messageLayoutDock->setMaximumSize(250, 250);
         playerListDock->setMinimumSize(250, 50);
         playerListDock->setMaximumSize(250, 50);
+        triggerDock->setMinimumSize(250, 200);
+        triggerDock->setMaximumSize(250, 200);
+        boardStateCopyDock->setMinimumSize(250, 80);
+        boardStateCopyDock->setMaximumSize(250, 80);
     }
 
     QTimer::singleShot(100, this, &TabGame::freeDocksSize);
@@ -1326,6 +1357,35 @@ void TabGame::createMessageDock(bool bReplay)
                                    QDockWidget::DockWidgetMovable);
     messageLayoutDock->setWidget(messageLogLayoutWidget);
     messageLayoutDock->setFloating(false);
+}
+
+void TabGame::createTriggerDock(bool bReplay)
+{
+    Q_UNUSED(bReplay);
+
+    triggerWidget = new TriggerWidget();
+
+    triggerDock = new QDockWidget(this);
+    triggerDock->setObjectName("triggerDock");
+    triggerDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetFloatable |
+                             QDockWidget::DockWidgetMovable);
+    triggerDock->setWidget(triggerWidget);
+    triggerDock->setFloating(false);
+
+    connect(triggerWidget, &TriggerWidget::cardNameHovered, cardInfoFrameWidget,
+            qOverload<const QString &>(&CardInfoFrameWidget::setCard));
+}
+
+void TabGame::createBoardStateCopyDock()
+{
+    boardStateCopyWidget = new BoardStateCopyWidget(game, phasesToolbar);
+
+    boardStateCopyDock = new QDockWidget(this);
+    boardStateCopyDock->setObjectName("boardStateCopyDock");
+    boardStateCopyDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetFloatable |
+                                    QDockWidget::DockWidgetMovable);
+    boardStateCopyDock->setWidget(boardStateCopyWidget);
+    boardStateCopyDock->setFloating(false);
 }
 
 void TabGame::hideEvent(QHideEvent *event)

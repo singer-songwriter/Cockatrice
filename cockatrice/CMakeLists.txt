@@ -104,6 +104,10 @@ set(cockatrice_SOURCES
     src/game/replay.cpp
     src/game/zones/card_zone.cpp
     src/game/zones/hand_zone.cpp
+    src/game/board_state/board_state_copy_widget.cpp
+    src/game/board_state/board_state_copy_widget.h
+    src/game/triggers/trigger_widget.cpp
+    src/game/triggers/trigger_widget.h
     src/game/zones/logic/card_zone_logic.cpp
     src/game/zones/logic/hand_zone_logic.cpp
     src/game/zones/logic/pile_zone_logic.cpp
@@ -462,9 +466,9 @@ if(UNIX)
   else()
     # Assume linux
     install(TARGETS cockatrice RUNTIME DESTINATION bin/)
-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/cockatrice.png DESTINATION ${ICONDIR}/hicolor/48x48/apps)
-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/cockatrice.svg DESTINATION ${ICONDIR}/hicolor/scalable/apps)
-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cockatrice.desktop DESTINATION ${DESKTOPDIR})
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/cockatrice.png DESTINATION ${ICONDIR}/hicolor/48x48/apps RENAME cockatrice-dev.png)
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/cockatrice.svg DESTINATION ${ICONDIR}/hicolor/scalable/apps RENAME cockatrice-dev.svg)
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cockatrice-dev.desktop DESTINATION ${DESKTOPDIR})
   endif()
 elseif(WIN32)
   install(TARGETS cockatrice RUNTIME DESTINATION ./)

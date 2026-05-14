@@ -51,6 +51,8 @@ class GameReplay;
 class LineEditCompleter;
 class QDockWidget;
 class QStackedWidget;
+class TriggerWidget;
+class BoardStateCopyWidget;
 
 class TabGame : public Tab
 {
@@ -76,7 +78,9 @@ private:
     QMap<int, TabbedDeckViewContainer *> deckViewContainers;
     QVBoxLayout *deckViewContainerLayout;
     QWidget *gamePlayAreaWidget, *deckViewContainerWidget;
-    QDockWidget *cardInfoDock, *messageLayoutDock, *playerListDock, *replayDock;
+    QDockWidget *cardInfoDock, *messageLayoutDock, *playerListDock, *replayDock, *triggerDock, *boardStateCopyDock;
+    TriggerWidget *triggerWidget;
+    BoardStateCopyWidget *boardStateCopyWidget;
     QAction *playersSeparator;
     QMenu *gameMenu, *viewMenu;
     TearOffMenu *phasesMenu;
@@ -122,6 +126,8 @@ private:
     void createCardInfoDock(bool bReplay = false);
     void createPlayerListDock(bool bReplay = false);
     void createMessageDock(bool bReplay = false);
+    void createTriggerDock(bool bReplay = false);
+    void createBoardStateCopyDock();
     void createPlayAreaWidget(bool bReplay = false);
     void createDeckViewContainerWidget(bool bReplay = false);
     void createReplayDock(GameReplay *replay);
